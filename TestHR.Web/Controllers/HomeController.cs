@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TestHR.Entities;
+using TestHR.AdminCenter;
 
 namespace TestHR.Web.Controllers
 {
@@ -10,6 +12,10 @@ namespace TestHR.Web.Controllers
     {
         public ActionResult Index()
         {
+            var company = new Company();
+            var context = new AdminCenterDbContext();
+            var repo = new CompanyRepository(context);
+            repo.GetAll();
             return View();
         }
 

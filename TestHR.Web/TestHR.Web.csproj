@@ -1276,6 +1276,7 @@
     <Content Include="Plugins\weather-icons-master\_docs\less\mixins.less" />
     <Content Include="Plugins\weather-icons-master\_docs\less\styles.less" />
     <Content Include="Plugins\weather-icons-master\_docs\less\variables.less" />
+    <Content Include="Database.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1338,6 +1339,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestHR.AdminCenter\TestHR.AdminCenter.csproj">
+      <Project>{1fc77233-90bf-4b23-ab70-6c2dc0d9b161}</Project>
+      <Name>TestHR.AdminCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestHR.Data\TestHR.Data.csproj">
+      <Project>{80731466-e521-4e51-9827-f15b39bc9b0f}</Project>
+      <Name>TestHR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestHR.Entities\TestHR.Entities.csproj">
+      <Project>{fa69f790-2b68-4cdb-98e0-4bb458589151}</Project>
+      <Name>TestHR.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
