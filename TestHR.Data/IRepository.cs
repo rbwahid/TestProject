@@ -11,9 +11,9 @@ namespace TestHR.Data
 
         IEnumerable<T> GetAll();
 
-        T GetByID(Guid id);
+        T GetById(Guid id);
 
-        void DeleteByID(Guid id);
+        void DeleteById(Guid id);
 
         void DeleteByItem(T item);
     }

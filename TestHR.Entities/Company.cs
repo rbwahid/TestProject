@@ -10,7 +10,7 @@ namespace TestHR.Entities
     public class Company : Entity
     {
         public string Name { get; set; }
-        public Company MotherCompany { get; set; }
+        public virtual Company MotherCompany { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
@@ -18,7 +18,7 @@ namespace TestHR.Entities
         public string ContactPerson { get; set; }
         public string ContactPersonEmail { get; set; }
         public string ContactPersonPhone { get; set; }
-        public DateTime FiscalYearStart { get; set; }
+        public DateTime? FiscalYearStart { get; set; }
         public string CompanyLogo { get; set; }
     }
 }

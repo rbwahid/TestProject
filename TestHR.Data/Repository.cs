@@ -9,7 +9,7 @@ namespace TestHR.Data
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        private DbContext _context;
+        private DbContext _context ;
         public Repository(DbContext context)
         {
             _context = context;
@@ -25,14 +25,14 @@ namespace TestHR.Data
             return _context.Set<T>().ToList();
         }
 
-        public T GetByID(Guid id)
+        public T GetById(Guid id)
         {
             return _context.Set<T>().Where(x => x.Id == id).SingleOrDefault();
         }
 
-        public void DeleteByID(Guid id)
+        public void DeleteById(Guid id)
         {
-            T item = GetByID(id);
+            T item = GetById(id);
             DeleteByItem(item);
         }
 
