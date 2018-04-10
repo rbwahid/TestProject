@@ -3,53 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TestHR.Entities;
 using TestHR.Web.Areas.Admin.Models;
 
 namespace TestHR.Web.Areas.Admin.Controllers
 {
-    public class CompanyController : Controller
+    public class PositionController : Controller
     {
-        // GET: Admin/Company
 
         public ActionResult Index()
         {
-            var companyModel = new CompanyModel();
-            return View(companyModel);
+            var positionModel = new PositionModel();
+            return View(positionModel);
         }
 
         public ActionResult Add()
         {
-            var companyModel = new CompanyModel();
-            return View(companyModel);
+            var positionModel = new PositionModel();
+            return View(positionModel);
         }
 
         [HttpPost]
-        public ActionResult Add(CompanyModel companyModel)
+        public ActionResult Add(PositionModel positionModel)
         {
             try
             {
-                companyModel.AddCompany();
+                positionModel.AddPosition();
                 TempData["message"] = "Successfully added Company.";
-                TempData["alertType"] = "success";
-            }
-
-            catch(Exception e) 
-            {
-                TempData["message"] = "Failed to Add Company.";
-                TempData["alertType"] = "danger";
-                Console.Write(e.Message);
-            }
-
-            return View(companyModel);
-        }
-
-        public ActionResult Delete(Guid? id)
-        {
-            try
-            {
-                new CompanyModel().DeleteCompany(id);
-                TempData["message"] = "Successfully Deletd Company.";
                 TempData["alertType"] = "success";
             }
 
@@ -57,9 +36,28 @@ namespace TestHR.Web.Areas.Admin.Controllers
             {
                 TempData["message"] = "Failed to Add Company.";
                 TempData["alertType"] = "danger";
+                Console.Write(e.Message);
+            }
+
+            return View(positionModel);
+        }
+
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                new PositionModel().DeletePosition(id);
+                TempData["message"] = "Successfully Deletd Position.";
+                TempData["alertType"] = "success";
+            }
+
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Position.";
+                TempData["alertType"] = "danger";
             }
 
             return RedirectToAction("Index");
         }
-    }
+	}
 }
