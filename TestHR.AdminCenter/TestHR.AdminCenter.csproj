@@ -49,9 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminCenterDbContext.cs" />
+    <Compile Include="BranchManagementService.cs" />
+    <Compile Include="BranchRepository.cs" />
+    <Compile Include="BranchUnitOfWork.cs" />
     <Compile Include="CompanyManagementService.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="CompanyUnitOfWork.cs" />
+    <Compile Include="DepartmentManagementService.cs" />
+    <Compile Include="DepartmentRepository.cs" />
+    <Compile Include="DepartmentUnitOfWork.cs" />
     <Compile Include="PositionManagementService.cs" />
     <Compile Include="PositionRepository.cs" />
     <Compile Include="PositionUnitOfWork.cs" />
