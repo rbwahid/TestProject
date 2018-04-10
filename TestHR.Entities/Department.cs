@@ -10,8 +10,17 @@ namespace TestHR.Entities
 {
     public class Department : Entity
     {
-        public Company Company { get; set; }
+
         public string Name { get; set; }
+        //public Guid? CompanyId { get; set; }
+        //[ForeignKey("CompanyId")]
+        public virtual Company Company { get; set; }
+       
+        //public Guid? DepartmentHeadId { get; set; }
+        //[ForeignKey("DepartmentHeadId")]
+
         public virtual Employee DepartmentHead { get; set; }
+        public ICollection<Employee> Employees { get; set; } 
+
     }
 }
