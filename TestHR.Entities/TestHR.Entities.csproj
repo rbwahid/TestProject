@@ -51,6 +51,9 @@
     <Compile Include="Company.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeCareerHistory.cs" />
+    <Compile Include="EmployeeEducationHistory.cs" />
+    <Compile Include="LeaveType.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
