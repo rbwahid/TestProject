@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestHR.AdminCenter</RootNamespace>
     <AssemblyName>TestHR.AdminCenter</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,24 +49,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminCenterDbContext.cs" />
+    <Compile Include="BranchManagementService.cs" />
+    <Compile Include="BranchRepository.cs" />
+    <Compile Include="BranchUnitOfWork.cs" />
     <Compile Include="CompanyManagementService.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="CompanyUnitOfWork.cs" />
+    <Compile Include="DepartmentManagementService.cs" />
+    <Compile Include="DepartmentRepository.cs" />
+    <Compile Include="DepartmentUnitOfWork.cs" />
+    <Compile Include="PositionManagementService.cs" />
+    <Compile Include="PositionRepository.cs" />
+    <Compile Include="PositionUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TestHR.Data\TestHR.Data.csproj">
-      <Project>{80731466-e521-4e51-9827-f15b39bc9b0f}</Project>
-      <Name>TestHR.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestHR.Entities\TestHR.Entities.csproj">
-      <Project>{fa69f790-2b68-4cdb-98e0-4bb458589151}</Project>
-      <Name>TestHR.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestHR.Data\TestHR.Data.csproj">
+      <Project>{80731466-E521-4E51-9827-F15B39BC9B0F}</Project>
+      <Name>TestHR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestHR.Entities\TestHR.Entities.csproj">
+      <Project>{FA69F790-2B68-4CDB-98E0-4BB458589151}</Project>
+      <Name>TestHR.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
