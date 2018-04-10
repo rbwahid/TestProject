@@ -9,19 +9,19 @@ namespace TestHR.AdminCenter
     class DepartmentUnitOfWork : IDisposable
     {
         private AdminCenterDbContext _context { get; set; }
-        private BranchRepository _branchRepository { get; set; }
+        private DepartmentRepository _departmentRepository { get; set; }
 
-        public BranchUnitOfWork(AdminCenterDbContext context)
+        public DepartmentUnitOfWork(AdminCenterDbContext context)
         {
             _context = context;
-            _branchRepository = new BranchRepository(_context);
+            _departmentRepository = new DepartmentRepository(_context);
         }
 
-        public BranchRepository BranchRepository
+        public DepartmentRepository DepartmentRepository
         {
             get
             {
-                return _branchRepository;
+                return _departmentRepository;
             }
         }
         public void Save()
