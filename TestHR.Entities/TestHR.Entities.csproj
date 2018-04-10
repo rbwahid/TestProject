@@ -54,9 +54,11 @@
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeCareerHistory.cs" />
     <Compile Include="EmployeeEducationHistory.cs" />
+    <Compile Include="Holiday.cs" />
     <Compile Include="LeaveType.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shift.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestHR.Data\TestHR.Data.csproj">
