@@ -54,6 +54,9 @@
     <Compile Include="CompanyManagementService.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="CompanyUnitOfWork.cs" />
+    <Compile Include="DepartmentManagementService.cs" />
+    <Compile Include="DepartmentRepository.cs" />
+    <Compile Include="DepartmentUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
