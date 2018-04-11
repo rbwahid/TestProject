@@ -50,7 +50,7 @@ namespace TestHR.AdminCenter
         }
         public void AddEmployee(string firstName,string middleName,string lastName,string fathersName,string motherName,
             string souseName,string phoneNumber,string presentAddress,string pernamentAddress,string email,string religion,string nationality ,
-            string nId,string passportNo, Guid? companyId,Guid? branchId,Guid? departmentId,Guid? positionId,ICollection<EmployeeEducationHistory> educationHistories,ICollection<EmployeeCareerHistory> careerHistories)
+            string nId,string passportNo, Guid? companyId,Guid? branchId,Guid? departmentId,Guid? positionId,List<EmployeeEducationHistory> educationHistories,List<EmployeeCareerHistory> careerHistories)
         {
             var employee = new Employee();
             employee.FirstName = firstName;

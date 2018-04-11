@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TestHR.Web.Areas.Admin.Models;
 
 namespace TestHR.Web.Areas.Admin.Controllers
 {
@@ -17,7 +18,20 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            EmployeeModel employeeModel=new EmployeeModel();
+            return View(employeeModel);
+        }
+        [HttpPost]
+        public ActionResult Add(EmployeeModel employeeModel)
+        {
+
+            employeeModel.AddEmployee();
+            TempData["message"] = "Successfully added Branch.";
+            TempData["alertType"] = "success";
+
+
+
+            return View(employeeModel);
         }
 	}
 }

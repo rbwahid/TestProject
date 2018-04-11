@@ -41,8 +41,8 @@ namespace TestHR.Web.Areas.Admin.Models
         public List<Position> Positions { get; set; }
         public Guid? PositionId { get; set; }
 
-        public ICollection<EmployeeEducationHistory> EducationHistories { get; set; }
-        public ICollection<EmployeeCareerHistory> EmployeeCareerHistories { get; set; }
+        public List<EmployeeEducationHistory> EducationHistories { get; set; }
+        public List<EmployeeCareerHistory> EmployeeCareerHistories { get; set; }
 
 
         public EmployeeModel()
@@ -102,6 +102,7 @@ namespace TestHR.Web.Areas.Admin.Models
         }
         public void AddEmployee()
         {
+            _employeeManagementService = new EmployeeManagementService();
             _employeeManagementService.AddEmployee(FirstName,MiddleName,LastName,FathersName,MothersName,SouseName,
                 PhoneNumber,PresentAddress,PernamentAddress,Email,Religion,Nationality,Nid,PassportNo,CompanyId,BranchId,DepartmentId,
                 PositionId,EducationHistories,EmployeeCareerHistories);

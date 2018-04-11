@@ -7,7 +7,7 @@
 <main class="mn-inner">
     <div class="row">
         <div class="col s12">
-            <div class="page-title">Contact</div>
+            <div class="page-title">Employee Setting</div>
         </div>
         <div class="col s1 m4 l3">
             <div class="card">
@@ -29,20 +29,22 @@
                 </div>
             </div>
         </div>
-        
-        <div class="col m8">
-            <div class="card">
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs tab-demo z-depth-1" style="width: 100%;">
-                            <li class="tab col s3"><a href="#personalInfo" class="">Personal Info</a></li>
-                            <li class="tab col s3"><a class="" href="#contactInfo">Contact Info</a></li>
-                            <li class="tab col s3"><a href="#educationalInfo">Educational Info</a></li>
-                            <li class="tab col s3"><a href="#careerInfo">Career Info</a></li>
-                        </ul>
-                    </div>
-                    <form>
+        <form method="post" action="/Admin/Employee/Add">
+            <div class="col m8">
+                <div class="card">
+                    <div class="row">
+                        <div class="col m12">
+                            <ul class="tabs z-depth-1" style="width: 100%;">
+                                <li class="tab col s3"><a href="#personalInfo" class="">Personal Info</a></li>
+                                <li class="tab col s3"><a class="" href="#contactInfo">Contact Info</a></li>
+                                <li class="tab col s3"><a class="" href="#officialInfo">official Info</a></li>
+                                <li class="tab col s3"><a href="#educationalInfo">Educational Info</a></li>
+                                <li class="tab col s3"><a href="#careerInfo">Career Info</a></li>
+                            </ul>
+                        </div>
+
                         <div id="personalInfo" class="col s12">
+                            <br />
                             <div class="col m12">
                                 <div class="row">
                                     <div class="input-field col m6 s12">
@@ -69,22 +71,7 @@
                                         <label for="SouseName">Souse Name</label>
                                         <input id="SouseName" name="SouseName" type="text" class="required validate">
                                     </div>
-                                    <div class="input-field col m6 s12">
-                                        <label for="PhoneNumber">Phone Number</label>
-                                        <input id="PhoneNumber" name="PhoneNumber" type="text" class="required validate">
-                                    </div>
-                                    <div class="input-field col m6 s12">
-                                        <label for="PresentAddress">Present Address</label>
-                                        <input id="PresentAddress" name="PresentAddress" type="text" class="required validate">
-                                    </div>
-                                    <div class="input-field col m6 s12">
-                                        <label for="PernamentAddress">Pernament Address</label>
-                                        <input id="PernamentAddress" name="PernamentAddress" type="text" class="required validate">
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <label for="Email">Email</label>
-                                        <input id="Email" name="Email" type="email" class="required validate">
-                                    </div>
+
                                     <div class="input-field col m6 s12">
                                         <label for="Religion">Religion</label>
                                         <input id="Religion" name="Religion" type="text" class="required validate">
@@ -101,16 +88,162 @@
                                         <label for="PassportNo">PassportNo</label>
                                         <input id="PassportNo" name="PassportNo" type="text" class="required validate">
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                        <div id="contactInfo" class="col s12"><p class="p-v-sm">Test 2</p></div>
-                        <div id="educationalInfo" class="col s12"><p class="p-v-sm">Test 3</p></div>
-                        <div id="careerInfo" class="col s12"><p class="p-v-sm">Test 4</p></div>
-                    </form>
+                        <div id="contactInfo" class="col s12">
+                            <br />
+                            <div class="col m12">
+                                <div class="row">
+
+                                    <div class="input-field col m6 s12">
+                                        <label for="PhoneNumber">Phone Number</label>
+                                        <input id="PhoneNumber" name="PhoneNumber" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="PresentAddress">Present Address</label>
+                                        <input id="PresentAddress" name="PresentAddress" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="PernamentAddress">Pernament Address</label>
+                                        <input id="PernamentAddress" name="PernamentAddress" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="Email">Email</label>
+                                        <input id="Email" name="Email" type="email" class="required validate">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="officialInfo" class="col s12">
+                            <br />
+                            <br />
+                            <div class="col m12">
+                                <div class="row">
+
+                                    <div class="input-field col s6">
+                                        @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "--Select--", new { @class = "" })
+                                        <label>Company</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.DropDownListFor(m => m.BranchId, new SelectList(Model.Branches, "Id", "Name"), "--Select--", new { @class = "" })
+                                        <label>Branch</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "--Select--", new { @class = "" })
+                                        <label>Department</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.Positions, "Id", "Name"), "--Select--", new { @class = "" })
+                                        <label>Position</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="educationalInfo" class="col s12">
+                            <br />
+                            <table class="cd-products-table top-fixed">
+                                <thead>
+                                    <tr>
+                                        <td>Degree</td>
+                                        <td>Institute</td>
+                                        <td>Subject</td>
+                                        <td>Passing Year</td>
+                                        <td>Result</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="eduTBody">
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.EducationHistories[0].Degree)</td>
+                                        <td>@Html.TextBoxFor(model => model.EducationHistories[0].InstituteName)</td>
+                                        <td>@Html.TextBoxFor(model => model.EducationHistories[0].Subject)</td>
+                                        <td>@Html.TextBoxFor(model => model.EducationHistories[0].PassingYear)</td>
+                                        <td>@Html.TextBoxFor(model => model.EducationHistories[0].Result)</td>
+
+                                    </tr>
+
+                                </tbody>
+                                <tfoot>
+                                    <tr><td><input value="Add More.." onclick="AddNewEduRow()" class="" type="button" /></td></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div id="careerInfo" class="col s12">
+                            <br />
+                            <table class="cd-products-table top-fixed">
+                                <thead>
+                                    <tr>
+                                        <td>Company Name</td>
+                                        <td>Address</td>
+                                        <td>Department</td>
+                                        <td>Position</td>
+                                        <td>Start Date</td>
+                                        <td>End Date</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="expTBody">
+                                    <tr>
+                                        <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].CompanyName)</td>
+                                        <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].CompanyAddress)</td>
+                                        <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].Department)</td>
+                                        <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].Position)</td>
+                                        <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].StartDate)</td>
+                                        <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].EndDate)</td>
+
+                                    </tr>
+
+                                </tbody>
+                                <tfoot>
+                                    <tr><td><input value="Add More.." onclick="AddNewExpRow()" class="" type="button" /></td></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-         </div>
+            <div class="row">
+                <div class="col s4 offset-m7 offset-m1">
+                    <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
+                    <input type="button" class="btn btn-default red col s4 offset-m1" value="Cancel" />
+                </div>
+            </div>
+        </form>
     </div>
 </main>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        function AddNewExpRow() {
+            var rowNumber = $("#expTBody").find("tr").length;
+            console.log(rowNumber);
+            $("#expTBody").append('<tr>' +
+                        '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__CompanyName" name="EmployeeCareerHistories[' + rowNumber + '].CompanyName" type="text"></td>' +
+                        '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__CompanyAddress" name="EmployeeCareerHistories[' + rowNumber + '].CompanyAddress" type="text"></td>' +
+                        '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__Department" name="EmployeeCareerHistories[' + rowNumber + '].Department" type="text" value=""></td>' +
+                        '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__Position" name="EmployeeCareerHistories[' + rowNumber + '].Position" type="text" value=""></td>' +
+                        '<td><input class="form-control" data-val="true" data-val-date="The field StartDate must be a date." id="EmployeeCareerHistories_' + rowNumber + '__StartDate" name="EmployeeCareerHistories[' + rowNumber + '].StartDate" type="text" value=""></td>' +
+                        '<td><input class="form-control" data-val="true" data-val-date="The field EndingDate must be a date." id="EmployeeCareerHistories_' + rowNumber + '__EndDate" name="EmployeeCareerHistories[' + rowNumber + '].EndingDate" type="text" value=""><input type="button" value="X" onclick="RemoveRow(this)" /></td>' +
+                    '</tr>');
+        }
+        function AddNewEduRow() {
+            var rowNumber = $("#eduTBody").find("tr").length;
+            console.log(rowNumber);
+            $("#eduTBody").append('<tr><td><input id="EducationHistories_'+rowNumber+'__Degree" name="EducationHistories['+rowNumber+'].Degree" type="text" value=""></td>'+
+                                        '<td><input id="EducationHistories_'+rowNumber+'__InstituteName" name="EducationHistories['+rowNumber+'].InstituteName" type="text" value=""></td>'+
+                                        '<td><input id="EducationHistories_'+rowNumber+'__Subject" name="EducationHistories['+rowNumber+'].Subject" type="text" value=""></td>'+
+                                        '<td><input data-val="true" data-val-date="The field PassingYear must be a date." data-val-required="The PassingYear field is required." id="EducationHistories_' + rowNumber + '__PassingYear" name="EducationHistories[' + rowNumber + '].PassingYear" type="text" value=""></td>' +
+                                        '<td><input id="EducationHistories_' + rowNumber + '__Result" name="EducationHistories[' + rowNumber + '].Result" type="text" value=""><input type="button" value="X" onclick="RemoveRow(this)" /></td></tr>');
+        }
+
+        function RemoveRow(obj) {
+            $(obj).closest("tr").remove();
+        }
+    </script>
+    }
