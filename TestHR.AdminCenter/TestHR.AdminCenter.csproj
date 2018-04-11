@@ -58,6 +58,9 @@
     <Compile Include="DepartmentManagementService.cs" />
     <Compile Include="DepartmentRepository.cs" />
     <Compile Include="DepartmentUnitOfWork.cs" />
+    <Compile Include="EmployeeManagementService.cs" />
+    <Compile Include="EmployeeRepository.cs" />
+    <Compile Include="EmployeeUnitOfWork.cs" />
     <Compile Include="PositionManagementService.cs" />
     <Compile Include="PositionRepository.cs" />
     <Compile Include="PositionUnitOfWork.cs" />

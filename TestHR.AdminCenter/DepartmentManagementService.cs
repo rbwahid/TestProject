@@ -19,6 +19,27 @@ namespace TestHR.AdminCenter
             _departmentUnitOfWork = new DepartmentUnitOfWork(_context);
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
         }
+        public Department GetDepartment(Guid id)
+        {
+            return _departmentUnitOfWork.DepartmentRepository.GetById(id);
+        }
+
+        public void DeleteDepartment(Guid id)
+        {
+            _departmentUnitOfWork.DepartmentRepository.DeleteById(id);
+            _departmentUnitOfWork.Save();
+        }
+
+        public int GetCount()
+        {
+
+            return _departmentUnitOfWork.DepartmentRepository.GetAll().Count();
+
+        }
+        public List<Department> GelAllDepartments()
+        {
+            return _departmentUnitOfWork.DepartmentRepository.GetAll().ToList();
+        }
         public void AddDepartment(string name, Guid companyId, Guid departmentHeadId)
         {
             var department = new Department
