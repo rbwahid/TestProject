@@ -55,6 +55,8 @@
     <Compile Include="EmployeeCareerHistory.cs" />
     <Compile Include="EmployeeEducationHistory.cs" />
     <Compile Include="Holiday.cs" />
+    <Compile Include="LeaveApplication.cs" />
+    <Compile Include="LeaveComment.cs" />
     <Compile Include="LeaveType.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

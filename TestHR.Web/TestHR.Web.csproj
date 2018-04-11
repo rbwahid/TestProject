@@ -164,7 +164,6 @@
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Models\BranchModel.cs" />
-    <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Models\CompanyModel.cs" />

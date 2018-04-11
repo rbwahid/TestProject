@@ -16,6 +16,11 @@ namespace TestHR.AdminCenter
         public DbSet<Department> Department { get; set; }
         public DbSet<Position> Position { get; set; }
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Holiday> Holiday { get; set; }
+        public DbSet<Shift> Shift { get; set; }
+        public DbSet<LeaveApplication> LeaveApplication { get; set; }
+        public DbSet<LeaveType> LeaveType { get; set; }
+        public DbSet<LeaveComment> LeaveComment { get; set; }
 
         public AdminCenterDbContext()
             : base("DefaultConnection")

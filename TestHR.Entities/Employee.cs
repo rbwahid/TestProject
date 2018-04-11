@@ -29,5 +29,7 @@ namespace TestHR.Entities
         public virtual Position Position { get; set; }
 		public virtual Department Department { get; set; }
         public virtual ICollection<EmployeeEducationHistory> EmployeeEducationHistory { get; set; }
-        public virtual ICollection<EmployeeCareerHistory> EmployeeCareerHistory { get; set; }    }
+        public virtual ICollection<EmployeeCareerHistory> EmployeeCareerHistory { get; set; }
+        //public virtual ICollection<LeaveApplication> LeaveApplications { get; set; }
+    }
 }

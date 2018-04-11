@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,13 +36,14 @@ namespace TestHR.Web.Areas.Admin.Models
             return _companyManagementService.GetAllCompanies();
         }
 
-        public CompanyModel(Guid id) : this()
+        public CompanyModel(Guid id)
+            : this()
         {
-            var company=_companyManagementService.GetCompany(id);
+            var company = _companyManagementService.GetCompany(id);
 
             this.Id = company.Id;
             this.Name = company.Name;
-            if (company.MotherCompany!=null)
+            if (company.MotherCompany != null)
             {
                 this.MotherCompanyId = company.MotherCompany.Id;
             }
@@ -54,7 +55,7 @@ namespace TestHR.Web.Areas.Admin.Models
             this.ContactPersonEmail = company.Address;
             this.ContactPersonPhone = company.ContactPersonPhone;
             this.FiscalYearStart = company.FiscalYearStart;
-            
+
         }
         public void AddCompany()
         {
@@ -66,12 +67,12 @@ namespace TestHR.Web.Areas.Admin.Models
             if (id.HasValue)
             {
                 _companyManagementService.DeleteCompany(id.Value);
-            }                
+            }
             else
             {
                 throw new Exception();
             }
-                
+
         }
 
         public Company LoadCompanyData(Guid? id)
@@ -84,7 +85,7 @@ namespace TestHR.Web.Areas.Admin.Models
             {
                 throw new Exception();
             }
-                
+
         }
     }
 }
