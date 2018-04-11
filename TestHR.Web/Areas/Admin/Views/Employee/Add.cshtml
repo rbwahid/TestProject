@@ -1,0 +1,116 @@
+﻿@model TestHR.Web.Areas.Admin.Models.EmployeeModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main class="mn-inner">
+    <div class="row">
+        <div class="col s12">
+            <div class="page-title">Contact</div>
+        </div>
+        <div class="col s1 m4 l3">
+            <div class="card">
+                <div class="card-content center-align">
+                    <img src="~/Content/Images/blank-profile-picture-973460_960_720.png" class="responsive-img circle" width="128px" alt="">
+                    <p class="m-t-lg flow-text">David Wade</p>
+                    <div class="chip m-t-sm blue-grey white-text">UI Designer</div>
+                    <div class="chip m-t-sm blue-grey white-text">Developer</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Circles</span>
+                    <div class="chip m-t-sm">Envato Market</div>
+                    <div class="chip m-t-sm">Steelcoders</div>
+                    <div class="chip m-t-sm">Family</div>
+                    <div class="chip m-t-sm">Work</div>
+                    <div class="chip m-t-sm">Friends</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col m8">
+            <div class="card">
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="tabs tab-demo z-depth-1" style="width: 100%;">
+                            <li class="tab col s3"><a href="#personalInfo" class="">Personal Info</a></li>
+                            <li class="tab col s3"><a class="" href="#contactInfo">Contact Info</a></li>
+                            <li class="tab col s3"><a href="#educationalInfo">Educational Info</a></li>
+                            <li class="tab col s3"><a href="#careerInfo">Career Info</a></li>
+                        </ul>
+                    </div>
+                    <form>
+                        <div id="personalInfo" class="col s12">
+                            <div class="col m12">
+                                <div class="row">
+                                    <div class="input-field col m6 s12">
+                                        <label for="FirstName">First Name</label>
+                                        <input id="FirstName" name="FirstName" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="MiddleName">Middle name</label>
+                                        <input id="MiddleName" name="MiddleName" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="LastName">Last Name</label>
+                                        <input id="LastName" name="LastName" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="FathersName">Fathers Name</label>
+                                        <input id="FathersName" name="FathersName" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="MothersName">Mothers Name</label>
+                                        <input id="MothersName" name="MothersName" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="SouseName">Souse Name</label>
+                                        <input id="SouseName" name="SouseName" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="PhoneNumber">Phone Number</label>
+                                        <input id="PhoneNumber" name="PhoneNumber" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="PresentAddress">Present Address</label>
+                                        <input id="PresentAddress" name="PresentAddress" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="PernamentAddress">Pernament Address</label>
+                                        <input id="PernamentAddress" name="PernamentAddress" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <label for="Email">Email</label>
+                                        <input id="Email" name="Email" type="email" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="Religion">Religion</label>
+                                        <input id="Religion" name="Religion" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="Nationality">Nationality</label>
+                                        <input id="Nationality" name="Nationality" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="Nid">Nid</label>
+                                        <input id="Nid" name="Nid" type="text" class="required validate">
+                                    </div>
+                                    <div class="input-field col m6 s12">
+                                        <label for="PassportNo">PassportNo</label>
+                                        <input id="PassportNo" name="PassportNo" type="text" class="required validate">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div id="contactInfo" class="col s12"><p class="p-v-sm">Test 2</p></div>
+                        <div id="educationalInfo" class="col s12"><p class="p-v-sm">Test 3</p></div>
+                        <div id="careerInfo" class="col s12"><p class="p-v-sm">Test 4</p></div>
+                    </form>
+                </div>
+            </div>
+         </div>
+    </div>
+</main>

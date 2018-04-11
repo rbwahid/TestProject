@@ -163,6 +163,7 @@
     <Compile Include="Areas\Admin\Controllers\BranchController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Models\BranchModel.cs" />
     <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
@@ -245,6 +246,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\Images\blank-profile-picture-973460_960_720.png" />
     <Content Include="Content\Images\card-image.jpg" />
     <Content Include="Content\Images\card-image2.jpg" />
     <Content Include="Content\Images\card-image3.jpg" />
@@ -1351,6 +1353,7 @@
     <Content Include="Areas\Admin\Views\Branch\Add.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
