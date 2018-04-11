@@ -24,10 +24,10 @@
                                 @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "Choose Company", new { @class = "" })
                                 <label>Company</label>
                             </div>
-                            @*<div class="input-field col s6">
+                            <div class="input-field col s6">
                                        @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "", new { @class = "" })
                                        <label>Department</label>
-                                </div>*@
+                                </div>
                             <div class="input-field col s6">
                                 @Html.DropDownListFor(m => m.ReportingPositionId, new SelectList(Model.ReportingPositions, "Id", "Name"), "Choose Reporting Position", new { @class = "" })
                                 <label>Reporting Position</label>

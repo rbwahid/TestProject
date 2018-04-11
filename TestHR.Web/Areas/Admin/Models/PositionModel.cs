@@ -11,6 +11,7 @@ namespace TestHR.Web.Areas.Admin.Models
     {
         private CompanyManagementService _companyManagementService { get; set; }
         private PositionManagementService _positionManagementService { get; set; }
+        private DepartmentManagementService _departmentManagementService { get; set; }
         public Guid Id { get; set; }
         public string Name { get; set; }
         public List<Company> Companies { get; set; }
@@ -25,7 +26,14 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             Companies = GetAllCompanies();
             ReportingPositions = GetAllPosition();
-            Departments = null;
+            
+            Departments = GetAllDepartment();
+        }
+
+        private List<Department> GetAllDepartment()
+        {
+           _departmentManagementService = new DepartmentManagementService();
+            return _departmentManagementService.GelAllDepartments();
         }
 
         private List<Position> GetAllPosition()

@@ -12,11 +12,13 @@ namespace TestHR.AdminCenter
         private AdminCenterDbContext _context;
         private PositionUnitOfWork _positionUnitOfWork;
         private CompanyUnitOfWork _companyUnitOfWork;
+        private DepartmentUnitOfWork _departmentUnitOfWork;
         public PositionManagementService()
         {
             _context = new AdminCenterDbContext();
             _positionUnitOfWork = new PositionUnitOfWork(_context);
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
+            _departmentUnitOfWork = new DepartmentUnitOfWork(_context);
         }
 
         public List<Position> GelAllPositions()
@@ -47,7 +49,7 @@ namespace TestHR.AdminCenter
 
             position.Name = name;
             position.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
-            position.Department = null;
+            position.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId);
             position.ReportingPosition = _positionUnitOfWork.PositionRepository.GetById(reportingPositionId);
             _positionUnitOfWork.PositionRepository.Add(position);
             _positionUnitOfWork.Save();
