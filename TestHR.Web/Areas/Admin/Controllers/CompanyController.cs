@@ -14,8 +14,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var companyModel = new CompanyModel();
-            return View(companyModel);
+            var companies = new Models.CompanyModel().GetAllCompanies();
+            return View(companies);
         }
 
         public ActionResult Add()

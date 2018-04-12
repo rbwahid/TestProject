@@ -1357,6 +1357,7 @@
     <Content Include="Areas\Admin\Views\Department\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
     <Content Include="Areas\Admin\Views\LeaveType\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
