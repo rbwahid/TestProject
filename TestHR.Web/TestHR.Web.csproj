@@ -164,10 +164,13 @@
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LeaveTypeController.cs" />
     <Compile Include="Areas\Admin\Models\BranchModel.cs" />
+    <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Models\EmployeeModel.cs" />
+    <Compile Include="Areas\Admin\Models\LeaveTypeModel.cs" />
     <Compile Include="Areas\Admin\Models\PositionModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -1353,6 +1356,7 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveType\Add.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
