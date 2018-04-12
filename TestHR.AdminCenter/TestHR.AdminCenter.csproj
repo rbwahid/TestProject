@@ -61,6 +61,9 @@
     <Compile Include="EmployeeManagementService.cs" />
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="EmployeeUnitOfWork.cs" />
+    <Compile Include="LeaveTypeManagementService.cs" />
+    <Compile Include="LeaveTypeRepository.cs" />
+    <Compile Include="LeaveTypeUnitOfWork.cs" />
     <Compile Include="PositionManagementService.cs" />
     <Compile Include="PositionRepository.cs" />
     <Compile Include="PositionUnitOfWork.cs" />
