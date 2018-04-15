@@ -9,11 +9,11 @@ namespace TestHR.Web.Areas.Admin.Models
 {
     public class EmployeeModel
     {
-        
-           private CompanyManagementService _companyManagementService { get; set; }
-         private EmployeeManagementService _employeeManagementService { get; set; }
+
+        private CompanyManagementService _companyManagementService { get; set; }
+        private EmployeeManagementService _employeeManagementService { get; set; }
         private BranchManagementService _branchManagementService { get; set; }
-        private  DepartmentManagementService _departmentManagementService { get; set; }
+        private DepartmentManagementService _departmentManagementService { get; set; }
         private PositionManagementService _positionManagementService { get; set; }
 
         public string FirstName { get; set; }
@@ -37,7 +37,7 @@ namespace TestHR.Web.Areas.Admin.Models
         public List<Branch> Branches { get; set; }
         public Guid? BranchId { get; set; }
         public List<Department> Departments { get; set; }
-        public Guid? DepartmentId{ get; set; }
+        public Guid? DepartmentId { get; set; }
         public List<Position> Positions { get; set; }
         public Guid? PositionId { get; set; }
 
@@ -47,7 +47,7 @@ namespace TestHR.Web.Areas.Admin.Models
 
         public EmployeeModel()
         {
-            
+
             _branchManagementService = new BranchManagementService();
             Companies = GetAllCompanies();
             Branches = GetAllBranch();
@@ -57,7 +57,7 @@ namespace TestHR.Web.Areas.Admin.Models
 
         private List<Position> GetAllPosition()
         {
-           _positionManagementService = new PositionManagementService();
+            _positionManagementService = new PositionManagementService();
             return _positionManagementService.GelAllPositions();
         }
 
@@ -75,37 +75,38 @@ namespace TestHR.Web.Areas.Admin.Models
 
         public List<Company> GetAllCompanies()
         {
-           _companyManagementService = new CompanyManagementService();
+            _companyManagementService = new CompanyManagementService();
             return _companyManagementService.GetAllCompanies();
         }
-    
-          public EmployeeModel(Guid id) : this()
-        {
-            var employee=_employeeManagementService.GetEmployee(id);
 
-          this.FirstName =  employee.FirstName  ;
-          this.MiddleName=  employee.MiddleName;
-           this.LastName= employee.LastName;
-          this.FathersName=  employee.FathersName;
-         this.MothersName=   employee.MothersName;
-           this.SouseName= employee.SouseName ;
-          this.PhoneNumber=  employee.PhoneNumber;
-          this.PresentAddress=  employee.PresentAddress;
-         this.PernamentAddress=   employee.PernamentAddress;
-         this.Email=   employee.Email;
-         this.Religion=   employee.Religion;
-          this.Nationality=  employee.Nationality;
-           this.Nid= employee.Nid;
-           this.PassportNo= employee.PassportNo;
-       
-            
+        public EmployeeModel(Guid id)
+            : this()
+        {
+            var employee = _employeeManagementService.GetEmployee(id);
+
+            this.FirstName = employee.FirstName;
+            this.MiddleName = employee.MiddleName;
+            this.LastName = employee.LastName;
+            this.FathersName = employee.FathersName;
+            this.MothersName = employee.MothersName;
+            this.SouseName = employee.SouseName;
+            this.PhoneNumber = employee.PhoneNumber;
+            this.PresentAddress = employee.PresentAddress;
+            this.PernamentAddress = employee.PernamentAddress;
+            this.Email = employee.Email;
+            this.Religion = employee.Religion;
+            this.Nationality = employee.Nationality;
+            this.Nid = employee.Nid;
+            this.PassportNo = employee.PassportNo;
+
+
         }
         public void AddEmployee()
         {
             _employeeManagementService = new EmployeeManagementService();
-            _employeeManagementService.AddEmployee(FirstName,MiddleName,LastName,FathersName,MothersName,SouseName,
-                PhoneNumber,PresentAddress,PernamentAddress,Email,Religion,Nationality,Nid,PassportNo,CompanyId,BranchId,DepartmentId,
-                PositionId,EducationHistories,EmployeeCareerHistories);
+            _employeeManagementService.AddEmployee(FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
+                PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
+                PositionId, EducationHistories, EmployeeCareerHistories);
 
         }
 
@@ -114,12 +115,12 @@ namespace TestHR.Web.Areas.Admin.Models
             if (id.HasValue)
             {
                 _employeeManagementService.DeleteEmployee(id.Value);
-            }                
+            }
             else
             {
                 throw new Exception();
             }
-                
+
         }
 
         public Branch LoadBranchData(Guid? id)
@@ -132,7 +133,7 @@ namespace TestHR.Web.Areas.Admin.Models
             {
                 throw new Exception();
             }
-                
+
         }
     }
 }
