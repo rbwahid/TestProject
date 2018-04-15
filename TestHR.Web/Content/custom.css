@@ -2,3 +2,12 @@
 .page-footer{
     height:50px;
 }
+.btn-floating{
+    width:24px;
+    height:24px;
+    line-height:24px;
+}
+.btn-floating i{
+    font-size:1rem;
+    line-height:24px;
+}
