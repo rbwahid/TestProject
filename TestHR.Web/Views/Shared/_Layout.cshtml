@@ -550,13 +550,15 @@
     <div class="left-sidebar-hover"></div>
 
     <!-- Javascripts -->
+    <script src="~/Scripts/form-wizard.js"></script>
+    <script src="~/Scripts/jquery.steps.js"></script>
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     <script src="~/Plugins/materialize/js/materialize.min.js"></script>
     <script src="~/Plugins/material-preloader/js/materialPreloader.min.js"></script>
     <script src="~/Plugins/jquery-blockui/jquery.blockui.js"></script>
     <script src="~/Scripts/alpha.min.js"></script>
-
-    @RenderSection("scripts", required: false)
+ 
+    @RenderSection("scripts", required: true)
 
 </body>
 </html>

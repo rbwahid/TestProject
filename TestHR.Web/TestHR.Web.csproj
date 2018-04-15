@@ -164,12 +164,14 @@
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HolidayController.cs" />
     <Compile Include="Areas\Admin\Controllers\LeaveTypeController.cs" />
     <Compile Include="Areas\Admin\Models\BranchModel.cs" />
     <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Models\EmployeeModel.cs" />
+    <Compile Include="Areas\Admin\Models\HolidayModel.cs" />
     <Compile Include="Areas\Admin\Models\LeaveTypeModel.cs" />
     <Compile Include="Areas\Admin\Models\PositionModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -1356,6 +1358,9 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Holiday\Add.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Areas\Admin\Views\LeaveType\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Company\Index.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
@@ -1364,10 +1369,12 @@
     <Content Include="Areas\Admin\Views\Position\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Position\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\form-wizard.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.steps.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
