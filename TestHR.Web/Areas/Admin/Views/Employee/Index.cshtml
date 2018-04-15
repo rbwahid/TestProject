@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TestHR.Entities.Employee>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    <link href="~/Plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <main class="mn-inner">
+        <div class="row">
+            <div class="col s12">
+                <div class="page-title">Employee List</div>
+            </div>
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Employee</span>
+                        <table id="companyList" class="display responsive-table datatable-example">
+                            <thead>
+                                <tr>
+                                    <th>FirstName</th>
+                                    <th>MiddleName</th>
+                                    <th>LastName</th>
+                                    <th>FathersName</th>
+                                    <th>MothersName</th>
+                                    <th>SouseName</th>
+                                    <th>PhoneNumber</th>
+                                    <th>PresentAddress</th>
+                                    <th>Email</th>
+                                    <th>Religion</th>
+                                    <th>Nationality</th>
+                                    <th>Nid</th>
+                                    <th>PassportNo</th>
+                                    <th>Company</th>
+                                    <th>Branch</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employee in Model)
+                                {
+                                    <tr>
+                                        <th>@employee.FirstName</th>
+                                        <th>@employee.MiddleName</th>
+                                        <th>@employee.LastName</th>
+                                        <th>@employee.FathersName</th>
+                                        <th>@employee.MothersName</th>
+                                        <th>@employee.SouseName</th>
+                                        <th>@employee.PhoneNumber</th>
+                                        <th>@employee.PresentAddress</th>
+                                        <th>@employee.Email</th>
+                                        <th>@employee.Religion</th>
+                                        <th>@employee.Nationality</th>
+                                        <th>@employee.Nid</th>
+                                        <th>@employee.PassportNo</th>
+                                        <th>@employee.Company</th>
+                                        <th>@employee.Branch</th>
+                                        <th>@employee.Position</th>
+                                        <th>@employee.Department</th>
+                                        <td>
+                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @section scripts
+{
+
+        <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#companyList').DataTable({
+                    language: {
+                        searchPlaceholder: 'Search Company',
+                        sSearch: '',
+                        sLengthMenu: 'Show _MENU_',
+                        sLength: 'dataTables_length',
+                        oPaginate: {
+                            sFirst: '<i class="material-icons">chevron_left</i>',
+                            sPrevious: '<i class="material-icons">chevron_left</i>',
+                            sNext: '<i class="material-icons">chevron_right</i>',
+                            sLast: '<i class="material-icons">chevron_right</i>'
+                        }
+                    }
+                });
+                $('.dataTables_length select').addClass('browser-default');
+            });
+        </script>
+    }
+

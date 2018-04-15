@@ -13,7 +13,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Shift/
         public ActionResult Index()
         {
-            return View();
+            var shifts = new Models.ShiftModel().GetAllShift();
+            return View(shifts);
         }
         public ActionResult Add()
         {

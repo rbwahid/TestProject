@@ -78,7 +78,11 @@ namespace TestHR.Web.Areas.Admin.Models
             _companyManagementService = new CompanyManagementService();
             return _companyManagementService.GetAllCompanies();
         }
-
+        public List<Employee> GetAllEmployee()
+        {
+             _employeeManagementService=new EmployeeManagementService();
+            return _employeeManagementService.GetAllEmployees();
+        }
         public EmployeeModel(Guid id)
             : this()
         {

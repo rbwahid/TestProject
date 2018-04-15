@@ -28,6 +28,10 @@ namespace TestHR.Web.Areas.Admin.Models
 
             return _companyManagementService.GetAllCompanies();
         }
+        public List<Department> GetAllDepartment()
+        {
+            return _departmentManagementService.GelAllDepartments();
+        }
         public void AddDepartment()
         {
             _departmentManagementService.AddDepartment(DepartmentName, CompanyId, DepartmentHeadId);

@@ -50,7 +50,10 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             _shiftManagementService.AddShift( Name, Code, Type, Description, IsDefault, IsActive,OfficeHourDescription);
         }
-
+        public List<Shift> GetAllShift()
+        {
+            return _shiftManagementService.GetAllShifts();
+        }
         internal void DeleteShift(Guid? id)
         {
             if (id.HasValue)

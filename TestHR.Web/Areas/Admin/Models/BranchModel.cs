@@ -28,7 +28,11 @@ namespace TestHR.Web.Areas.Admin.Models
            
             return _companyManagementService.GetAllCompanies();
         }
-    
+        public List<Branch> GetAllBranch()
+        {
+            return _branchManagementService.GetAllBranches();
+        }
+
           public BranchModel(Guid id) : this()
         {
             var branch=_branchManagementService.GetBranch(id);

@@ -13,7 +13,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Employee/
         public ActionResult Index()
         {
-            return View();
+            var employees = new Models.EmployeeModel().GetAllEmployee();
+            return View(employees);
         }
 
         public ActionResult Add()
