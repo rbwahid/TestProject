@@ -71,6 +71,9 @@
     <Compile Include="PositionRepository.cs" />
     <Compile Include="PositionUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShiftManagementService.cs" />
+    <Compile Include="ShiftRepository.cs" />
+    <Compile Include="ShiftUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
