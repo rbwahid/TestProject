@@ -47,40 +47,43 @@ namespace TestHR.Web.Areas.Admin.Models
 
         public EmployeeModel()
         {
-
+            _employeeManagementService=new EmployeeManagementService();
             _branchManagementService = new BranchManagementService();
-            Companies = GetAllCompanies();
             Branches = GetAllBranch();
+            _companyManagementService=new CompanyManagementService();
+            Companies = GetAllCompanies();
+            _departmentManagementService=new DepartmentManagementService();
             Departments = GetAllDepartment();
+            _positionManagementService=new PositionManagementService();
             Positions = GetAllPosition();
         }
 
         private List<Position> GetAllPosition()
         {
-            _positionManagementService = new PositionManagementService();
+            
             return _positionManagementService.GelAllPositions();
         }
 
         private List<Department> GetAllDepartment()
         {
-            _departmentManagementService = new DepartmentManagementService();
+            
             return _departmentManagementService.GelAllDepartments();
         }
 
         private List<Branch> GetAllBranch()
         {
-            _branchManagementService = new BranchManagementService();
+            
             return _branchManagementService.GetAllBranches();
         }
 
         public List<Company> GetAllCompanies()
         {
-            _companyManagementService = new CompanyManagementService();
+            
             return _companyManagementService.GetAllCompanies();
         }
         public List<Employee> GetAllEmployee()
         {
-             _employeeManagementService=new EmployeeManagementService();
+             
             return _employeeManagementService.GetAllEmployees();
         }
         public EmployeeModel(Guid id)
@@ -102,12 +105,27 @@ namespace TestHR.Web.Areas.Admin.Models
             this.Nationality = employee.Nationality;
             this.Nid = employee.Nid;
             this.PassportNo = employee.PassportNo;
-
+            if (employee.Company != null)
+            {
+                this.CompanyId = employee.Company.Id;
+            }
+            if (employee.Branch != null)
+            {
+                this.BranchId = employee.Branch.Id;
+            }
+            if (employee.Position != null)
+            {
+                this.PositionId = employee.Position.Id;
+            }
+            if (employee.Department != null)
+            {
+                this.DepartmentId = employee.Department.Id;
+            }
 
         }
         public void AddEmployee()
         {
-            _employeeManagementService = new EmployeeManagementService();
+           
             _employeeManagementService.AddEmployee(FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
                 PositionId, EducationHistories, EmployeeCareerHistories);

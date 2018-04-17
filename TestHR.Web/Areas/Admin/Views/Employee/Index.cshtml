@@ -18,7 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>FirstName</th>
-                                    <th>MiddleName</th>
+                                    @*<th>MiddleName</th>
                                     <th>LastName</th>
                                     <th>FathersName</th>
                                     <th>MothersName</th>
@@ -29,11 +29,12 @@
                                     <th>Religion</th>
                                     <th>Nationality</th>
                                     <th>Nid</th>
-                                    <th>PassportNo</th>
+                                    <th>PassportNo</th>*@
                                     <th>Company</th>
                                     <th>Branch</th>
                                     <th>Position</th>
                                     <th>Department</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +42,7 @@
                                 {
                                     <tr>
                                         <th>@employee.FirstName</th>
-                                        <th>@employee.MiddleName</th>
+                                        @*<th>@employee.MiddleName</th>
                                         <th>@employee.LastName</th>
                                         <th>@employee.FathersName</th>
                                         <th>@employee.MothersName</th>
@@ -52,11 +53,11 @@
                                         <th>@employee.Religion</th>
                                         <th>@employee.Nationality</th>
                                         <th>@employee.Nid</th>
+                                        <th>@employee.PassportNo</th>*@
                                         <th>@employee.PassportNo</th>
-                                        <th>@employee.Company</th>
-                                        <th>@employee.Branch</th>
-                                        <th>@employee.Position</th>
-                                        <th>@employee.Department</th>
+                                        <th>@employee.Branch.Name</th>
+                                        <th>@employee.Position.Name</th>
+                                        <th>@employee.Department.Name</th>
                                         <td>
                                             <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>

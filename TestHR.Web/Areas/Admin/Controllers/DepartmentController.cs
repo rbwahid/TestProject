@@ -13,7 +13,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Department/
         public ActionResult Index()
         {
-            var departments = new Models.DepartmentModel().GetAllDepartment();
+            var departments = new Models.DepartmentModel().GetAllDepartments();
             return View(departments);
         }
         public ActionResult Add()
