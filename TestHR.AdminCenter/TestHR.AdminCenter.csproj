@@ -64,6 +64,9 @@
     <Compile Include="HolidayManagementService.cs" />
     <Compile Include="HolidayRepository.cs" />
     <Compile Include="HolidayUnitOfWork.cs" />
+    <Compile Include="LeaveApplicationManagementService.cs" />
+    <Compile Include="LeaveApplicationRepository.cs" />
+    <Compile Include="LeaveApplicationUnitOfWork.cs" />
     <Compile Include="LeaveTypeManagementService.cs" />
     <Compile Include="LeaveTypeRepository.cs" />
     <Compile Include="LeaveTypeUnitOfWork.cs" />

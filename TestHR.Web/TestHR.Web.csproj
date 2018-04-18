@@ -21,6 +21,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -164,6 +166,7 @@
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LeaveApplicationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
     <Compile Include="Areas\Admin\Controllers\HolidayController.cs" />
     <Compile Include="Areas\Admin\Controllers\LeaveTypeController.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Models\EmployeeModel.cs" />
     <Compile Include="Areas\Admin\Models\HolidayModel.cs" />
+    <Compile Include="Areas\Admin\Models\LeaveApplicationModel.cs" />
     <Compile Include="Areas\Admin\Models\LeaveTypeModel.cs" />
     <Compile Include="Areas\Admin\Models\PositionModel.cs" />
     <Compile Include="Areas\Admin\Models\ShiftModel.cs" />
@@ -1371,6 +1375,7 @@
     <Content Include="Areas\Admin\Views\Department\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Holiday\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveApplication\Add.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
