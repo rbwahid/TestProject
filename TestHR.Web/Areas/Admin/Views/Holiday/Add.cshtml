@@ -24,13 +24,13 @@
                                     <input name="Description" id="icon_prefix" type="text" class="validate">
                                     <label for="icon_prefix">Description</label>
                                 </div>
-                                <div class="col m6 s12">
+                                <div class="input-field col s6">
+                                    <input id="DateFrom" name="DateFrom" type="text" class="validate datepicker">
                                     <label for="DateFrom">DateFrom</label>
-                                    <input id="DateFrom" name="DateFrom" type="date">
                                 </div>
-                                <div class="col m6 s12">
+                                <div class="input-field col s6">
+                                    <input id="DateTo" name="DateTo" type="text" class="validate datepicker">
                                     <label for="DateTo">DateTo</label>
-                                    <input id="DateTo" name="DateTo" type="date">
                                 </div>
                             </div>
                         </div>
@@ -46,3 +46,16 @@
         </div>
     </div>
 </main>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
+        });
+    </script>
+
+}

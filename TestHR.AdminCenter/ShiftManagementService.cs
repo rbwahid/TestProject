@@ -44,17 +44,18 @@ namespace TestHR.AdminCenter
             return _shifthUnitOfWork.ShiftRepository.GetAll().Count();
             
         }
-        public void AddShift(string Name, string Code, string Type, string Description, bool IsDefault, bool IsActive, string OfficeHourDescription)
+        public void AddShift(string name, string code, string type, string description, bool isDefault, bool isActive, string officeHourDescription, List<TimeTable> timeTables )
         {
             var shift = new Shift();
 
-            shift.Name = Name;
-            shift.Code = Code;
-            shift.Type = Type;
-            shift.Description = Description;
-            shift.IsDefault = IsDefault;
-            shift.IsActive = IsActive;
-            shift.OfficeHourDescription = OfficeHourDescription;
+            shift.Name = name;
+            shift.Code = code;
+            shift.Type = type;
+            shift.Description = description;
+            shift.IsDefault = isDefault;
+            shift.IsActive = isActive;
+            shift.OfficeHourDescription = officeHourDescription;
+            shift.TimeTables = timeTables;
             _shifthUnitOfWork.ShiftRepository.Add(shift);
             _shifthUnitOfWork.Save();
 

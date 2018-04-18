@@ -13,7 +13,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Branch/
         public ActionResult Index()
         {
-            var branches = new Models.BranchModel().GetAllBranch();
+            var branches = new Models.BranchModel().GetAllBranches();
             return View(branches);
         }
 

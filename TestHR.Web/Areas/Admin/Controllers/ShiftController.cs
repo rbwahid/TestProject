@@ -18,7 +18,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         }
         public ActionResult Add()
         {
-            var shiftModel = new ShiftModel().GetDefaultShift();
+            var shiftModel = new ShiftModel();
             return View(shiftModel);
         }
         [HttpPost]

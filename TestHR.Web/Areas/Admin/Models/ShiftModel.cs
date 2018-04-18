@@ -35,11 +35,7 @@ namespace TestHR.Web.Areas.Admin.Models
            
             return _companyManagementService.GetAllCompanies();
         }
-
-        public Shift GetDefaultShift()
-        {
-            return _shiftManagementService.GetDefaultShift();
-        }
+      
         public ShiftModel(Guid id)
             : this()
         {
