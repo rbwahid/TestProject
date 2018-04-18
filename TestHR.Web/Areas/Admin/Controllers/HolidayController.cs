@@ -13,7 +13,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Holiday/
         public ActionResult Index()
         {
-            return View();
+            var holidays = new Models.HolidayModel().GetAllHolidays();
+            return View(holidays);
         }
         public ActionResult Add()
         {

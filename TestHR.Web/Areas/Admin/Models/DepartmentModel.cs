@@ -11,6 +11,7 @@ namespace TestHR.Web.Areas.Admin.Models
     {
         private CompanyManagementService _companyManagementService { get; set; }
         private DepartmentManagementService _departmentManagementService { get; set; }
+        private EmployeeManagementService _employeeManagementService { get; set; }
         public Guid Id { get; set; }
         public string DepartmentName { get; set; }
         public Guid DepartmentHeadId { get; set; }
@@ -19,14 +20,27 @@ namespace TestHR.Web.Areas.Admin.Models
         public Guid CompanyId { get; set; }
         public DepartmentModel()
         {
-            _companyManagementService = new CompanyManagementService();
+            
             _departmentManagementService = new DepartmentManagementService();
+            _companyManagementService = new CompanyManagementService();
             Company = GetAllCompanies();
+            _employeeManagementService = new EmployeeManagementService();
+            Employees = GetAllEmployees();
+
         }
         public List<Company> GetAllCompanies()
         {
 
             return _companyManagementService.GetAllCompanies();
+        }
+        public List<Employee> GetAllEmployees()
+        {
+
+            return _employeeManagementService.GetAllEmployees();
+        }
+        public List<Department> GetAllDepartments()
+        {
+            return _departmentManagementService.GelAllDepartments();
         }
         public void AddDepartment()
         {

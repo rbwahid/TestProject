@@ -24,27 +24,26 @@ namespace TestHR.Web.Areas.Admin.Models
 
         public PositionModel()
         {
+            _positionManagementService = new PositionManagementService();
+            _departmentManagementService = new DepartmentManagementService();
+            _companyManagementService = new CompanyManagementService();
             Companies = GetAllCompanies();
-            ReportingPositions = GetAllPosition();
-            
-            Departments = GetAllDepartment();
+            ReportingPositions = GetAllPositions();
+            Departments = GetAllDepartments();
         }
 
-        private List<Department> GetAllDepartment()
+        private List<Department> GetAllDepartments()
         {
-           _departmentManagementService = new DepartmentManagementService();
             return _departmentManagementService.GelAllDepartments();
         }
 
-        private List<Position> GetAllPosition()
+        public List<Position> GetAllPositions()
         {
-            _positionManagementService = new PositionManagementService();
             return _positionManagementService.GelAllPositions();
         }
 
         public List<Company> GetAllCompanies()
         {
-            _companyManagementService = new CompanyManagementService();
             return _companyManagementService.GetAllCompanies();
         }
           public PositionModel(Guid id) : this()
@@ -65,8 +64,6 @@ namespace TestHR.Web.Areas.Admin.Models
             {
                 this.DepartmentId = position.Department.Id;
             }
-           
-            
         }
           public void AddPosition()
           {

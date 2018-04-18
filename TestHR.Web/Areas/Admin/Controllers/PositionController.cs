@@ -12,8 +12,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var positionModel = new PositionModel();
-            return View(positionModel);
+            var position = new Models.PositionModel().GetAllPositions();
+            return View(position);
         }
 
         public ActionResult Add()
