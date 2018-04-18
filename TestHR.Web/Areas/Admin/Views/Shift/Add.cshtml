@@ -13,37 +13,174 @@
             <div class="card">
                 <div class="card-content">
                     <form method="post" action="/Admin/Shift/Add">
-                        <span class="card-title">Shift Settings</span><br>
-                        <div class="row">
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input name="Name" id="Name" type="text" class="validate">
-                                    <label for="Name">Shift Name</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input name="Code" id="Code" type="text" class="validate">
-                                    <label for="Code">Code</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input name="Type" id="Type" type="text" class="validate">
-                                    <label for="Type">Type</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input name="Description" id="Description" type="text" class="validate">
-                                    <label for="Description">Description</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsDefault" name="IsDefault" type="checkbox" value="true">
-                                    @Html.LabelFor(m => m.IsDefault)
-                                </div>
-                                <div class="input-field col s6">
-                                    @*@Html.CheckBoxFor(m=>m.IsActive, new {@class="validate" })*@
-                                    <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsActive" name="IsActive" type="checkbox" value="true">
-                                    @Html.LabelFor(m => m.IsActive)
-                                </div>
-                                <div class="input-field col s6">
-                                    <input name="OfficeHourDescription" id="OfficeHourDescription" type="text" class="validate">
-                                    <label for="OfficeHourDescription">OfficeHourDescription</label>
+                        <div class="col m12">
+                            <div class="card">
+                                <span class="card-title">Shift Settings</span><br>
+                                <div class="row">
+                                    <div class="col m12">
+                                        <ul class="tabs z-depth-1" style="width: 100%;">
+                                            <li class="tab col s3"><a href="#shiftSetting" class="">Shift Setting</a></li>
+                                            <li class="tab col s3"><a class="" href="#timeTable">Time Table</a></li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div id="shiftSetting" class="col s12">
+                                        <br />
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input name="Name" id="Name" type="text" class="validate">
+                                                    <label for="Name">Shift Name</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input name="Code" id="Code" type="text" class="validate">
+                                                    <label for="Code">Code</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input name="Type" id="Type" type="text" class="validate">
+                                                    <label for="Type">Type</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input name="Description" id="Description" type="text" class="validate">
+                                                    <label for="Description">Description</label>
+                                                </div>
+
+                                                <div class="input-field col m12">
+                                                    <input name="OfficeHourDescription" id="OfficeHourDescription" type="text" class="validate">
+                                                    <label for="OfficeHourDescription">Office Hour Description</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsDefault" name="IsDefault" type="checkbox" value="true" />
+                                                    @Html.LabelFor(m => m.IsDefault)
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsActive" name="IsActive" type="checkbox" value="true" />
+                                                    @Html.LabelFor(m => m.IsActive)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="timeTable" class="col m6 offset-m6">
+                                        <br />
+                                        <table class="table">
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_0__Status" name="TimeTables[0].Status" type="checkbox" value="true" /><label for="TimeTables_0__Status">@DayOfWeek.Saturday @Html.HiddenFor(model => model.TimeTables[0].Day, new { @Value = DayOfWeek.Saturday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_0__From" name="TimeTables[0].From"  type="text" >
+                                                        <label for="TimeTables_0__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_0__To" name="TimeTables[0].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_0__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_1__Status" name="TimeTables[1].Status" type="checkbox" value="true" /><label for="TimeTables_1__Status">@DayOfWeek.Sunday @Html.HiddenFor(model => model.TimeTables[1].Day, new { @Value = DayOfWeek.Sunday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_1__From" name="TimeTables[1].From" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_1__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_1__To" name="TimeTables[1].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_1__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_2__Status" name="TimeTables[2].Status" type="checkbox" value="true" /><label for="TimeTables_2__Status">@DayOfWeek.Monday @Html.HiddenFor(model => model.TimeTables[2].Day, new { @Value = DayOfWeek.Monday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_2__From" name="TimeTables[2].From" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_2__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_2__To" name="TimeTables[2].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_2__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_3__Status" name="TimeTables[3].Status" type="checkbox" value="true" /><label for="TimeTables_3__Status">@DayOfWeek.Tuesday @Html.HiddenFor(model => model.TimeTables[3].Day, new { @Value = DayOfWeek.Tuesday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_3__From" name="TimeTables[3].From" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_3__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_3__To" name="TimeTables[3].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_3__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_4__Status" name="TimeTables[4].Status" type="checkbox" value="true" /><label for="TimeTables_4__Status">@DayOfWeek.Wednesday @Html.HiddenFor(model => model.TimeTables[4].Day, new { @Value = DayOfWeek.Wednesday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_4__From" name="TimeTables[4].From" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_4__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder=""  id="TimeTables_4__To" name="TimeTables[4].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_4__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_5__Status" name="TimeTables[5].Status" type="checkbox" value="true" /><label for="TimeTables_5__Status">@DayOfWeek.Thursday @Html.HiddenFor(model => model.TimeTables[5].Day, new { @Value = DayOfWeek.Thursday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly"  id="TimeTables_5__From" name="TimeTables[5].From" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_5__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_5__To" name="TimeTables[5].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_5__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input data-val="true" data-val-required="The Status field is required." id="TimeTables_6__Status" name="TimeTables[6].Status" type="checkbox" value="true" /><label for="TimeTables_6__Status">@DayOfWeek.Friday @Html.HiddenFor(model => model.TimeTables[6].Day, new { @Value = DayOfWeek.Friday })</label></td>
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_6__From" name="TimeTables[6].From" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_0__From" class="active">From</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="input-field col s12">
+                                                        <input placeholder="" readonly="readonly" id="TimeTables_6__To" name="TimeTables[6].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
+                                                        <label for="TimeTables_6__To" class="active">To</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -59,3 +196,27 @@
         </div>
     </div>
 </main>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $("input[type=checkbox]").change(function () {
+            if (!$(this).is(':checked')) {
+
+                $(this).closest('tr').find('input[type=time]').each(function () {
+                    $(this).attr("readonly", true);
+                    $(this).attr("type", "text");
+                    $(this).val("");
+                });
+            }
+            else {
+                $(this).closest('tr').find('input[type=text]').each(function () {
+                    $(this).attr("readonly", false);
+                    $(this).attr("type", "time");
+                });
+
+            }
+        });
+
+    </script>
+}

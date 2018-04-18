@@ -16,5 +16,6 @@ namespace TestHR.Entities
         public bool IsDefault { get; set; }
         public bool IsActive { get; set; }
         public string OfficeHourDescription { get; set; }
+        public ICollection<TimeTable> TimeTables { get; set; } 
     }
 }

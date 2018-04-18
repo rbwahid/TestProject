@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using TestHR.AdminCenter;
@@ -17,9 +18,12 @@ namespace TestHR.Web.Areas.Admin.Models
         public string Code { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
+        [DisplayName("Default")]
         public bool IsDefault { get; set; }
+        [DisplayName("Active")]
         public bool IsActive { get; set; }
         public string OfficeHourDescription { get; set; }
+        public List<TimeTable> TimeTables { get; set; } 
         public ShiftModel()
         {
             _companyManagementService = new CompanyManagementService();
@@ -32,6 +36,10 @@ namespace TestHR.Web.Areas.Admin.Models
             return _companyManagementService.GetAllCompanies();
         }
 
+        public Shift GetDefaultShift()
+        {
+            return _shiftManagementService.GetDefaultShift();
+        }
         public ShiftModel(Guid id)
             : this()
         {
@@ -45,10 +53,11 @@ namespace TestHR.Web.Areas.Admin.Models
             this.IsDefault = shift.IsDefault;
             this.IsActive = shift.IsActive;
             this.OfficeHourDescription = shift.OfficeHourDescription;
+           
         }
         public void AddShift()
         {
-            _shiftManagementService.AddShift( Name, Code, Type, Description, IsDefault, IsActive,OfficeHourDescription);
+            _shiftManagementService.AddShift( Name, Code, Type, Description, IsDefault, IsActive,OfficeHourDescription,TimeTables);
         }
 
         internal void DeleteShift(Guid? id)
