@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TestHR.Entities;
 using TestHR.Web.Areas.Admin.Models;
+using ModelState = System.Web.ModelBinding.ModelState;
 
 namespace TestHR.Web.Areas.Admin.Controllers
 {
@@ -40,6 +42,22 @@ namespace TestHR.Web.Areas.Admin.Controllers
             //}
 
             return View(branchModel);
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            BranchModel branch=new BranchModel(id);
+            if (branch == null)
+            {
+                return HttpNotFound();
+            }
+            return View(branch);
+        }
+        [HttpPost]
+        public ActionResult Edit(BranchModel model)
+        {
+            model.EditBranch(model.Id);
+            return RedirectToAction("Index");
         }
 	}
 }

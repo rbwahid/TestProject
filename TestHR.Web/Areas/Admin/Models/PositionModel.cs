@@ -69,7 +69,10 @@ namespace TestHR.Web.Areas.Admin.Models
           {
               _positionManagementService.AddPosition(Name, CompanyId, DepartmentId, ReportingPositionId);
           }
-
+          public void EditPosition(Guid id)
+          {
+              _positionManagementService.EditPosition(id,Name, CompanyId, DepartmentId, ReportingPositionId);
+          }
           internal void DeletePosition(Guid? id)
           {
               if (id.HasValue)

@@ -40,6 +40,26 @@ namespace TestHR.AdminCenter
             return _companyUnitOfWork.CompanyRepository.GetAll().Count();
             
         }
+
+        public void EditCompany(Guid id,string name, Guid motherCompanyId, string address, string phone, string fax, string email,
+            string contactPerson, string contactPersonEmail, string contactPersonPhone, DateTime? fiscalYearStart)
+        {
+            var company = GetCompany(id);
+            company.Name = name;
+            if (company.MotherCompany != null)
+            {
+                company.MotherCompany = GetCompany(motherCompanyId);
+            }
+            company.Address = address;
+            company.Phone = phone;
+            company.Email = email;
+            company.Fax = fax;
+            company.ContactPerson = contactPerson;
+            company.ContactPersonEmail = contactPersonEmail;
+            company.ContactPersonPhone = contactPersonPhone;
+            company.FiscalYearStart = fiscalYearStart;
+            _companyUnitOfWork.Save();
+        }
         public void AddCompany(string name, Guid motherCompanyId, string address, string phone, string fax, string email, 
             string contactPerson, string contactPersonEmail, string contactPersonPhone, DateTime? fiscalYearStart)
         {

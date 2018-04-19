@@ -42,6 +42,16 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return View(positionModel);
         }
 
+        public ActionResult Edit(Guid id)
+        {
+            PositionModel position = new PositionModel(id);
+            if (position == null)
+            {
+                return HttpNotFound();
+            }
+            return View(position);
+        }
+
         public ActionResult Delete(Guid? id)
         {
             try

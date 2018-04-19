@@ -20,6 +20,7 @@
                                     <th>Name</th>
                                     <th>Company</th>
                                     <th>Description</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +32,7 @@
                                         <td>@branch.Description</td>
                                         
                                         <td>
-                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a href="@Url.Action("Edit","Branch",new{id=branch.Id})"class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
