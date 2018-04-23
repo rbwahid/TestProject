@@ -20,8 +20,7 @@
                                     <th>Name</th>
                                     <th>Company</th>
                                     <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
+									<th>Action</th>                                </tr>
                             </thead>
                             <tbody>
                                 @foreach (var branch in Model)
@@ -30,8 +29,7 @@
                                         <td>@branch.Name</td>
                                         <td>@branch.Company.Name</td>
                                         <td>@branch.Description</td>
-                                        
-                                        <td>
+
                                             <a href="@Url.Action("Edit","Branch",new{id=branch.Id})"class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
                                         </td>
