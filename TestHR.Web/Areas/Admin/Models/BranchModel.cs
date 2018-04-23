@@ -53,6 +53,10 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             _branchManagementService.AddBranch(Name, CompanyId, Description);
         }
+        public void EditBranch(Guid id)
+        {
+            _branchManagementService.EditBranch(id,Name, CompanyId, Description);
+        }
 
         internal void DeleteBranch(Guid? id)
         {

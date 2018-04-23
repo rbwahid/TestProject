@@ -54,12 +54,12 @@
                                         <th>@employee.Nationality</th>
                                         <th>@employee.Nid</th>
                                         <th>@employee.PassportNo</th>*@
-                                        <th>@employee.PassportNo</th>
+                                        <th>@employee.Company.Name</th>
                                         <th>@employee.Branch.Name</th>
                                         <th>@employee.Position.Name</th>
                                         <th>@employee.Department.Name</th>
                                         <td>
-                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a href="@Url.Action("Edit", "Employee", new { id = employee.Id })" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>

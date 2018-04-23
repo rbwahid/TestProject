@@ -48,11 +48,11 @@ namespace TestHR.Web.Areas.Admin.Models
                 this.MotherCompanyId = company.MotherCompany.Id;
             }
             this.Address = company.Address;
-            this.Phone = company.Address;
-            this.Email = company.Address;
-            this.Fax = company.Address;
-            this.ContactPerson = company.Address;
-            this.ContactPersonEmail = company.Address;
+            this.Phone = company.Phone;
+            this.Email = company.Email;
+            this.Fax = company.Fax;
+            this.ContactPerson = company.ContactPerson;
+            this.ContactPersonEmail = company.ContactPersonEmail;
             this.ContactPersonPhone = company.ContactPersonPhone;
             this.FiscalYearStart = company.FiscalYearStart;
 
@@ -62,6 +62,10 @@ namespace TestHR.Web.Areas.Admin.Models
             _companyManagementService.AddCompany(Name, MotherCompanyId, Address, Phone, Fax, Email, ContactPerson, ContactPersonEmail, ContactPersonPhone, FiscalYearStart);
         }
 
+        public void EditCompany(Guid id)
+        {
+            _companyManagementService.EditCompany(id,Name, MotherCompanyId, Address, Phone, Fax, Email, ContactPerson, ContactPersonEmail, ContactPersonPhone, FiscalYearStart);
+        }
         internal void DeleteCompany(Guid? id)
         {
             if (id.HasValue)

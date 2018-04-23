@@ -13,53 +13,59 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Company Settings</span><br>
-                    <form method="post" action="/Admin/Company/Add">
+                    <form method="post" action="/Admin/Company/Edit">
                         <div class="row">
                             <div class="row">
+                                @Html.HiddenFor(model=>model.Id)
                                 <div class="input-field col s6">
-                                    <input name="Name" id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Company Name</label>
+                                   @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    <label for="Name">Company Name</label>
                                 </div>
                                 <div class="input-field col s6">
+                                    @*@Html.DropDownListFor(x => x.MotherCompanies, new List<SelectListItem>
+                                    {
+                                        new SelectListItem() {Text = "Company", Value = "Company"},
+                                        new SelectListItem() {Text = "Individual", Value = "Individual"},
+                                    }, "--Select--", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.MotherCompanyId, new SelectList(Model.MotherCompanies, "Id", "Name"), "", new { @class = "" })
                                     <label>Mother Company</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="address" name="Address" type="text">
-                                    <label for="textarea1">Address</label>
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                    <label for="Address">Address</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="address">Phone </label>
-                                    <input id="address" name="Phone" type="text">
+                                    <label for="Phone">Phone </label>
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="address">Email</label>
-                                    <input id="address" name="Email" type="text">
+                                    <label for="Email">Email</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="address">Fax</label>
-                                    <input id="address" name="Fax" type="text">
+                                    <label for="Fax">Fax</label>
+                                   @Html.TextBoxFor(model => model.Fax, new { @class = "form-control" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="ContactPerson" id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Primary Contact </label>
+                                    <label for="ContactPerson">Contact Person</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson, new { @class = "form-control" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <select>
-                                        <option value="" disabled selected>Choose Month</option>
-                                        <option value="1">January</option>
-                                        <option value="2">February</option>
-                                        <option value="3">March</option>
-                                    </select>
+                                    @Html.DropDownListFor(x => x.FiscalYearStart, new List<SelectListItem>
+                                    {
+                                        new SelectListItem() {Text = "January", Value = "January"},
+                                        new SelectListItem() {Text = "February", Value = "February"},
+                                        new SelectListItem() {Text = "March", Value = "March"},
+                                    }, "--Select--", new { @class = "form-control" })
                                     <label>Fiscal Year Start </label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="ContactPersonEmail" id="icon_prefix" type="tel" class="validate">
-                                    <label for="icon_prefix">Primary Contact Email </label>
+                                    <label for="ContactPersonEmail">Primary Contact Email </label>
+                                    @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="ContactPersonPhone" id="ContactPersonPhone" type="tel" class="validate">
                                     <label for="ContactPersonPhone">Primary Contact Phone </label>
+                                    @Html.TextBoxFor(model => model.ContactPersonPhone, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
@@ -78,7 +84,7 @@
                         </div>
                         <div class="row">
                             <div class="col s4 offset-m7 offset-m1">
-                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
+                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Edit" />
                                 <input type="button" class="btn btn-default red col s4 offset-m1" value="Cancel" />
                             </div>
                         </div>

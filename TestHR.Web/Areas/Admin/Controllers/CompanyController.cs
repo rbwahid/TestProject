@@ -44,6 +44,21 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return View(companyModel);
         }
 
+        public ActionResult Edit(Guid id)
+        {
+            CompanyModel company = new CompanyModel(id);
+            if (company == null)
+            {
+                return HttpNotFound();
+            }
+            return View(company);
+        }
+        [HttpPost]
+        public ActionResult Edit(CompanyModel model)
+        {
+            model.EditCompany(model.Id);
+            return RedirectToAction("Index");
+        }
         public ActionResult Delete(Guid? id)
         {
             try

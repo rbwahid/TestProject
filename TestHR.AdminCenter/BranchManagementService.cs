@@ -54,5 +54,14 @@ namespace TestHR.AdminCenter
             _branchUnitOfWork.Save();
 
         }
+
+        public void EditBranch(Guid id,string name, Guid CompanyId, string Description)
+        {
+            var branch = GetBranch(id);
+            branch.Name = name;
+            branch.Company = _companyUnitOfWork.CompanyRepository.GetById(CompanyId);
+            branch.Description = Description;
+            _branchUnitOfWork.Save();
+        }
     }
 }

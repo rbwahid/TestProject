@@ -55,5 +55,17 @@ namespace TestHR.AdminCenter
             _positionUnitOfWork.Save();
 
         }
+        public void EditPosition(Guid id,string name, Guid companyId, Guid departmentId, Guid reportingPositionId)
+        {
+            var position = GetPosition(id);
+
+            position.Name = name;
+            position.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
+            position.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId);
+            position.ReportingPosition = _positionUnitOfWork.PositionRepository.GetById(reportingPositionId);
+            
+            _positionUnitOfWork.Save();
+
+        }
     }
 }
