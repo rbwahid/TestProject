@@ -15,7 +15,7 @@
                     <form method="post" action="/Admin/Position/Edit">
                         <span class="card-title">Position Settings</span><br>
                         <div class="row">
-
+                            @Html.HiddenFor(model=>model.Id)
                             <div class="input-field col s6">
                                 <label for="Name">Position Name</label>
                                 @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })

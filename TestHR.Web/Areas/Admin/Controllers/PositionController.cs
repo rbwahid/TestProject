@@ -52,6 +52,13 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return View(position);
         }
 
+        [HttpPost]
+        public ActionResult Edit(PositionModel model)
+        {
+            model.EditPosition(model.Id);
+            return RedirectToAction("Index");
+        }
+        
         public ActionResult Delete(Guid? id)
         {
             try

@@ -22,20 +22,37 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             
             _departmentManagementService = new DepartmentManagementService();
-            _companyManagementService = new CompanyManagementService();
+         
             Company = GetAllCompanies();
-            _employeeManagementService = new EmployeeManagementService();
+           
             Employees = GetAllEmployees();
 
         }
+
+        public DepartmentModel(Guid id)
+            : this()
+        {
+            var department=_departmentManagementService.GetDepartment(id);
+
+            this.Id = department.Id;
+            this.DepartmentName = department.Name;
+            if (department.Company != null)
+            {
+                this.CompanyId= department.Company.Id;
+            }
+            if (department.Employees != null)
+            {
+                this.DepartmentHeadId = department.DepartmentHead.Id;
+            }  
+        }
         public List<Company> GetAllCompanies()
         {
-
+            _companyManagementService = new CompanyManagementService();
             return _companyManagementService.GetAllCompanies();
         }
         public List<Employee> GetAllEmployees()
         {
-
+            _employeeManagementService = new EmployeeManagementService();
             return _employeeManagementService.GetAllEmployees();
         }
         public List<Department> GetAllDepartments()
@@ -45,6 +62,10 @@ namespace TestHR.Web.Areas.Admin.Models
         public void AddDepartment()
         {
             _departmentManagementService.AddDepartment(DepartmentName, CompanyId, DepartmentHeadId);
+        }
+        public void EditDepartment(Guid id)
+        {
+            _departmentManagementService.EditDepartment(id,DepartmentName, CompanyId, DepartmentHeadId);
         }
     }
 }

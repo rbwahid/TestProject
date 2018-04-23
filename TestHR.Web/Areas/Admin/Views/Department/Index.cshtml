@@ -31,7 +31,7 @@
                                         <td>@department.Company.Name</td>
                                         <td>@department.Employees</td>
                                         <td>
-                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a href="@Url.Action("Edit","Department",new{id=department.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>

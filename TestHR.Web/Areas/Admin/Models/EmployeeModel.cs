@@ -15,7 +15,7 @@ namespace TestHR.Web.Areas.Admin.Models
         private BranchManagementService _branchManagementService { get; set; }
         private DepartmentManagementService _departmentManagementService { get; set; }
         private PositionManagementService _positionManagementService { get; set; }
-
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }

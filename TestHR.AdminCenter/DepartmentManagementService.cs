@@ -56,5 +56,15 @@ namespace TestHR.AdminCenter
             _departmentUnitOfWork.Save();
 
         }
+
+        public void EditDepartment(Guid id,string name, Guid companyId, Guid departmentHeadId)
+        {
+            var department = GetDepartment(id);
+            department.Name = name;
+            department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
+            department.DepartmentHead.Id = departmentHeadId;
+            _departmentUnitOfWork.Save();
+
+        }
     }
 }

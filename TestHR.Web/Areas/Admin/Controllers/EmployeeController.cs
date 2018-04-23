@@ -29,10 +29,17 @@ namespace TestHR.Web.Areas.Admin.Controllers
             employeeModel.AddEmployee();
             TempData["message"] = "Successfully added Branch.";
             TempData["alertType"] = "success";
-
-
-
             return View(employeeModel);
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            EmployeeModel employee = new EmployeeModel(id);
+            if (employee==null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
         }
 	}
 }
