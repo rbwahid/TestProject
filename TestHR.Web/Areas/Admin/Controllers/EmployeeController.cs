@@ -41,5 +41,11 @@ namespace TestHR.Web.Areas.Admin.Controllers
             }
             return View(employee);
         }
+        [HttpPost]
+        public ActionResult Edit(EmployeeModel model)
+        {
+            model.EditEmployee();
+            return RedirectToAction("Index");
+        }
 	}
 }

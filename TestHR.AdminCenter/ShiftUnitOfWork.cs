@@ -33,5 +33,33 @@ namespace TestHR.AdminCenter
         {
             throw new NotImplementedException();
         }
+    } 
+    class TimeTableUnitOfWork : IDisposable
+    {
+        private AdminCenterDbContext _context { get; set; }
+        private TimeTableRepository _timeTableRepository { get; set; }
+
+        public TimeTableUnitOfWork(AdminCenterDbContext context)
+        {
+            _context = context;
+            _timeTableRepository = new TimeTableRepository(_context);
+        }
+
+        public TimeTableRepository TimeTableRepository
+        {
+            get
+            {
+                return _timeTableRepository;
+            }
+        }
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

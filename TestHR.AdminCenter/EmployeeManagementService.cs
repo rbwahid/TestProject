@@ -76,5 +76,32 @@ namespace TestHR.AdminCenter
             _employeeUnitOfWork.EmployeeRepository.Add(employee);
             _employeeUnitOfWork.Save();
         }
+       public void EditEmployee(Guid id,string firstName,string middleName,string lastName,string fathersName,string motherName,
+            string souseName,string phoneNumber,string presentAddress,string pernamentAddress,string email,string religion,string nationality ,
+            string nId,string passportNo, Guid? companyId,Guid? branchId,Guid? departmentId,Guid? positionId,List<EmployeeEducationHistory> educationHistories,List<EmployeeCareerHistory> careerHistories)
+       {
+           var employee = _employeeUnitOfWork.EmployeeRepository.GetById(id);
+            employee.FirstName = firstName;
+            employee.MiddleName = middleName;
+            employee.LastName = lastName;
+            employee.FathersName = fathersName;
+            employee.MothersName = motherName;
+            employee.SouseName = souseName;
+            employee.PhoneNumber = phoneNumber;
+            employee.PresentAddress = presentAddress;
+            employee.PernamentAddress = pernamentAddress;
+            employee.Email = email;
+            employee.Religion = religion;
+            employee.Nationality = nationality;
+            employee.Nid = nId;
+            employee.PassportNo = passportNo;
+            employee.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId.Value);
+            employee.Branch = _branchUnitOfWork.BranchRepository.GetById(branchId.Value);
+            employee.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId.Value);
+            employee.Position = _positionUnitOfWork.PositionRepository.GetById(positionId.Value);
+            employee.EmployeeCareerHistory = careerHistories;
+            employee.EmployeeEducationHistory = educationHistories;
+            _employeeUnitOfWork.Save();
+        }
     }
 }

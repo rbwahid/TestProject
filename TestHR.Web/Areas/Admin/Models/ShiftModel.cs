@@ -49,11 +49,17 @@ namespace TestHR.Web.Areas.Admin.Models
             this.IsDefault = shift.IsDefault;
             this.IsActive = shift.IsActive;
             this.OfficeHourDescription = shift.OfficeHourDescription;
-           
+            this.TimeTables = shift.TimeTables.ToList();
+
         }
         public void AddShift()
         {
             _shiftManagementService.AddShift( Name, Code, Type, Description, IsDefault, IsActive,OfficeHourDescription,TimeTables);
+        }
+
+        public void EditShift(Guid id)
+        {
+            _shiftManagementService.EditShift(id,Name, Code, Type, Description, IsDefault, IsActive, OfficeHourDescription, TimeTables);
         }
         public List<Shift> GetAllShift()
         {

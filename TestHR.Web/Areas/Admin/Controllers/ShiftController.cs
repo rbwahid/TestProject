@@ -40,5 +40,18 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
             return View(shiftModel);
         }
+
+        public ActionResult Edit(Guid id)
+        {
+            ShiftModel model = new ShiftModel(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ShiftModel model)
+        {
+            model.EditShift(model.Id);
+            return RedirectToAction("Index");
+        }
 	}
 }

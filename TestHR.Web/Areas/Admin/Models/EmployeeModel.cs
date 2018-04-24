@@ -121,12 +121,22 @@ namespace TestHR.Web.Areas.Admin.Models
             {
                 this.DepartmentId = employee.Department.Id;
             }
+            this.EducationHistories = employee.EmployeeEducationHistory.ToList();
+            this.EmployeeCareerHistories = employee.EmployeeCareerHistory.ToList();
 
         }
         public void AddEmployee()
         {
            
             _employeeManagementService.AddEmployee(FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
+                PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
+                PositionId, EducationHistories, EmployeeCareerHistories);
+
+        } 
+        public void EditEmployee()
+        {
+           
+            _employeeManagementService.EditEmployee(Id,FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
                 PositionId, EducationHistories, EmployeeCareerHistories);
 
