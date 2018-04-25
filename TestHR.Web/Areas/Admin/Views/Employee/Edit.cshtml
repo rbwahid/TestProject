@@ -53,7 +53,7 @@
                                     <div class="row">
                                         <div class="input-field col m6 s12">
                                             <label for="FirstName">First Name</label>
-                                            @Html.TextBoxFor(model => model.FathersName, new { @class = "form-control" })
+                                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="MiddleName">Middle name</label>
@@ -166,7 +166,7 @@
                                             foreach (var eduHistory in Model.EducationHistories)
                                             {
                                                 <tr>
-                                                    @Html.HiddenFor(model => model.EducationHistories[rowNum].Id, new { @Value = eduHistory.Id })
+                                                    @Html.HiddenFor(model => model.EducationHistories[rowNum].Id)
                                                     <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].Degree, new { @Value = eduHistory.Degree })</td>
                                                     <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].InstituteName, new { @Value = eduHistory.InstituteName })</td>
                                                     <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].Subject, new { @Value = eduHistory.Subject })</td>
@@ -248,7 +248,7 @@
         function AddNewExpRow() {
             var rowNumber = $("#expTBody").find("tr").length;
             console.log(rowNumber);
-            $("#expTBody").append('<tr>' +
+            $("#expTBody").append('<tr><input value="@Guid.Empty" data-val="true" data-val-required="The Id field is required." id="EmployeeCareerHistories_' + rowNumber + '__Id" name="EmployeeCareerHistories[' + rowNumber + '].Id" type="hidden">' +
                         '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__CompanyName" name="EmployeeCareerHistories[' + rowNumber + '].CompanyName" type="text"></td>' +
                         '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__CompanyAddress" name="EmployeeCareerHistories[' + rowNumber + '].CompanyAddress" type="text"></td>' +
                         '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__Department" name="EmployeeCareerHistories[' + rowNumber + '].Department" type="text" value=""></td>' +
@@ -261,7 +261,7 @@
         function AddNewEduRow() {
             var rowNumber = $("#eduTBody").find("tr").length;
             console.log(rowNumber);
-            $("#eduTBody").append('<tr><td><input id="EducationHistories_' + rowNumber + '__Degree" name="EducationHistories[' + rowNumber + '].Degree" type="text" value=""></td>' +
+            $("#eduTBody").append('<tr><input data-val="true" data-val-required="The Id field is required." id="EducationHistories_' + rowNumber + '__Id" name="EducationHistories[' + rowNumber + '].Id" type="hidden" value="@Guid.Empty"><td><input id="EducationHistories_' + rowNumber + '__Degree" name="EducationHistories[' + rowNumber + '].Degree" type="text" value=""></td>' +
                                         '<td><input id="EducationHistories_' + rowNumber + '__InstituteName" name="EducationHistories[' + rowNumber + '].InstituteName" type="text" value=""></td>' +
                                         '<td><input id="EducationHistories_' + rowNumber + '__Subject" name="EducationHistories[' + rowNumber + '].Subject" type="text" value=""></td>' +
                                         '<td><input data-val="true" data-val-date="The field PassingYear must be a date." data-val-required="The PassingYear field is required." id="EducationHistories_' + rowNumber + '__PassingYear" name="EducationHistories[' + rowNumber + '].PassingYear" type="text" value=""></td>' +

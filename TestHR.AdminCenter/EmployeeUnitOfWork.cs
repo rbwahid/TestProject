@@ -34,4 +34,60 @@ namespace TestHR.AdminCenter
             throw new NotImplementedException();
         }
     }
+    public class EducationHistoryUnitOfWork : IDisposable
+    {
+        private AdminCenterDbContext _context { get; set; }
+        private EducationHistoryRepository _educationHistoryRepository { get; set; }
+
+        public EducationHistoryUnitOfWork(AdminCenterDbContext context)
+        {
+            _context = context;
+            _educationHistoryRepository = new EducationHistoryRepository(_context);
+        }
+
+        public EducationHistoryRepository EducationHistoryRepository
+        {
+            get
+            {
+                return _educationHistoryRepository;
+            }
+        }
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CareerHistoryUnitOfWork : IDisposable
+    {
+        private AdminCenterDbContext _context { get; set; }
+        private CareerHistoryRepository _careerHistoryRepository { get; set; }
+
+        public CareerHistoryUnitOfWork(AdminCenterDbContext context)
+        {
+            _context = context;
+            _careerHistoryRepository = new CareerHistoryRepository(_context);
+        }
+
+        public CareerHistoryRepository EducationHistoryRepository
+        {
+            get
+            {
+                return _careerHistoryRepository;
+            }
+        }
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
