@@ -8,21 +8,21 @@ using TestHR.Web.Areas.Admin.Models;
 
 namespace TestHR.Web.Areas.Admin.Controllers
 {
-    public class CalenderController : Controller
+    public class CalendarController : Controller
     {
         //
         // GET: /Admin/Calender/
-        public ActionResult Index(CalenderModel model)
+        public ActionResult Index(CalendarModel model)
         {
             return View(model.GetAllHolidays());
         }
 
-        public ActionResult CalenderImport()
+        public ActionResult CalendarImport()
         {
-            return View("CalenderImport");
+            return View("CalendarImport");
         }
         [HttpPost]
-        public ActionResult CalenderImport(HttpPostedFileBase holidayExcelFile)
+        public ActionResult CalendarImport(HttpPostedFileBase holidayExcelFile)
         {
             if (ModelState.IsValid)
             {
@@ -44,7 +44,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
                             string fileContentType = file.ContentType;
                             byte[] fileBytes = new byte[file.ContentLength];
                             var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-                            List<CalenderModel> holidayList = new List<CalenderModel>();
+                            List<CalendarModel> holidayList = new List<CalendarModel>();
                             using (var package = new ExcelPackage(file.InputStream))
                             {
                                 var currentSheet = package.Workbook.Worksheets;
@@ -55,7 +55,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
                                 {
                                     if (workSheet.Cells[rowIterator, 2].Value != null && workSheet.Cells[rowIterator, 3].Value!=null) 
                                     { 
-                                        CalenderModel calenderModel = new CalenderModel
+                                        CalendarModel calenderModel = new CalendarModel
                                         {
                                             DateFrom = Convert.ToDateTime(workSheet.Cells[rowIterator, 2].Value),
                                             DateTo = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value),
@@ -79,7 +79,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
                                 int lastInvoiceId = 0;
                                 foreach (var item in holidayList)
                                 {
-                                    item.AddToCalender();
+                                    item.AddToCalendar();
                                 }
                             }
 

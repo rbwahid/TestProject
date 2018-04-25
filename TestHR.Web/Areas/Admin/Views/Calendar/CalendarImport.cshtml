@@ -1,4 +1,4 @@
-﻿@model TestHR.Web.Areas.Admin.Models.CalenderModel
+﻿@model TestHR.Web.Areas.Admin.Models.CalendarModel
 @{
     ViewBag.Title = "Add";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -12,13 +12,13 @@
         <div class="col s12">
             <div class="card">
                 <div class="card-content">
-                    <form id="example-form" method="post" enctype="multipart/form-data" action="/Admin/Calender/CalenderImport">
-                        <span class="card-title">Calender Settings</span><br>
+                    <form id="example-form" method="post" enctype="multipart/form-data" action="/Admin/Calendar/CalendarImport">
+                        <span class="card-title">Calendar Settings</span><br>
                         <div class="row">
                             <div class="row">
                                 <div class="form-group">
                                     @*@Html.LabelFor(model => model.PoExcelFile, new { @class = "control-label" })*@
-                                    <label>Emport Calender</label>
+                                    <label>Emport Calendar</label>
                                     <input type="file" name="holidayExcelFile" id="holidayExcelFile" class="form-control input-sm" />
                                 </div>
                             </div>

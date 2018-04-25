@@ -8,10 +8,10 @@ using TestHR.Entities;
 
 namespace TestHR.AdminCenter
 {
-    class CalenderRepository : Repository<Holiday>
+    class CalendarRepository : Repository<Holiday>
     {
         private AdminCenterDbContext _context;
-        public CalenderRepository(AdminCenterDbContext context)
+        public CalendarRepository(AdminCenterDbContext context)
             :base(context)
         {
             _context = context;

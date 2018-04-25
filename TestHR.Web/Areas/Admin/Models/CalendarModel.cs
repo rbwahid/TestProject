@@ -8,35 +8,35 @@ using TestHR.Entities;
 
 namespace TestHR.Web.Areas.Admin.Models
 {
-    public class CalenderModel
+    public class CalendarModel
     {
-        private CalenderManagementService _calenderManagementService { get; set; }
+        private CalendarManagementService _calendarManagementService { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
 
-        public CalenderModel()
-        { 
-            _calenderManagementService = new CalenderManagementService();
+        public CalendarModel()
+        {
+            _calendarManagementService = new CalendarManagementService();
         }
         public List<Holiday> GetAllHolidays()
         {
-           
-            return _calenderManagementService.GetAllHolidays();
+
+            return _calendarManagementService.GetAllHolidays();
         }
 
        
-        public void AddToCalender()
+        public void AddToCalendar()
         {
-            _calenderManagementService.AddToCalender(Name, Description, DateFrom, DateTo);
+            _calendarManagementService.AddToCalendar(Name, Description, DateFrom, DateTo);
         }
        
         internal void DeleteHoliday(Guid? id)
         {
             if (id.HasValue)
             {
-                _calenderManagementService.DeleteHoliday(id.Value);
+                _calendarManagementService.DeleteHoliday(id.Value);
             }                
             else
             {
@@ -49,7 +49,7 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             if (id.HasValue)
             {
-                return _calenderManagementService.GetCalender(id.Value);
+                return _calendarManagementService.GetCalendar(id.Value);
             }
             else
             {

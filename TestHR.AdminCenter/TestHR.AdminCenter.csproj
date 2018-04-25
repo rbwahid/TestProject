@@ -52,9 +52,9 @@
     <Compile Include="BranchManagementService.cs" />
     <Compile Include="BranchRepository.cs" />
     <Compile Include="BranchUnitOfWork.cs" />
-    <Compile Include="CalenderManagementService.cs" />
-    <Compile Include="CalenderRepository.cs" />
-    <Compile Include="CalenderUnitOfWork.cs" />
+    <Compile Include="CalendarManagementService.cs" />
+    <Compile Include="CalendarRepository.cs" />
+    <Compile Include="CalendarUnitOfWork.cs" />
     <Compile Include="CompanyManagementService.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="CompanyUnitOfWork.cs" />

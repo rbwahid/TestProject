@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace TestHR.AdminCenter
 {
-    class CalenderUnitOfWork : IDisposable
+    class CalendarUnitOfWork : IDisposable
     {
         private AdminCenterDbContext _context { get; set; }
-        private CalenderRepository _calenderRepository { get; set; }
+        private CalendarRepository _calendarRepository { get; set; }
 
-        public CalenderUnitOfWork(AdminCenterDbContext context)
+        public CalendarUnitOfWork(AdminCenterDbContext context)
         {
             _context = context;
-            _calenderRepository = new CalenderRepository(_context);
+            _calendarRepository = new CalendarRepository(_context);
         }
 
-        public CalenderRepository CalenderRepository
+        public CalendarRepository CalendarRepository
         {
             get
             {
-                return _calenderRepository;
+                return _calendarRepository;
             }
         }
         public void Save()
