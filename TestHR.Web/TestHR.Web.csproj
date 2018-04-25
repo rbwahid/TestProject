@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\..\Welburg\WarehouseApp\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -163,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BranchController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CalenderController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
@@ -171,6 +175,7 @@
     <Compile Include="Areas\Admin\Controllers\HolidayController.cs" />
     <Compile Include="Areas\Admin\Controllers\LeaveTypeController.cs" />
     <Compile Include="Areas\Admin\Models\BranchModel.cs" />
+    <Compile Include="Areas\Admin\Models\CalenderModel.cs" />
     <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
@@ -1381,6 +1386,8 @@
     <Content Include="Areas\Admin\Views\Position\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Calender\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Calender\CalenderImport.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />

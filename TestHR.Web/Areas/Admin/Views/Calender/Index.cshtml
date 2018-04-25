@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TestHR.Entities.Holiday>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@*<link type="text/css" rel="stylesheet" href="~/Plugins/materialize/css/materialize.min.css" />*@
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+@*<link href="~/Plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">*@
+
+<link href="~/Plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+                      <script>
+                          var eventObj=[]
+                      </script>
+                      @foreach (var holiday in Model)
+                      {
+
+                          string startDay = String.Format("{0:yyyy-MM-dd}", holiday.DateFrom);
+                          string endDay = String.Format("{0:yyyy-MM-dd}", holiday.DateTo); 
+                          
+                          
+                          <script>eventObj.push({ 'title': '@holiday.Name', 'start': '@startDay', 'end': '@endDay' })</script>
+                      }
+<main class="mn-inner">
+    <div class="row">
+        <div class="col s12">
+            <div class="page-title">Calendar</div>
+        </div>
+        <div class="col s12">
+            <div >
+                <a href="@Url.Action("CalenderImport", "Calender", new {})" class="btn-default"><i >Emport Excel</i></a>
+            </div>
+        </div>
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <div class="card-content">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    
+   
+@section scripts{
+    <script src="~/Plugins/fullcalendar/moment.min.js"></script>
+    <script src="~/Plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log(eventObj);
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: '2018-04-01',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: eventObj
+                
+            });
+
+        });
+    </script>
+}
+
