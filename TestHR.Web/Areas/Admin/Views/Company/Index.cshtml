@@ -55,7 +55,7 @@
     <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
     <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#companyList').DataTable({
                 language: {
                     searchPlaceholder: 'Search Company',
@@ -72,7 +72,7 @@
             });
             $('.dataTables_length select').addClass('browser-default');
 
-            $('.sweetalert-warning').click(function () {
+            $('.sweetalert-warning').click(function() {
                 var url = '@Url.Action("Delete", "Company")';
                 var id = $(this).data('id');
                 console.log(id);
@@ -84,18 +84,24 @@
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Yes, delete it!",
                     closeOnConfirm: false
-                }, function () {
+                }, function() {
                     $.ajax({
                         url: url,
                         type: 'POST',
                         data: { id: id }
-                    }).done(function (data) {
-                        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                        location.reload();
-                    }).fail(function () {
+                    }).done(function(data) {
+
+                        swal({ title: "Deleted!", 
+                            text: "Your imaginary file has been deleted.", 
+                            type: "success"
+                        },
+                            function() {
+                                location.reload(); 
+                            });
+                    }).fail(function() {
                         $.alert("There is something wrong! Please try again.", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');
                     });
-                    
+
                 });
 
             });

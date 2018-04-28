@@ -54,7 +54,15 @@ namespace TestHR.AdminCenter
             holiday.DateTo = DateTo.Value;
             _holidayUnitOfWork.HolidayRepository.Add(holiday);
             _holidayUnitOfWork.Save();
-
+        }
+        public void EditHoliday(Guid id,string name, string description, DateTime? dateFrom, DateTime? dateTo)
+        {
+            var holiday = GetHoliday(id);
+            holiday.Name = name;
+            holiday.Description = description;
+            holiday.DateFrom = dateFrom.Value;
+            holiday.DateTo = dateTo.Value;
+            _holidayUnitOfWork.Save();
         }
     }
 }
