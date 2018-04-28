@@ -40,7 +40,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
             return View(shiftModel);
         }
-        
+
         public ActionResult Delete(Guid? id)
         {
             try
@@ -55,6 +55,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 TempData["message"] = "Failed to Add Company.";
                 TempData["alertType"] = "danger";
             }
+            return RedirectToAction("Index");
+        }
 
         public ActionResult Edit(Guid id)
         {
