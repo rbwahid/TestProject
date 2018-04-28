@@ -13,7 +13,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Shift/
         public ActionResult Index()
         {
-            var shifts = new Models.ShiftModel().GetAllShift();
+            var shifts = new Models.ShiftModel().GetAllShift().Where(x=>x.IsDelete==false);
             return View(shifts);
         }
         public ActionResult Add()
@@ -39,6 +39,23 @@ namespace TestHR.Web.Areas.Admin.Controllers
             }
 
             return View(shiftModel);
+        }
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                new ShiftModel().DeleteShift(id);
+                TempData["message"] = "Successfully Deletd Company.";
+                TempData["alertType"] = "success";
+            }
+
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Company.";
+                TempData["alertType"] = "danger";
+            }
+
+            return RedirectToAction("Index");
         }
 	}
 }
