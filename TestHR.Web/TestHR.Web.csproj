@@ -1388,6 +1388,8 @@
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Calendar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Calendar\CalendarImport.cshtml" />
+    <Content Include="Areas\Admin\Views\Holiday\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\Edit.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />

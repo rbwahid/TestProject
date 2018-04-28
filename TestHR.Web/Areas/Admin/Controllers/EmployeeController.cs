@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,6 +41,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
             }
             return View(employee);
         }
+        
         public ActionResult Delete(Guid? id)
         {
             try
@@ -56,6 +57,10 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 TempData["alertType"] = "danger";
             }
 
+        [HttpPost]
+        public ActionResult Edit(EmployeeModel model)
+        {
+            model.EditEmployee();
             return RedirectToAction("Index");
         }
 	}

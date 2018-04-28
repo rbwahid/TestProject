@@ -40,6 +40,10 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             _holidayManagementService.AddHoliday(Name, Description, DateFrom,DateTo);
         }
+        public void EditHoliday(Guid id)
+        {
+            _holidayManagementService.EditHoliday(id,Name, Description, DateFrom, DateTo);
+        }
         public List<Holiday> GetAllHolidays()
         {
             return _holidayManagementService.GetAllHoliday();

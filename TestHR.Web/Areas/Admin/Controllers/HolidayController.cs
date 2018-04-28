@@ -39,6 +39,21 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return View(holidayModel);
         }
 
+        public ActionResult Edit(Guid id)
+        {
+            HolidayModel holiday=new HolidayModel(id);
+            if (holiday == null)
+            {
+                return HttpNotFound();
+            }
+            return View(holiday);
+        }
+        [HttpPost]
+        public ActionResult Edit(HolidayModel model)
+        {
+            model.EditHoliday(model.Id);
+            return RedirectToAction("Index");
+        }
         public ActionResult Delete(Guid? id)
         {
             try
