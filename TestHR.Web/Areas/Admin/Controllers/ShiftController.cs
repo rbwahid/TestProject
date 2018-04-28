@@ -40,7 +40,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
             return View(shiftModel);
         }
-        
+
         public ActionResult Delete(Guid? id)
         {
             try
@@ -56,6 +56,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 TempData["alertType"] = "danger";
             }
 
+            return RedirectToAction("Index");
+        }
         public ActionResult Edit(Guid id)
         {
             ShiftModel model = new ShiftModel(id);

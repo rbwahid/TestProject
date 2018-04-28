@@ -41,7 +41,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
             }
             return View(employee);
         }
-        
+
         public ActionResult Delete(Guid? id)
         {
             try
@@ -56,6 +56,9 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 TempData["message"] = "Failed to Add Company.";
                 TempData["alertType"] = "danger";
             }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public ActionResult Edit(EmployeeModel model)
