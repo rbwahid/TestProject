@@ -1,4 +1,5 @@
 ﻿@model TestHR.Web.Areas.Admin.Models.EmployeeModel
+@using TestHR.Entities
 @{
     ViewBag.Title = "Add";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -52,7 +53,7 @@
                                     <div class="row">
                                         <div class="input-field col m6 s12">
                                             <label for="FirstName">First Name</label>
-                                            @Html.TextBoxFor(model => model.FathersName, new { @class = "form-control" })
+                                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="MiddleName">Middle name</label>
@@ -159,13 +160,22 @@
                                         </tr>
                                     </thead>
                                     <tbody id="eduTBody">
-                                        <tr>
-                                            <td>@Html.TextBoxFor(model => model.EducationHistories[0].Degree)</td>
-                                            <td>@Html.TextBoxFor(model => model.EducationHistories[0].InstituteName)</td>
-                                            <td>@Html.TextBoxFor(model => model.EducationHistories[0].Subject)</td>
-                                            <td>@Html.TextBoxFor(model => model.EducationHistories[0].PassingYear)</td>
-                                            <td>@Html.TextBoxFor(model => model.EducationHistories[0].Result)</td>
-                                        </tr>
+                                        @{
+                                            int rowNum = 0;
+
+                                            foreach (var eduHistory in Model.EducationHistories)
+                                            {
+                                                <tr>
+                                                    @Html.HiddenFor(model => model.EducationHistories[rowNum].Id)
+                                                    <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].Degree, new { @Value = eduHistory.Degree })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].InstituteName, new { @Value = eduHistory.InstituteName })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].Subject, new { @Value = eduHistory.Subject })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].PassingYear, new { @Value = eduHistory.PassingYear.ToString("dd-MM-yyyy") })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EducationHistories[rowNum].Result, new { @Value = eduHistory.Result })</td>
+                                                </tr>
+                                                rowNum++;
+                                            }
+                                        }
                                     </tbody>
                                     <tfoot>
                                         <tr><td><input value="Add More.." onclick="AddNewEduRow()" class="" type="button" /></td></tr>
@@ -183,20 +193,29 @@
                                             <td>Position</td>
                                             <td>Start Date</td>
                                             <td>End Date</td>
-                                            <td>&nbsp;</td>
+                                         
                                         </tr>
                                     </thead>
                                     <tbody id="expTBody">
-                                        <tr>
-                                            <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].CompanyName)</td>
-                                            <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].CompanyAddress)</td>
-                                            <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].Department)</td>
-                                            <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].Position)</td>
-                                            <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].StartDate)</td>
-                                            <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[0].EndDate)</td>
-                                            <td></td>
-                                        </tr>
+                                        @{
+                                            int rowNo = 0;
+                                            foreach (var carrerHistory in Model.EmployeeCareerHistories)
+                                            {
 
+
+                                                <tr>
+                                                    @Html.HiddenFor(model=>model.EmployeeCareerHistories[rowNo].Id,new{@Value= carrerHistory.Id})
+                                                    <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[rowNo].CompanyName, new { @Value = carrerHistory.CompanyName })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[rowNo].CompanyAddress, new { @Value = carrerHistory.CompanyAddress })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[rowNo].Department, new { @Value = carrerHistory.Department})</td>
+                                                    <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[rowNo].Position, new { @Value = carrerHistory.Position })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[rowNo].StartDate, new { @Value = carrerHistory.StartDate.ToString("dd-MM-yyyy") })</td>
+                                                    <td>@Html.TextBoxFor(model => model.EmployeeCareerHistories[rowNo].EndDate, new { @Value = carrerHistory.EndDate.ToString("dd-MM-yyyy") })</td>
+                                      
+                                                </tr>
+                                                rowNo++;
+                                            }
+                                        }
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -229,7 +248,7 @@
         function AddNewExpRow() {
             var rowNumber = $("#expTBody").find("tr").length;
             console.log(rowNumber);
-            $("#expTBody").append('<tr>' +
+            $("#expTBody").append('<tr><input value="@Guid.Empty" data-val="true" data-val-required="The Id field is required." id="EmployeeCareerHistories_' + rowNumber + '__Id" name="EmployeeCareerHistories[' + rowNumber + '].Id" type="hidden">' +
                         '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__CompanyName" name="EmployeeCareerHistories[' + rowNumber + '].CompanyName" type="text"></td>' +
                         '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__CompanyAddress" name="EmployeeCareerHistories[' + rowNumber + '].CompanyAddress" type="text"></td>' +
                         '<td><input class="form-control" id="EmployeeCareerHistories_' + rowNumber + '__Department" name="EmployeeCareerHistories[' + rowNumber + '].Department" type="text" value=""></td>' +
@@ -242,7 +261,7 @@
         function AddNewEduRow() {
             var rowNumber = $("#eduTBody").find("tr").length;
             console.log(rowNumber);
-            $("#eduTBody").append('<tr><td><input id="EducationHistories_' + rowNumber + '__Degree" name="EducationHistories[' + rowNumber + '].Degree" type="text" value=""></td>' +
+            $("#eduTBody").append('<tr><input data-val="true" data-val-required="The Id field is required." id="EducationHistories_' + rowNumber + '__Id" name="EducationHistories[' + rowNumber + '].Id" type="hidden" value="@Guid.Empty"><td><input id="EducationHistories_' + rowNumber + '__Degree" name="EducationHistories[' + rowNumber + '].Degree" type="text" value=""></td>' +
                                         '<td><input id="EducationHistories_' + rowNumber + '__InstituteName" name="EducationHistories[' + rowNumber + '].InstituteName" type="text" value=""></td>' +
                                         '<td><input id="EducationHistories_' + rowNumber + '__Subject" name="EducationHistories[' + rowNumber + '].Subject" type="text" value=""></td>' +
                                         '<td><input data-val="true" data-val-date="The field PassingYear must be a date." data-val-required="The PassingYear field is required." id="EducationHistories_' + rowNumber + '__PassingYear" name="EducationHistories[' + rowNumber + '].PassingYear" type="text" value=""></td>' +

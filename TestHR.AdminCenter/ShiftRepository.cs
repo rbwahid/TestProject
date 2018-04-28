@@ -16,5 +16,14 @@ namespace TestHR.AdminCenter
         {
             _context = context;
         }
+    }  
+    class TimeTableRepository : Repository<TimeTable>
+    {
+        private AdminCenterDbContext _context;
+        public TimeTableRepository(AdminCenterDbContext context)
+            :base(context)
+        {
+            _context = context;
+        }
     }
 }
