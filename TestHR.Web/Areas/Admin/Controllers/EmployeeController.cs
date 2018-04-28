@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +13,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Employee/
         public ActionResult Index()
         {
-            var employees = new Models.EmployeeModel().GetAllEmployee();
+            var employees = new Models.EmployeeModel().GetAllEmployee().Where(x=>x.IsDelete==false);
             return View(employees);
         }
 
@@ -41,6 +41,22 @@ namespace TestHR.Web.Areas.Admin.Controllers
             }
             return View(employee);
         }
+        
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                new EmployeeModel().DeleteEmployee(id);
+                TempData["message"] = "Successfully Deletd Company.";
+                TempData["alertType"] = "success";
+            }
+
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Company.";
+                TempData["alertType"] = "danger";
+            }
+
         [HttpPost]
         public ActionResult Edit(EmployeeModel model)
         {
