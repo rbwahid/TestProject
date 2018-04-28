@@ -15,7 +15,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Branch/
         public ActionResult Index()
         {
-            var branches = new Models.BranchModel().GetAllBranches();
+            var branches = new Models.BranchModel().GetAllBranches().Where(x=>x.IsDelete==false);
             return View(branches);
         }
 
@@ -57,6 +57,24 @@ namespace TestHR.Web.Areas.Admin.Controllers
         public ActionResult Edit(BranchModel model)
         {
             model.EditBranch(model.Id);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                new BranchModel().DeleteBranch(id);
+                TempData["message"] = "Successfully Deletd Company.";
+                TempData["alertType"] = "success";
+            }
+
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Company.";
+                TempData["alertType"] = "danger";
+            }
+
             return RedirectToAction("Index");
         }
 	}

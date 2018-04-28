@@ -38,7 +38,7 @@ namespace TestHR.Data
 
         public void DeleteByItem(T item)
         {
-            _context.Set<T>().Remove(item);
+            item.IsDelete = true;
         }
     }
 }

@@ -67,5 +67,17 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             _departmentManagementService.EditDepartment(id,DepartmentName, CompanyId, DepartmentHeadId);
         }
+        internal void DeleteDepartment(Guid? id)
+        {
+            if (id.HasValue)
+            {
+                _departmentManagementService.DeleteDepartment(id.Value);
+            }
+            else
+            {
+                throw new Exception();
+            }
+
+        }
     }
 }

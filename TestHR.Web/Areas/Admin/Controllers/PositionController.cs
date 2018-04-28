@@ -12,7 +12,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var position = new Models.PositionModel().GetAllPositions();
+            var position = new Models.PositionModel().GetAllPositions().Where(x=>x.IsDelete==false);
             return View(position);
         }
 
