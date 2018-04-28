@@ -13,13 +13,14 @@ namespace TestHR.AdminCenter
         private ShiftUnitOfWork _shifthUnitOfWork;
         private BranchUnitOfWork _branchUnitOfWork;
         private CompanyUnitOfWork _companyUnitOfWork;
-
+        private TimeTableUnitOfWork _timeTableUnitOfWork;
         public ShiftManagementService()
         {
             _context = new AdminCenterDbContext();
             _shifthUnitOfWork = new ShiftUnitOfWork(_context);
             _branchUnitOfWork = new BranchUnitOfWork(_context);
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
+            _timeTableUnitOfWork = new TimeTableUnitOfWork(_context);
         }
 
         public List<Shift> GetAllShifts()
@@ -29,7 +30,8 @@ namespace TestHR.AdminCenter
 
         public Shift GetShift(Guid id)
         {
-            return _shifthUnitOfWork.ShiftRepository.GetById(id);
+            Shift shift = _shifthUnitOfWork.ShiftRepository.GetById(id);
+            return shift;
         }
 
          public void DeleteShift(Guid id)
@@ -58,6 +60,33 @@ namespace TestHR.AdminCenter
             shift.TimeTables = timeTables;
             _shifthUnitOfWork.ShiftRepository.Add(shift);
             _shifthUnitOfWork.Save();
+
+        } 
+        public void EditShift(Guid id,string name, string code, string type, string description, bool isDefault, bool isActive, string officeHourDescription, List<TimeTable> timeTables )
+        {
+            var shift = GetShift(id);
+
+            shift.Name = name;
+            shift.Code = code;
+            shift.Type = type;
+            shift.Description = description;
+            shift.IsDefault = isDefault;
+            shift.IsActive = isActive;
+            shift.OfficeHourDescription = officeHourDescription;
+            _shifthUnitOfWork.Save();
+    
+            foreach (var timeTable in timeTables)
+            {
+               
+                    var objTimeTable = _timeTableUnitOfWork.TimeTableRepository.GetById(timeTable.Id);
+                    objTimeTable.Day = timeTable.Day;
+                    objTimeTable.Status = timeTable.Status;
+                    objTimeTable.From = timeTable.From;
+                    objTimeTable.To = timeTable.To;
+                    _timeTableUnitOfWork.Save();
+                
+            }
+         
 
         }
     }
