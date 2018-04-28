@@ -14,7 +14,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Department/
         public ActionResult Index()
         {
-            var departments = new Models.DepartmentModel().GetAllDepartments();
+            var departments = new Models.DepartmentModel().GetAllDepartments().Where(x=>x.IsDelete==false);
             return View(departments);
         }
         public ActionResult Add()
@@ -25,19 +25,9 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(DepartmentModel departmentModel)
         {
-            
             departmentModel.AddDepartment();
             TempData["message"] = "Successfully added Branch.";
             TempData["alertType"] = "success";
-           
-
-            //catch (Exception e)
-            //{
-            //    TempData["message"] = "Failed to Add Branch.";
-            //    TempData["alertType"] = "danger";
-            //    Console.Write(e.Message);
-            //}
-
             return View(departmentModel);
         }
 
@@ -54,6 +44,23 @@ namespace TestHR.Web.Areas.Admin.Controllers
         public ActionResult Edit(DepartmentModel model)
         {
             model.EditDepartment(model.Id);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                new DepartmentModel().DeleteDepartment(id);
+                TempData["message"] = "Successfully Deletd Company.";
+                TempData["alertType"] = "success";
+            }
+
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Company.";
+                TempData["alertType"] = "danger";
+            }
+
             return RedirectToAction("Index");
         }
 	}

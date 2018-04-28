@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+<link href="~/Plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 <link href="~/Plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 <main class="mn-inner">
     <div class="row">
@@ -36,8 +36,9 @@
                                     <td>@company.ContactPerson</td>
                                     <td>@company.ContactPersonEmail</td>
                                     <td>@company.ContactPersonPhone</td>
-                                    <td><a href="@Url.Action("Edit","Company",new{id=company.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
-                                        <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                                    <td>
+                                        <a href="@Url.Action("Edit","Company",new{id=company.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                        <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@company.Id"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             }
@@ -51,10 +52,10 @@
 
 @section scripts
 {
-
+    <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
     <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#companyList').DataTable({
                 language: {
                     searchPlaceholder: 'Search Company',
@@ -70,6 +71,40 @@
                 }
             });
             $('.dataTables_length select').addClass('browser-default');
+
+            $('.sweetalert-warning').click(function() {
+                var url = '@Url.Action("Delete", "Company")';
+                var id = $(this).data('id');
+                console.log(id);
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                }, function() {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: { id: id }
+                    }).done(function(data) {
+
+                        swal({ title: "Deleted!", 
+                            text: "Your imaginary file has been deleted.", 
+                            type: "success"
+                        },
+                            function() {
+                                location.reload(); 
+                            });
+                    }).fail(function() {
+                        $.alert("There is something wrong! Please try again.", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');
+                    });
+
+                });
+
+            });
         });
     </script>
 }

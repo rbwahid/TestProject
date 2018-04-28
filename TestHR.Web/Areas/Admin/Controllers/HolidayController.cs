@@ -13,7 +13,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Holiday/
         public ActionResult Index()
         {
-            var holidays = new Models.HolidayModel().GetAllHolidays();
+            var holidays = new Models.HolidayModel().GetAllHolidays().Where(x=>x.IsDelete==false);
             return View(holidays);
         }
         public ActionResult Add()
@@ -24,21 +24,52 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(HolidayModel holidayModel)
         {
-            //try
-            //{
+            try
+            {
             holidayModel.AddHoliday();
             TempData["message"] = "Successfully added Branch.";
             TempData["alertType"] = "success";
-            //}
-
-            //catch (Exception e)
-            //{
-            //    TempData["message"] = "Failed to Add Branch.";
-            //    TempData["alertType"] = "danger";
-            //    Console.Write(e.Message);
-            //}
-
+            }
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Branch.";
+                TempData["alertType"] = "danger";
+                Console.Write(e.Message);
+            }
             return View(holidayModel);
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            HolidayModel holiday=new HolidayModel(id);
+            if (holiday == null)
+            {
+                return HttpNotFound();
+            }
+            return View(holiday);
+        }
+        [HttpPost]
+        public ActionResult Edit(HolidayModel model)
+        {
+            model.EditHoliday(model.Id);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete(Guid? id)
+        {
+            try
+            {
+                new HolidayModel().DeleteHoliday(id);
+                TempData["message"] = "Successfully Deletd Company.";
+                TempData["alertType"] = "success";
+            }
+
+            catch (Exception e)
+            {
+                TempData["message"] = "Failed to Add Company.";
+                TempData["alertType"] = "danger";
+            }
+
+            return RedirectToAction("Index");
         }
 	}
 }

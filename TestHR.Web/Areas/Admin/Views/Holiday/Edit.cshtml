@@ -1,4 +1,4 @@
-﻿@model TestHR.Web.Areas.Admin.Models.HolidayModel
+@model TestHR.Web.Areas.Admin.Models.HolidayModel
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -14,24 +14,24 @@
                 <div class="card-content">
                     <form id="example-form" method="post" action="/Admin/Holiday/Edit">
                         <span class="card-title">Holiday Settings</span><br>
-                        @Html.HiddenFor(model=>model.Id)
                         <div class="row">
                             <div class="row">
+                                @Html.HiddenFor(model=>model.Id)
                                 <div class="input-field col s6">
-                                    <input name="Name" id="icon_prefix" value="@Model.Name" type="text" class="validate">
-                                    <label for="icon_prefix">Name</label>
+                                    <label for="Name">Employee Name</label>
+                                    @Html.TextBoxFor(model=>model.Name,new {@class="form-control"})
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="Description" id="icon_prefix" value="@Model.Description"  type="text" class="validate">
-                                    <label for="icon_prefix">Description</label>
+                                    <label for="Description">Description</label>
+                                    @Html.TextBoxFor(model=>model.Description,new {@class="form-control"})
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="DateFrom" name="DateFrom" value="@Model.DateFrom" type="text" class="validate datepicker">
-                                    <label for="DateFrom">Date From</label>
+                                    <label for="DateFrom">DateFrom</label>
+                                    @Html.TextBoxFor(model=>model.DateFrom,new {@class="form-control"})
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="DateTo" name="DateTo" value="@Model.DateTo" type="text" class="validate datepicker">
-                                    <label for="DateTo">Date To</label>
+                                    <label for="DateTo">DateTo</label>
+                                    @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>

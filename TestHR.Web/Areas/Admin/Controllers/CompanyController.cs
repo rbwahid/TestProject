@@ -14,7 +14,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var companies = new Models.CompanyModel().GetAllCompanies();
+            var companies = new Models.CompanyModel().GetAllCompanies().Where(x => x.IsDelete == false);
             return View(companies);
         }
 
