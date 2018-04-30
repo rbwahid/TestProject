@@ -58,6 +58,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+            return RedirectToAction("Index");
+        }
         public ActionResult Edit(Guid id)
         {
             ShiftModel model = new ShiftModel(id);

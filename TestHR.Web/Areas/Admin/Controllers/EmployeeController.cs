@@ -41,13 +41,6 @@ namespace TestHR.Web.Areas.Admin.Controllers
             }
             return View(employee);
         }
-         [HttpPost]
-        public ActionResult Edit(EmployeeModel model)
-        {
-            model.EditEmployee();
-            return RedirectToAction("Index");
-        }
-
         public ActionResult Delete(Guid? id)
         {
             try
@@ -62,7 +55,9 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 TempData["message"] = "Failed to Add Company.";
                 TempData["alertType"] = "danger";
             }
-            return RedirectToAction("Index");
+		}
+            model.EditEmployee();            
+			return RedirectToAction("Index");
         }
     }
 }
