@@ -16,11 +16,13 @@ namespace TestHR.Web.Areas.Admin.Controllers
             var shifts = new Models.ShiftModel().GetAllShift().Where(x=>x.IsDelete==false);
             return View(shifts);
         }
+
         public ActionResult Add()
         {
             var shiftModel = new ShiftModel();
             return View(shiftModel);
         }
+
         [HttpPost]
         public ActionResult Add(ShiftModel shiftModel)
         {
@@ -58,11 +60,9 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-            return RedirectToAction("Index");
-        }
         public ActionResult Edit(Guid id)
         {
-            ShiftModel model = new ShiftModel(id);
+            var model = new ShiftModel(id);
             return View(model);
         }
 

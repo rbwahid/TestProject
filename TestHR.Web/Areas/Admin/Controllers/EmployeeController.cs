@@ -19,9 +19,10 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-            EmployeeModel employeeModel=new EmployeeModel();
+            var employeeModel = new EmployeeModel();
             return View(employeeModel);
         }
+
         [HttpPost]
         public ActionResult Add(EmployeeModel employeeModel)
         {
@@ -34,7 +35,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            EmployeeModel employee = new EmployeeModel(id);
+            var employee = new EmployeeModel(id);
+
             if (employee==null)
             {
                 return HttpNotFound();
@@ -55,7 +57,11 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 TempData["message"] = "Failed to Add Company.";
                 TempData["alertType"] = "danger";
             }
+            return RedirectToAction("Index");
 		}
+
+        public ActionResult Edit(EmployeeModel model)
+        {
             model.EditEmployee();            
 			return RedirectToAction("Index");
         }
