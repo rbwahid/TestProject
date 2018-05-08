@@ -24,6 +24,9 @@
                                     <th>IsDefault</th>
                                     <th>IsActive</th>
                                     <th>OfficeHourDescription</th>
+                                    <th>GraceTimeIn</th>
+                                    <th>GraceTimeOut</th>
+                                    <th>OvertimeStart</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -38,9 +41,12 @@
                                         <td>@shift.IsDefault</td>
                                         <td>@shift.IsActive</td>
                                         <td>@shift.OfficeHourDescription</td>
+                                        <td>@shift.GraceTimeIn</td>
+                                        <td>@shift.GraceTimeOut</td>
+                                        <td>@shift.OvertimeStart</td>
 
                                         <td>
-                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a href="@Url.Action("Edit","Shift",new{id=shift.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@shift.Id"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>

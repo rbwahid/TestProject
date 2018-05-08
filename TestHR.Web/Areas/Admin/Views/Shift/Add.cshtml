@@ -50,6 +50,20 @@
                                                     <input name="OfficeHourDescription" id="OfficeHourDescription" type="text" class="validate">
                                                     <label for="OfficeHourDescription">Office Hour Description</label>
                                                 </div>
+                                                
+                                                <div class="input-field col s6">
+                                                    <input name="GraceTimeIn" id="GraceTimeIn" type="time" class="validate">
+                                                    <label for="GraceTimeIn" class="active">GraceTimeIn</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input name="GraceTimeOut" id="GraceTimeOut" type="time" class="validate">
+                                                    <label for="GraceTimeOut" class="active">GraceTimeOut</label>
+                                                </div>
+                                                <div class="input-field col m12">
+                                                    <input name="OvertimeStart" id="OvertimeStart" type="time" class="validate">
+                                                    <label for="OvertimeStart" class="active">Overtime Start</label>
+                                                </div>
+                                                
                                                 <div class="input-field col s6">
                                                     <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsDefault" name="IsDefault" type="checkbox" value="true" />
                                                     @Html.LabelFor(m => m.IsDefault)
@@ -176,6 +190,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            
                                         </table>
                                     </div>
 
