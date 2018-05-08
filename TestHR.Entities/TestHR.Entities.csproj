@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attendance.cs" />
+    <Compile Include="AttendanceLog.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Department.cs" />
