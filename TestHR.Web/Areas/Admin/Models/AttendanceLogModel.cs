@@ -13,8 +13,8 @@ namespace TestHR.Web.Areas.Admin.Models
     public class AttendanceLogModel
     {
         private AttendanceLogManagementService _attendanceLogManagementService { get; set; }
-       
-        public virtual Employee Employee { get; set; }
+
+        public string Name { get; set; }
         public DateTime AttendanceDate { get; set; }
         public TimeSpan PunchTime { get; set; }
         public AttendanceLogModel()
@@ -30,7 +30,7 @@ namespace TestHR.Web.Areas.Admin.Models
        
         public void AddToAttendanceLog()
         {
-            _attendanceLogManagementService.AddToAttendanceLog(Employee.FirstName, AttendanceDate, PunchTime);
+            _attendanceLogManagementService.AddToAttendanceLog(Name, AttendanceDate, PunchTime);
         }
 
         public void AttendanceLogFileImport(HttpPostedFileBase attendanceLogExcelFile)
@@ -74,8 +74,7 @@ namespace TestHR.Web.Areas.Admin.Models
                                     //    PunchTime = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value),
                                     //};
                                     AttendanceLogModel attendanceLogModel = new AttendanceLogModel();
-                                    attendanceLogModel.Employee = new Employee();
-                                    attendanceLogModel.Employee.FirstName =
+                                    attendanceLogModel.Name =
                                         workSheet.Cells[rowIterator, 1].Value == null
                                             ? null
                                             : workSheet.Cells[rowIterator, 1].Value.ToString();
