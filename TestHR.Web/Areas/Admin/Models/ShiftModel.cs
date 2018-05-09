@@ -23,7 +23,10 @@ namespace TestHR.Web.Areas.Admin.Models
         [DisplayName("Active")]
         public bool IsActive { get; set; }
         public string OfficeHourDescription { get; set; }
-        public List<TimeTable> TimeTables { get; set; } 
+        public List<TimeTable> TimeTables { get; set; }
+        public TimeSpan GraceTimeIn { get; set; }
+        public TimeSpan GraceTimeOut { get; set; }
+        public TimeSpan OvertimeStart { get; set; }
         public ShiftModel()
         {
             _companyManagementService = new CompanyManagementService();
@@ -50,16 +53,19 @@ namespace TestHR.Web.Areas.Admin.Models
             this.IsActive = shift.IsActive;
             this.OfficeHourDescription = shift.OfficeHourDescription;
             this.TimeTables = shift.TimeTables.ToList();
+            this.GraceTimeIn = shift.GraceTimeIn;
+            this.GraceTimeOut = shift.GraceTimeOut;
+            this.OvertimeStart = shift.OvertimeStart;
 
         }
         public void AddShift()
         {
-            _shiftManagementService.AddShift( Name, Code, Type, Description, IsDefault, IsActive,OfficeHourDescription,TimeTables);
+            _shiftManagementService.AddShift( Name, Code, Type, Description, IsDefault, IsActive,OfficeHourDescription,TimeTables,GraceTimeIn,GraceTimeOut,OvertimeStart);
         }
 
         public void EditShift(Guid id)
         {
-            _shiftManagementService.EditShift(id,Name, Code, Type, Description, IsDefault, IsActive, OfficeHourDescription, TimeTables);
+            _shiftManagementService.EditShift(id, Name, Code, Type, Description, IsDefault, IsActive, OfficeHourDescription, TimeTables, GraceTimeIn, GraceTimeOut, OvertimeStart);
         }
         public List<Shift> GetAllShift()
         {
