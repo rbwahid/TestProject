@@ -140,6 +140,10 @@
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.Positions, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Position</label>
+                                        </div> 
+                                        <div class="input-field col s6">
+                                            @Html.DropDownListFor(m => m.ReportingToId, new SelectList(Model.Employees, "Id", "MiddleName"), "--Select--", new { @class = "" })
+                                            <label>Reporting To</label>
                                         </div>
 
                                     </div>

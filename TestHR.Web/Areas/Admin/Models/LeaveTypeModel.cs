@@ -24,7 +24,7 @@ namespace TestHR.Web.Areas.Admin.Models
            
             return _leaveTypeManagementService.GetAllLeaveTypes();
         }
-    
+      
           public LeaveTypeModel(Guid id) : this()
         {
             var leaveType = _leaveTypeManagementService.GetLeaveType(id);
@@ -41,6 +41,12 @@ namespace TestHR.Web.Areas.Admin.Models
             _leaveTypeManagementService.AddLeaveType(Name, NumberOfDays);
         }
 
+        public void EditLeaveType()
+        {
+    
+            _leaveTypeManagementService.EditLeaveType(Id,Name,NumberOfDays);
+        
+        }
         internal void DeleteLeave(Guid? id)
         {
             if (id.HasValue)

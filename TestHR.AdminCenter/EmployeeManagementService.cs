@@ -55,7 +55,7 @@ namespace TestHR.AdminCenter
         }
         public void AddEmployee(string firstName, string middleName, string lastName, string fathersName, string motherName,
             string souseName, string phoneNumber, string presentAddress, string pernamentAddress, string email, string religion, string nationality,
-            string nId, string passportNo, Guid? companyId, Guid? branchId, Guid? departmentId, Guid? positionId, List<EmployeeEducationHistory> educationHistories, List<EmployeeCareerHistory> careerHistories)
+            string nId, string passportNo, Guid? companyId, Guid? branchId, Guid? departmentId, Guid? positionId,Guid? reportingToId, List<EmployeeEducationHistory> educationHistories, List<EmployeeCareerHistory> careerHistories)
         {
             var employee = new Employee();
             employee.FirstName = firstName;
@@ -72,6 +72,7 @@ namespace TestHR.AdminCenter
             employee.Nationality = nationality;
             employee.Nid = nId;
             employee.PassportNo = passportNo;
+            employee.ReportingTo = _employeeUnitOfWork.EmployeeRepository.GetById(reportingToId.Value);
             employee.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId.Value);
             employee.Branch = _branchUnitOfWork.BranchRepository.GetById(branchId.Value);
             employee.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId.Value);
@@ -83,7 +84,7 @@ namespace TestHR.AdminCenter
         }
         public void EditEmployee(Guid id, string firstName, string middleName, string lastName, string fathersName, string motherName,
              string souseName, string phoneNumber, string presentAddress, string pernamentAddress, string email, string religion, string nationality,
-             string nId, string passportNo, Guid? companyId, Guid? branchId, Guid? departmentId, Guid? positionId, List<EmployeeEducationHistory> educationHistories, List<EmployeeCareerHistory> careerHistories)
+             string nId, string passportNo, Guid? companyId, Guid? branchId, Guid? departmentId, Guid? positionId, Guid? reportingToId, List<EmployeeEducationHistory> educationHistories, List<EmployeeCareerHistory> careerHistories)
         {
             var employee = _employeeUnitOfWork.EmployeeRepository.GetById(id);
             employee.FirstName = firstName;
@@ -100,6 +101,7 @@ namespace TestHR.AdminCenter
             employee.Nationality = nationality;
             employee.Nid = nId;
             employee.PassportNo = passportNo;
+            employee.ReportingTo = _employeeUnitOfWork.EmployeeRepository.GetById(reportingToId.Value);
             employee.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId.Value);
             employee.Branch = _branchUnitOfWork.BranchRepository.GetById(branchId.Value);
             employee.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId.Value);

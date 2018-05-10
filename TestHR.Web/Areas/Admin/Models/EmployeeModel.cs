@@ -41,6 +41,9 @@ namespace TestHR.Web.Areas.Admin.Models
         public List<Position> Positions { get; set; }
         public Guid? PositionId { get; set; }
 
+        public List<Employee> Employees { get; set; } 
+        public Guid? ReportingToId { get; set; }
+
         public List<EmployeeEducationHistory> EducationHistories { get; set; }
         public List<EmployeeCareerHistory> EmployeeCareerHistories { get; set; }
 
@@ -48,6 +51,7 @@ namespace TestHR.Web.Areas.Admin.Models
         public EmployeeModel()
         {
             _employeeManagementService=new EmployeeManagementService();
+            Employees = GetAllEmployee();
             _branchManagementService = new BranchManagementService();
             Branches = GetAllBranch();
             _companyManagementService=new CompanyManagementService();
@@ -56,35 +60,36 @@ namespace TestHR.Web.Areas.Admin.Models
             Departments = GetAllDepartment();
             _positionManagementService=new PositionManagementService();
             Positions = GetAllPosition();
+
         }
 
         private List<Position> GetAllPosition()
         {
             
-            return _positionManagementService.GelAllPositions();
+            return _positionManagementService.GelAllPositions().Where(e=>e.IsDelete==false).ToList();
         }
 
         private List<Department> GetAllDepartment()
         {
-            
-            return _departmentManagementService.GelAllDepartments();
+
+            return _departmentManagementService.GelAllDepartments().Where(e => e.IsDelete == false).ToList();
         }
 
         private List<Branch> GetAllBranch()
         {
-            
-            return _branchManagementService.GetAllBranches();
+
+            return _branchManagementService.GetAllBranches().Where(e => e.IsDelete == false).ToList();
         }
 
         public List<Company> GetAllCompanies()
         {
-            
-            return _companyManagementService.GetAllCompanies();
+
+            return _companyManagementService.GetAllCompanies().Where(e => e.IsDelete == false).ToList();
         }
         public List<Employee> GetAllEmployee()
         {
-             
-            return _employeeManagementService.GetAllEmployees();
+
+            return _employeeManagementService.GetAllEmployees().Where(e => e.IsDelete == false).ToList();
         }
         public EmployeeModel(Guid id)
             : this()
@@ -130,7 +135,7 @@ namespace TestHR.Web.Areas.Admin.Models
            
             _employeeManagementService.AddEmployee(FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
-                PositionId, EducationHistories, EmployeeCareerHistories);
+                PositionId,ReportingToId, EducationHistories, EmployeeCareerHistories);
 
         } 
         public void EditEmployee()
@@ -138,7 +143,7 @@ namespace TestHR.Web.Areas.Admin.Models
            
             _employeeManagementService.EditEmployee(Id,FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
-                PositionId, EducationHistories, EmployeeCareerHistories);
+                PositionId,ReportingToId, EducationHistories, EmployeeCareerHistories);
 
         }
 
