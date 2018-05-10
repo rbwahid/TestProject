@@ -40,12 +40,12 @@ namespace TestHR.AdminCenter
             return _attendanceLogUnitOfWork.AttendanceLogRepository.GetAll().Count();
             
         }
-        public void AddToAttendanceLog(string name, DateTime attendanceDate, TimeSpan PunchTime)
+        public void AddToAttendanceLog(string name, DateTime attendanceDateTime,TimeSpan punchTime)
         {
             var attendanceInfo = new AttendanceLog();
             attendanceInfo.Name= name;
-            attendanceInfo.AttendanceDate = attendanceDate;
-            attendanceInfo.PunchTime = PunchTime;
+            attendanceInfo.AttendanceDate = attendanceDateTime;
+            attendanceInfo.PunchTime = punchTime;
             _attendanceLogUnitOfWork.AttendanceLogRepository.Add(attendanceInfo);
             _attendanceLogUnitOfWork.Save();
 

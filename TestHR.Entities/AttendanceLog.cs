@@ -11,7 +11,7 @@ namespace TestHR.Entities
     {
         //public virtual Employee Employee { get; set; }
         public string Name { get; set; }
-        public DateTime AttendanceDate { get; set; }
+        public DateTime AttendanceDate{ get; set; }
         public TimeSpan PunchTime { get; set; }
 
     }

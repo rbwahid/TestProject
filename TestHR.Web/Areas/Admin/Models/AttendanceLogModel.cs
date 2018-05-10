@@ -30,7 +30,7 @@ namespace TestHR.Web.Areas.Admin.Models
        
         public void AddToAttendanceLog()
         {
-            _attendanceLogManagementService.AddToAttendanceLog(Name, AttendanceDate, PunchTime);
+            _attendanceLogManagementService.AddToAttendanceLog(Name, AttendanceDate,PunchTime);
         }
 
         public void AttendanceLogFileImport(HttpPostedFileBase attendanceLogExcelFile)
@@ -65,27 +65,22 @@ namespace TestHR.Web.Areas.Admin.Models
                             {
                                 if (workSheet.Cells[rowIterator, 1].Value != null && workSheet.Cells[rowIterator, 2].Value != null && workSheet.Cells[rowIterator, 3].Value != null)
                                 {
-                                    //AttendanceLogModel attendanceLogModel = new AttendanceLogModel
-                                    //{
-                                    //    Employee.FirstName = workSheet.Cells[rowIterator, 2].Value == null
-                                    //        ? null
-                                    //        : workSheet.Cells[rowIterator, 2].Value.ToString(),
-                                    //    AttendanceDate = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value),
-                                    //    PunchTime = Convert.ToDateTime(workSheet.Cells[rowIterator, 4].Value),
-                                    //};
                                     AttendanceLogModel attendanceLogModel = new AttendanceLogModel();
                                     attendanceLogModel.Name =
                                         workSheet.Cells[rowIterator, 1].Value == null
                                             ? null
                                             : workSheet.Cells[rowIterator, 1].Value.ToString();
                                     attendanceLogModel.AttendanceDate = Convert.ToDateTime(workSheet.Cells[rowIterator, 2].Value);
-                                    DateTime dt = Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value);
+                                    DateTime dt= Convert.ToDateTime(workSheet.Cells[rowIterator, 3].Value);
                                     attendanceLogModel.PunchTime = new TimeSpan(dt.Hour, dt.Minute, dt.Second);
+                                    //string date = String.Format("{0:dd-MMM-yy}",workSheet.Cells[rowIterator, 2].Value);
+                                    //string dt = string.Format("{0:hh:mm:ss tt}", workSheet.Cells[rowIterator, 3].Value);
+                                    //date = date + " " + dt;
+                                    //attendanceLogModel.AttendanceDateTime = Convert.ToDateTime(date);
                                     attendanceLogList.Add(attendanceLogModel);
                                 }
                             }
                         }
-
                         //List data saving
                         if (attendanceLogList.Count > 0)
                         {

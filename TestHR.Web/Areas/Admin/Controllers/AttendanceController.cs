@@ -30,7 +30,13 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 AttendanceLogModel attendanceLogModel=new AttendanceLogModel();
                 attendanceLogModel.AttendanceLogFileImport(attendanceLogExcelFile);
             }
-            return View();
+            return RedirectToAction("AttendanceLogViewTable");
+        }
+
+        public ActionResult AttendanceLogViewTable()
+        {
+            var attendanceLogs = new Models.AttendanceLogModel().GetAllaAttendanceLogs();
+            return View(attendanceLogs);
         }
 	}
 }
