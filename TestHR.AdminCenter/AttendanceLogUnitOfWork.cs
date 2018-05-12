@@ -8,7 +8,7 @@ namespace TestHR.AdminCenter
 {
     class AttendanceLogUnitOfWork : IDisposable
     {
-        private AdminCenterDbContext _context { get; set; }
+        private  AdminCenterDbContext _context { get; set; }
         private AttendanceLogRepository _attendanceLogRepository { get; set; }
 
         public AttendanceLogUnitOfWork(AdminCenterDbContext context)

@@ -9,7 +9,7 @@ namespace TestHR.Web.Areas.Admin.Models
     public class AttendanceModel
     {
         public Guid Id { get; set; }
-        public List<Employee> Employees { get; set; }
+        public List<Employee> Employees {  get; set; }
         public DateTime AttendanceDate { get; set; }
         public TimeSpan EntryTime { get; set; }
         public TimeSpan? ExitTime { get; set; }

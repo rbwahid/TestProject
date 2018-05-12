@@ -9,7 +9,7 @@ namespace TestHR.Entities
 {
     public class Attendance : Entity 
     {
-        public virtual Employee Employee { get; set; }
+        public  virtual Employee Employee { get; set; }
         public DateTime AttendanceDate { get; set; }
         public TimeSpan EntryTime { get; set; }
         public TimeSpan? ExitTime { get; set; }

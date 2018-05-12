@@ -48,7 +48,7 @@ namespace TestHR.Web.Areas.Admin.Models
                     file.FileName.EndsWith("XLSX"))
                 {
                     //Null Exp Check
-                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                    if((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                     {
                         string fileName = file.FileName;
                         string fileContentType = file.ContentType;

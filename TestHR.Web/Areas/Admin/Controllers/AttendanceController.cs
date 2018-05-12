@@ -15,7 +15,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Attendance/
         public ActionResult Index()
         {
-            return View();
+            return  View();
         }
 
         public ActionResult AttendanceLogFileImport()

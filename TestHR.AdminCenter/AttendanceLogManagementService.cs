@@ -13,7 +13,7 @@ namespace TestHR.AdminCenter
         private AdminCenterDbContext _context;
         private AttendanceLogUnitOfWork _attendanceLogUnitOfWork;
 
-        public AttendanceLogManagementService()
+        public  AttendanceLogManagementService()
         {
             _context = new AdminCenterDbContext();
             _attendanceLogUnitOfWork = new AttendanceLogUnitOfWork(_context);
