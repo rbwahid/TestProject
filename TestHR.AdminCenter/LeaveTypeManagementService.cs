@@ -49,5 +49,13 @@ namespace TestHR.AdminCenter
             _leaveTypeUnitOfWork.Save();
 
         }
+        public void EditLeaveType(Guid id, string name, int numberOfDay)
+        {
+            var leaveType = GetLeaveType(id);
+            leaveType.Name = name;
+            leaveType.NumberOfDays = numberOfDay;
+          
+            _leaveTypeUnitOfWork.Save();
+        }
     }
 }

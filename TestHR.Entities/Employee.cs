@@ -24,12 +24,14 @@ namespace TestHR.Entities
         public string Nationality { get; set; }
         public string Nid { get; set; }
         public string PassportNo { get; set; }
+
+        public virtual Employee ReportingTo { get; set; }
         public virtual Company Company { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual Position Position { get; set; }
 		public virtual Department Department { get; set; }
         public virtual ICollection<EmployeeEducationHistory> EmployeeEducationHistory { get; set; }
         public virtual ICollection<EmployeeCareerHistory> EmployeeCareerHistory { get; set; }
-        //public virtual ICollection<LeaveApplication> LeaveApplications { get; set; }
+       
     }
 }

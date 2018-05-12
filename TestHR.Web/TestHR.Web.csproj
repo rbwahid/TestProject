@@ -1394,6 +1394,11 @@
     <Content Include="Areas\Admin\Views\Calendar\CalendarImport.cshtml" />
     <Content Include="Areas\Admin\Views\Holiday\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveType\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveApplication\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveApplication\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LeaveApplication\LeaveReport.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogFileImport.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
