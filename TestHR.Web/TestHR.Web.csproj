@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttendanceController.cs" />
     <Compile Include="Areas\Admin\Controllers\BranchController.cs" />
     <Compile Include="Areas\Admin\Controllers\CalendarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
@@ -175,6 +176,8 @@
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
     <Compile Include="Areas\Admin\Controllers\HolidayController.cs" />
     <Compile Include="Areas\Admin\Controllers\LeaveTypeController.cs" />
+    <Compile Include="Areas\Admin\Models\AttendanceLogModel.cs" />
+    <Compile Include="Areas\Admin\Models\AttendanceModel.cs" />
     <Compile Include="Areas\Admin\Models\BranchModel.cs" />
     <Compile Include="Areas\Admin\Models\CalendarModel.cs" />
     <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
@@ -1391,6 +1394,7 @@
     <Content Include="Areas\Admin\Views\Calendar\CalendarImport.cshtml" />
     <Content Include="Areas\Admin\Views\Holiday\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shift\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Attendance\AttendanceLogFileImport.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
