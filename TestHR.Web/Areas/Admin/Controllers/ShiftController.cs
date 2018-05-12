@@ -40,7 +40,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 Console.Write(e.Message);
             }
 
-            return View(shiftModel);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(Guid? id)

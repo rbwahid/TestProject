@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminCenterDbContext.cs" />
+    <Compile Include="AttendanceLogManagementService.cs" />
+    <Compile Include="AttendanceLogRepository.cs" />
+    <Compile Include="AttendanceLogUnitOfWork.cs" />
     <Compile Include="BranchManagementService.cs" />
     <Compile Include="BranchRepository.cs" />
     <Compile Include="BranchUnitOfWork.cs" />
