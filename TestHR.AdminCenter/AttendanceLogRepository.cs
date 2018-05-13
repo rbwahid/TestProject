@@ -10,7 +10,7 @@ namespace TestHR.AdminCenter
 {
     class AttendanceLogRepository : Repository<AttendanceLog>
     {
-        private AdminCenterDbContext _context;
+        private  AdminCenterDbContext _context;
         public AttendanceLogRepository(AdminCenterDbContext context)
             :base(context)
         {
