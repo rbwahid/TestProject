@@ -1,0 +1,232 @@
+﻿@model IEnumerable<TestHR.Entities.LeaveApplication>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    <link href="~/Plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <main class="mn-inner">
+        <div class="row">
+            <div class="col s12">
+                <div class="page-title">Leave Applications</div>
+            </div>
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Leave Applications</span>
+                        <table id="leaveApplications" class="display responsive-table datatable-example">
+                            <thead>
+                                <tr>
+                                    <th>Applicant</th>
+                                    <th>Cause</th>
+                                    <th>Date From</th>
+                                    <th>Date To</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var leave in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @leave.Applicant.FirstName @leave.Applicant.MiddleName @leave.Applicant.LastName
+                                        </td>
+                                        <td>@leave.ReasonForLeave</td>
+                                        <td>@leave.DateFrom.ToString("D")</td>
+                                        <td>@leave.DateTo.ToString("D")</td>
+
+                                        @if (leave.Status == 1)
+                                        {
+                                            <td>New</td>
+                                        }
+                                        else if (leave.Status == 2)
+                                        {
+                                            <td>Return</td>
+                                        }
+                                        else if (leave.Status == 3)
+                                        {
+                                            <td>Approve</td>
+                                        }
+                                        else if (leave.Status == 4)
+                                        {
+                                            <td>Cancel</td>
+                                        }
+                                        <td>
+                                            @if (leave.Status == 1 || leave.Status == 2)
+                                            {
+                                                <a href="@Url.Action("Edit","LeaveApplication",new{id=leave.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            }
+
+                                            @if (leave.Status == 1)
+                                            {
+                                                <a class="btn-floating waves-effect waves-light green modal-trigger" onclick="ShowModelData('@leave.Id','Approve','3')" href="#modal1"><i class="material-icons dp48">done_all</i></a>
+                                                <a class="btn-floating waves-effect waves-light yellow modal-trigger" onclick="ShowModelData('@leave.Id','Return','2')" href="#modal1"><i class="material-icons dp48">repeat</i></a> 
+                                                <a class="btn-floating waves-effect waves-light red modal-trigger" onclick="ShowModelData('@leave.Id','Cancel','4')" href="#modal1"><i class="material-icons dp48">error_outline</i></a>
+                                            }
+                                            else if (leave.Status == 2)
+                                            {
+                                                <a class="btn-floating waves-effect waves-light green modal-trigger" onclick="ShowModelData('@leave.Id','Approve','3')" href="#modal1"><i class="material-icons dp48">done_all</i></a>
+                                                 <a class="btn-floating waves-effect waves-light red modal-trigger" onclick="ShowModelData('@leave.Id','Cancel','4')" href="#modal1"><i class="material-icons dp48">error_outline</i></a>
+
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <form id="modelFromForLeave" method="post" action="/Admin/LeaveApplication/LeaveApprove">
+                <div class="modal-content">
+                    <span class="card-title">Leave Application</span><br /> <br />
+                    <div class="row">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="" name="Applicant" id="Applicant" type="text" class="form-control">
+                                <label for="Applicant" class="active">Applicant</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="" name="ReasonForLeave" id="ReasonForLeave" type="text">
+                                <label for="ReasonForLeave" class="active">Reason</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input placeholder="" name="DateFrom" id="DateFrom" type="text" class="validate">
+                                <label for="DateFrom" class="active">Date From</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="" name="DateTo" id="DateTo" type="text" class="validate">
+                                <label for="DateTo" class="active">Date To</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input placeholder="" name="LeaveType" id="LeaveType" type="text" class="validate">
+                                <label for="LeaveType" class="active">Leave Type</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="" name="AddressDuringLeave" id="AddressDuringLeave" type="text" class="validate">
+                                <label for="AddressDuringLeave" class="active">Address During Leave</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="" name="ContactDuringLeave" id="ContactDuringLeave" type="text" class="validate">
+                                <label for="ContactDuringLeave" class="active">Contact During Leave</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br /> <br />
+                    <span class="card-title">Manager's Review</span><br /> <br />
+
+                    <div class="row">
+                        <div class="input-field col m12">
+                            <label for="Comment" class="active">Comment</label>
+                            <br/>
+                            <textarea placeholder="" name="Comment" id="Comment" class="form-control"></textarea>
+                          
+                        </div>
+                    </div>
+                    <input value="0" name="Status" id="Status" type="text" hidden="hidden">
+                    <input value="0" name="Id" id="Id" type="text" hidden="hidden">
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-flat" id="submitBtn" value="Save" />
+                    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                </div>
+            </form>
+        </div>
+  
+    </main>
+
+    @section scripts
+    {
+        <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            function ShowModelData(id, btnText,status) {
+                var url = '@Url.Action("GetLeaveInfoById", "LeaveApplication")';
+               
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: { id: id }
+                }).done(function (data) {
+                    console.log(data);
+                
+                    $("#submitBtn").attr("value", btnText);
+                    $("#Applicant").attr("value", data.Applicant.FirstName + ' ' + data.Applicant.MiddleName + ' ' + data.Applicant.LastName);
+                    var datef = new Date(parseInt(data.DateFrom.substr(6)));
+                    $("#DateFrom").attr("value", datef);
+                    $("#ReasonForLeave").attr("value", data.ReasonForLeave);
+                    var datet = new Date(parseInt(data.DateTo.substr(6)));
+                    $("#DateTo").attr("value",datet);
+                    $("#ContactDuringLeave").attr("value", data.ContactDuringLeave);
+                    $("#AddressDuringLeave").attr("value", data.AddressDuringLeave);
+                    $("#LeaveType").attr("value", data.LeaveType.Name);
+                    $("#Status").attr("value", status);
+                    $("#Id").attr("value", id);
+
+                });
+
+            }
+
+            $(document).ready(function() {
+                $('#leaveApplications').DataTable({
+                    language: {
+                        searchPlaceholder: 'Search Company',
+                        sSearch: '',
+                        sLengthMenu: 'Show _MENU_',
+                        sLength: 'dataTables_length',
+                        oPaginate: {
+                            sFirst: '<i class="material-icons">chevron_left</i>',
+                            sPrevious: '<i class="material-icons">chevron_left</i>',
+                            sNext: '<i class="material-icons">chevron_right</i>',
+                            sLast: '<i class="material-icons">chevron_right</i>'
+                        }
+                    }
+                });
+                $('.dataTables_length select').addClass('browser-default');
+                $('.sweetalert-warning').click(function() {
+                    var url = '@Url.Action("Delete", "Holiday")';
+                    var id = $(this).data('id');
+                    console.log(id);
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        closeOnConfirm: false
+                    }, function() {
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: { id: id }
+                        }).done(function(data) {
+                            swal({
+                                title: "Deleted!",
+                                text: "Your imaginary file has been deleted.",
+                                type: "success"
+                            }, function() {
+                                location.reload();
+                            });
+                        }).fail(function() {
+                            $.alert("There is something wrong! Please try again.", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');
+                        });
+
+                    });
+
+                });
+            });
+        </script>
+    }
+
