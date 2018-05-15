@@ -59,6 +59,20 @@ namespace TestHR.Web.Areas.Admin.Controllers
             model.EditCompany(model.Id);
             return RedirectToAction("Index");
         }
+        public ActionResult CompanyFileImport()
+        {
+            return View("CompanyFileImport");
+        }
+        [HttpPost]
+        public ActionResult CompanyFileImport(HttpPostedFileBase companyExcelFile)
+        {
+            if (ModelState.IsValid)
+            {
+                CompanyModel companyModel = new CompanyModel();
+                companyModel.CompanyFileImport(companyExcelFile);
+            }
+            return RedirectToAction("CompanyFileImport");
+        }
         public ActionResult Delete(Guid? id)
         {
             try
