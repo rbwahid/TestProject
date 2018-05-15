@@ -23,6 +23,7 @@ namespace TestHR.Web.Areas.Admin.Models
             _branchManagementService = new BranchManagementService();
             Company = GetAllCompanies();
         }
+
         public List<Company> GetAllCompanies()
         {
            
