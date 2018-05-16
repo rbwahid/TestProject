@@ -46,6 +46,21 @@ namespace TestHR.Web.Areas.Admin.Controllers
             model.EditDepartment(model.Id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult DepartmentFileImport()
+        {
+            return View("DepartmentFileImport");
+        }
+        [HttpPost]
+        public ActionResult DepartmentFileImport(HttpPostedFileBase departmentExcelFile)
+        {
+            if (ModelState.IsValid)
+            {
+                DepartmentModel departmentModel = new DepartmentModel();
+                departmentModel.DepartmentFileImport(departmentExcelFile);
+            }
+            return RedirectToAction("Index");
+        }
         public ActionResult Delete(Guid? id)
         {
             try
