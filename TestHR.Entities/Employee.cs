@@ -25,6 +25,9 @@ namespace TestHR.Entities
         public string Nid { get; set; }
         public string PassportNo { get; set; }
 
+        public int? FPId { get; set; }
+        public int? CardNo { get; set; }
+
         public virtual Employee ReportingTo { get; set; }
         public virtual Company Company { get; set; }
         public virtual Branch Branch { get; set; }

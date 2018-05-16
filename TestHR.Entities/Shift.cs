@@ -17,8 +17,8 @@ namespace TestHR.Entities
         public bool IsActive { get; set; }
         public string OfficeHourDescription { get; set; }
         public virtual ICollection<TimeTable> TimeTables { get; set; }
-        public TimeSpan GraceTimeIn { get; set; }
-        public TimeSpan GraceTimeOut { get; set; }
-        public TimeSpan OvertimeStart { get; set; }
+        public int? GraceTimeIn { get; set; }
+        public int? GraceTimeOut { get; set; }
+        public int? OvertimeStart { get; set; }
     }
 }
