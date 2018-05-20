@@ -21,6 +21,7 @@ namespace TestHR.AdminCenter
             _departmentUnitOfWork = new DepartmentUnitOfWork(_context);
             _employeeUnitOfWork = new EmployeeUnitOfWork(_context);
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
+            _employeeUnitOfWork = new EmployeeUnitOfWork(_context);
         }
         public Department GetDepartment(Guid id)
         {
@@ -46,12 +47,9 @@ namespace TestHR.AdminCenter
         public void AddDepartment(string name, Guid companyId, Guid departmentHeadId)
         {
             var department = new Department();
-           
-
             department.Name = name;
             department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
             department.DepartmentHead=_employeeUnitOfWork.EmployeeRepository.GetById(departmentHeadId);
-
             _departmentUnitOfWork.DepartmentRepository.Add(department);
             _departmentUnitOfWork.Save();
 
