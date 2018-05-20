@@ -46,7 +46,7 @@ namespace TestHR.AdminCenter
             return _shifthUnitOfWork.ShiftRepository.GetAll().Count();
             
         }
-        public void AddShift(string name, string code, string type, string description, bool isDefault, bool isActive, string officeHourDescription, List<TimeTable> timeTables, TimeSpan graceTimeIn, TimeSpan GraceTimeOut, TimeSpan overtimeStart)
+        public void AddShift(string name, string code, string type, string description, bool isDefault, bool isActive, string officeHourDescription, List<TimeTable> timeTables, int graceTimeIn, int GraceTimeOut, int overtimeStart)
         {
             var shift = new Shift();
 
@@ -65,7 +65,7 @@ namespace TestHR.AdminCenter
             _shifthUnitOfWork.Save();
 
         }
-        public void EditShift(Guid id, string name, string code, string type, string description, bool isDefault, bool isActive, string officeHourDescription, List<TimeTable> timeTables, TimeSpan graceTimeIn, TimeSpan GraceTimeOut, TimeSpan overtimeStart)
+        public void EditShift(Guid id, string name, string code, string type, string description, bool isDefault, bool isActive, string officeHourDescription, List<TimeTable> timeTables, int graceTimeIn, int GraceTimeOut, int overtimeStart)
         {
             var shift = GetShift(id);
 

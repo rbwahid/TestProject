@@ -45,11 +45,16 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZKEUEmKeeperNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30d92491ab74553a, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZKTecoProfessionalSDK.1.1.0\lib\net40\ZKEUEmKeeperNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminCenterDbContext.cs" />

@@ -8,19 +8,26 @@
     <main class="mn-inner">
         <div class="row">
             <div class="col s12">
-                <div class="page-title">Attendance Log List  </div>
+                <div class="page-title">Attendance Logs</div>
             </div>
+             
             <div class="col s12 m12 l12">
+                
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Attendance Log</span>
-                        <a href="@Url.Action("AttendanceLogFileImport", "Attendance", new { })" class="btn-default"><i>Emport Excel</i></a>
-                        <table id="branchList" class="display responsive-table datatable-example">
+                       
+                        <div>
+                            <span class="card-title">Attendace Logs</span>
+                         <br/>
+                            <div class="col offset-m10"><a class="btn btn-default" href="@Url.Action("Pool","AttendanceLog")">Pool</a></div>
+                        </div>
+                        <table id="attendanceLogList" class="display responsive-table datatable-example">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Attendance Date</th>
-                                    <th>Punch Time</th>
+                                    <th>Employee</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -28,13 +35,12 @@
                                 @foreach (var attendanceLog in Model)
                                 {
                                     <tr>
-                                        <td>@attendanceLog.Name</td>
-                                        <td>@String.Format("{0:dd-MMM-yy}",attendanceLog.AttendanceDate)</td>
-                                        @*<td>@String.Format("{0:hh:mm:ss tt}", attendanceLog.PunchTime)</td>*@
-                                        <td>@attendanceLog.PunchTime</td>
+                                        <td>@attendanceLog.Employee.FirstName @attendanceLog.Employee.MiddleName @attendanceLog.Employee.LastName</td>
+                                        <td>@attendanceLog.AttendanceDate.Date.ToString("D")</td>
+                                        <td>@attendanceLog.AttendanceDate.TimeOfDay</td>
                                         <td>
-                                            <a  class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
-                                            <a class="btn-floating waves-effect waves-light red sweetalert-warning"><i class="material-icons">delete</i></a>
+                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id=""><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
                                 }
@@ -48,14 +54,14 @@
     </main>
 
     @section scripts
-    {
+{
         <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
         <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#branchList').DataTable({
+                $('#attendanceLogList').DataTable({
                     language: {
-                        searchPlaceholder: 'Search Branch',
+                        searchPlaceholder: 'Search Logs',
                         sSearch: '',
                         sLengthMenu: 'Show _MENU_',
                         sLength: 'dataTables_length',
@@ -68,9 +74,8 @@
                     }
                 });
                 $('.dataTables_length select').addClass('browser-default');
-
                 $('.sweetalert-warning').click(function () {
-                    var url = '@Url.Action("Delete", "Branch")';
+                    var url = '@Url.Action("Delete", "Holiday")';
                     var id = $(this).data('id');
                     console.log(id);
                     swal({

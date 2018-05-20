@@ -167,6 +167,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AttendanceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttendanceLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\BranchController.cs" />
     <Compile Include="Areas\Admin\Controllers\CalendarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
@@ -1399,8 +1400,7 @@
     <Content Include="Areas\Admin\Views\LeaveApplication\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LeaveApplication\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LeaveApplication\LeaveReport.cshtml" />
-    <Content Include="Areas\Admin\Views\Attendance\AttendanceLogFileImport.cshtml" />
-    <Content Include="Areas\Admin\Views\Attendance\AttendanceLogViewTable.cshtml" />
+    <Content Include="Areas\Admin\Views\AttendanceLog\Index.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -1462,6 +1462,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Attendance\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

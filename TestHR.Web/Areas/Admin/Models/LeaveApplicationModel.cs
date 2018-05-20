@@ -19,7 +19,7 @@ namespace TestHR.Web.Areas.Admin.Models
         public Guid LeaveTypeId { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
-
+       
         public string ReasonForLeave { get; set; }
 
         public virtual List<Employee> Employees { get; set; }
