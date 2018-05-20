@@ -1403,6 +1403,7 @@
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogViewTable.cshtml" />
     <Content Include="Areas\Admin\Views\Branch\BranchExcelFileImport.cshtml" />
     <Content Include="Areas\Admin\Views\Company\CompanyFileImport.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\DepartmentFileImport.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
