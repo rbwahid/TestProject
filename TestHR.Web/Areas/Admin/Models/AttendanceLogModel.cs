@@ -14,7 +14,7 @@ namespace TestHR.Web.Areas.Admin.Models
     {
         private AttendanceLogManagementService _attendanceLogManagementService { get; set; }
 
-        public string Name { get; set; }
+        public int? FPId { get; set; }
         public DateTime AttendanceDate { get; set; }
         public TimeSpan PunchTime { get; set; }
         public AttendanceLogModel()
@@ -30,11 +30,14 @@ namespace TestHR.Web.Areas.Admin.Models
        
         public void AddToAttendanceLog()
         {
-            _attendanceLogManagementService.AddToAttendanceLog(Name, AttendanceDate,PunchTime);
+            _attendanceLogManagementService.AddToAttendanceLog(FPId.Value, AttendanceDate);
+
         }
 
-        public void AttendanceLogFileImport(HttpPostedFileBase attendanceLogExcelFile)
+        public void PoolLog()
         {
+            _attendanceLogManagementService.DeviceSync();
+            //_attendanceLogManagementService.InstallSdk();
             
             string ExcuteMsg = string.Empty;
             int NumberOfColume = 0;
@@ -97,6 +100,8 @@ namespace TestHR.Web.Areas.Admin.Models
                 ExcuteMsg = r.Message;
             }
         }
+
+      
 
         
         internal void DeleteAttendanceLog(Guid? id)

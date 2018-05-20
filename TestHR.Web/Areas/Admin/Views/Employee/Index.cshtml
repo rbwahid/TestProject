@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TestHR.Entities.Employee>
+    @using TestHR.Entities
     @{
         ViewBag.Title = "Index";
         Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -18,18 +19,7 @@
                             <thead>
                                 <tr>
                                     <th>FirstName</th>
-                                    @*<th>MiddleName</th>
-                                    <th>LastName</th>
-                                    <th>FathersName</th>
-                                    <th>MothersName</th>
-                                    <th>SouseName</th>
-                                    <th>PhoneNumber</th>
-                                    <th>PresentAddress</th>
-                                    <th>Email</th>
-                                    <th>Religion</th>
-                                    <th>Nationality</th>
-                                    <th>Nid</th>
-                                    <th>PassportNo</th>*@
+                                 
                                     <th>Company</th>
                                     <th>Branch</th>
                                     <th>Position</th>
@@ -42,18 +32,7 @@
                                 {
                                     <tr>
                                         <th>@employee.FirstName</th>
-                                        @*<th>@employee.MiddleName</th>
-                                        <th>@employee.LastName</th>
-                                        <th>@employee.FathersName</th>
-                                        <th>@employee.MothersName</th>
-                                        <th>@employee.SouseName</th>
-                                        <th>@employee.PhoneNumber</th>
-                                        <th>@employee.PresentAddress</th>
-                                        <th>@employee.Email</th>
-                                        <th>@employee.Religion</th>
-                                        <th>@employee.Nationality</th>
-                                        <th>@employee.Nid</th>
-                                        <th>@employee.PassportNo</th>*@
+                                    
                                         <th>@employee.Company.Name</th>
                                         <th>@employee.Branch.Name</th>
                                         <th>@employee.Position.Name</th>

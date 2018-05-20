@@ -52,16 +52,16 @@
                                                     <label for="OfficeHourDescription">Office Hour Description</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input name="GraceTimeIn" value="@Model.GraceTimeIn" id="GraceTimeIn" type="time" class="validate">
-                                                    <label for="GraceTimeIn" class="active">GraceTimeIn</label>
+                                                    <input name="GraceTimeIn" value="@Model.GraceTimeIn" id="GraceTimeIn" type="number" class="validate">
+                                                    <label for="GraceTimeIn" class="active">Grace Time In</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input name="GraceTimeOut" value="@Model.GraceTimeOut" id="GraceTimeOut" type="time" class="validate">
-                                                    <label for="GraceTimeOut" class="active">GraceTimeOut</label>
+                                                    <input name="GraceTimeOut" value="@Model.GraceTimeOut" id="GraceTimeOut" type="number" class="validate">
+                                                    <label for="GraceTimeOut" class="active">Grace Time Out</label>
                                                 </div>
                                                 <div class="input-field col m12">
-                                                    <input name="OvertimeStart" value="@Model.OvertimeStart" id="OvertimeStart" type="time" class="validate">
-                                                    <label for="OvertimeStart" class="active">OvertimeStart</label>
+                                                    <input name="OvertimeStart" value="@Model.OvertimeStart" id="OvertimeStart" type="number" class="validate">
+                                                    <label for="OvertimeStart" class="active">Over time Start</label>
                                                 </div>
                                                 <div class="input-field col s6">
                                                     @if (Model.IsDefault)
