@@ -84,8 +84,6 @@ namespace TestHR.Web.Areas.Admin.Models
                         //List data saving
                         if (attendanceLogList.Count > 0)
                         {
-                            string fmt = "000000000.##";
-                            int lastInvoiceId = 0;
                             foreach (var item in attendanceLogList)
                             {
                                 item.AddToAttendanceLog();
