@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TestHR.Entities;
@@ -18,6 +19,7 @@ namespace TestHR.AdminCenter
         {
             _context = new AdminCenterDbContext();
             _departmentUnitOfWork = new DepartmentUnitOfWork(_context);
+            _employeeUnitOfWork = new EmployeeUnitOfWork(_context);
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
             _employeeUnitOfWork = new EmployeeUnitOfWork(_context);
         }
@@ -45,11 +47,9 @@ namespace TestHR.AdminCenter
         public void AddDepartment(string name, Guid companyId, Guid departmentHeadId)
         {
             var department = new Department();
-         
-
             department.Name = name;
             department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
-            department.DepartmentHead = _employeeUnitOfWork.EmployeeRepository.GetById(departmentHeadId);
+            department.DepartmentHead=_employeeUnitOfWork.EmployeeRepository.GetById(departmentHeadId);
             _departmentUnitOfWork.DepartmentRepository.Add(department);
             _departmentUnitOfWork.Save();
 

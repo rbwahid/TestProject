@@ -25,6 +25,7 @@ namespace TestHR.Web.Areas.Admin.Models
             _branchManagementService = new BranchManagementService();
             Company = GetAllCompanies();
         }
+      
         public void BranchExcelFile(HttpPostedFileBase branchExcelFileBase)
         {
 
@@ -91,6 +92,7 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             _branchManagementService.AddToBranchExcel(CompanyName, Name, Description);
         }
+      
         public List<Company> GetAllCompanies()
         {
            

@@ -13,6 +13,9 @@ namespace TestHR.AdminCenter
         private PositionUnitOfWork _positionUnitOfWork;
         private CompanyUnitOfWork _companyUnitOfWork;
         private DepartmentUnitOfWork _departmentUnitOfWork;
+        private CompanyManagementService _companyManagementService;
+        private DepartmentManagementService _departmentManagementService;
+        private PositionManagementService _positionManagementService;
         public PositionManagementService()
         {
             _context = new AdminCenterDbContext();
@@ -20,7 +23,53 @@ namespace TestHR.AdminCenter
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
             _departmentUnitOfWork = new DepartmentUnitOfWork(_context);
         }
-
+        public void AddToPositionExcel(string companyName, string departmentName, string name, string reportingPosName)
+        {
+            var company = _companyUnitOfWork.CompanyRepository.GetAll().FirstOrDefault(e => e.Name == companyName);
+            var department = _departmentUnitOfWork.DepartmentRepository.GetAll().FirstOrDefault(e => e.Name == departmentName);
+            var position = _positionUnitOfWork.PositionRepository.GetAll().FirstOrDefault(e => e.Name == name);
+            var reportPosition = _positionUnitOfWork.PositionRepository.GetAll().FirstOrDefault(e => e.Name == reportingPosName);
+            if (position == null)
+            {
+                if (company != null)
+                {
+                    if (department != null)
+                    {
+                        if (reportPosition == null)
+                        {
+                            AddPosition(name, company.Id, department.Id, Guid.Empty);
+                        }
+                        else
+                        {
+                            AddPosition(name, company.Id, department.Id, reportPosition.Id);
+                        }
+                    }
+                    else
+                    {
+                        _departmentManagementService = new DepartmentManagementService();
+                        _departmentManagementService.AddDepartment(departmentName, company.Id, Guid.Empty);
+                        AddPosition(name,
+                            _companyUnitOfWork.CompanyRepository.GetAll().FirstOrDefault(e => e.Name == companyName).Id,
+                            _departmentUnitOfWork.DepartmentRepository.GetAll()
+                                .FirstOrDefault(e => e.Name == departmentName)
+                                .Id,
+                            Guid.Empty
+                            );
+                    }
+                }
+                else
+                {
+                    _companyManagementService = new CompanyManagementService();
+                    _companyManagementService.AddCompany(companyName, Guid.Empty, string.Empty, string.Empty,
+                        string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.Now);
+                    AddPosition(name,
+                        _companyUnitOfWork.CompanyRepository.GetAll().FirstOrDefault(e => e.Name == companyName).Id,
+                        _departmentUnitOfWork.DepartmentRepository.GetAll().FirstOrDefault(e => e.Name == departmentName).Id,
+                        Guid.Empty
+                      );
+                }
+            }
+        }
         public List<Position> GelAllPositions()
         {
             return _positionUnitOfWork.PositionRepository.GetAll().ToList();
@@ -43,7 +92,7 @@ namespace TestHR.AdminCenter
             return _positionUnitOfWork.PositionRepository.GetAll().Count();
 
         }
-        public void AddPosition(string name, Guid companyId,Guid departmentId,Guid reportingPositionId)
+        public void AddPosition(string name, Guid companyId, Guid departmentId, Guid reportingPositionId)
         {
             var position = new Position();
 
@@ -55,7 +104,7 @@ namespace TestHR.AdminCenter
             _positionUnitOfWork.Save();
 
         }
-        public void EditPosition(Guid id,string name, Guid companyId, Guid departmentId, Guid reportingPositionId)
+        public void EditPosition(Guid id, string name, Guid companyId, Guid departmentId, Guid reportingPositionId)
         {
             var position = GetPosition(id);
 
@@ -63,7 +112,7 @@ namespace TestHR.AdminCenter
             position.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
             position.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId);
             position.ReportingPosition = _positionUnitOfWork.PositionRepository.GetById(reportingPositionId);
-            
+
             _positionUnitOfWork.Save();
 
         }

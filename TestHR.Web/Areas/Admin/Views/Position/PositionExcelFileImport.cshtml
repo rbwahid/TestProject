@@ -1,0 +1,50 @@
+﻿@model TestHR.Web.Areas.Admin.Models.PositionModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main class="mn-inner">
+    <div class="row">
+        <div class="col s12">
+            <div class="page-title">Add Position</div>
+        </div>
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <form id="example-form" method="post" enctype="multipart/form-data" action="/Admin/Position/PositionExcelFileImport">
+                        <div class="row">
+                            <span class="card-title col s2">Add Position</span>
+                            <span class="col s2 offset-m8 pull-right">
+                                <a href="@Url.Action("Index", "Position", new { })" class="btn btn-default btn-group-sm">Position List</a>
+                            </span>
+                        </div>
+                        <div class="row">
+                            @*<div class="row">
+                                    <div class="form-group">
+                                        <label>Branch Excel Import</label>
+                                        <input type="file" name="branchExcelFileBase" id="branchExcelFileBase" class="form-control input-sm" />
+                                    </div>
+                                </div>*@
+                            <div class="col s6 file-field input-field">
+                                <div class="btn teal lighten-1">
+                                    <span>Excel File</span>
+                                    <input type="file" name="positionExcelFileBase" id="positionExcelFileBase" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Upload Branch Excel File">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s4 offset-m7 offset-m1">
+                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
+                                @Html.ActionLink("Cancel", "Index", "Position", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
