@@ -19,6 +19,27 @@ namespace TestHR.Web.Areas.Admin.Controllers
             return View(branches);
         }
 
+        //=== Branch Excel File Import ===//
+        public ActionResult BranchExcelFileImport()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult BranchExcelFileImport(HttpPostedFileBase branchExcelFileBase)
+        {
+            if (ModelState.IsValid)
+            {
+                BranchModel branchModel = new BranchModel();
+                branchModel.BranchExcelFile(branchExcelFileBase);
+            }
+            return RedirectToAction("Index");
+        }
+        //public ActionResult BranchExcelFileDataList()
+        //{
+        //    var branchModel = new BranchModel().GetAllBranches();
+        //    return View(branchModel);
+        //}
+        //=== End Branch Excel Import ===//
         public ActionResult Add()
         {
             var branchModel = new BranchModel();

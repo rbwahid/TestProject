@@ -14,11 +14,18 @@
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
+                        <div class="row">
+                            <span class="card-title col s2">Position List</span>
+                            <span class="col s2 offset-m8 pull-right">
+                                <a href="@Url.Action("PositionExcelFileImport", "Position", new { })" class="btn btn-default btn-group-sm">Add Position</a>
+                            </span>
+                        </div>
                         <table id="positionList" class="display responsive-table datatable-example">
                             <thead>
                                 <tr>
-                                    <th>Position</th>
                                     <th>Company</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
                                     <th>Reporting Position</th>
                                     <th>Action</th>
                                 </tr>
@@ -27,7 +34,6 @@
                                 @foreach (var position in Model)
                                 {
                                     <tr>
-                                        <td>@position.Name</td>
                                         @if (position.Company != null)
                                         {
                                             <td>@position.Company.Name</td>
@@ -36,6 +42,15 @@
                                         {
                                             <td>Null</td>
                                         }
+                                        @if (position.Department != null)
+                                        {
+                                            <td>@position.Department.Name</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Null</td>
+                                        }
+                                        <td>@position.Name</td>
                                         @if (position.ReportingPosition != null)
                                         {
                                             <td>@position.ReportingPosition.Name</td>
