@@ -19,6 +19,8 @@ namespace TestHR.AdminCenter
         private AdminCenterDbContext _context;
         private AttendanceLogUnitOfWork _attendanceLogUnitOfWork;
         private EmployeeUnitOfWork _employeeUnitOfWork;
+        private AttendanceUnitOfWork _attendanceUnitOfWork;
+        private ShiftUnitOfWork _shiftUnitOfWork;
         private CZKEUEMNetClass zkSdkClass;
 
         public  AttendanceLogManagementService()
@@ -26,6 +28,8 @@ namespace TestHR.AdminCenter
             _context = new AdminCenterDbContext();
             _attendanceLogUnitOfWork = new AttendanceLogUnitOfWork(_context);
             _employeeUnitOfWork = new EmployeeUnitOfWork(_context);
+            _attendanceUnitOfWork= new AttendanceUnitOfWork(_context);
+            _shiftUnitOfWork = new ShiftUnitOfWork(_context);
             zkSdkClass = new CZKEUEMNetClass();
         }
 
@@ -71,6 +75,8 @@ namespace TestHR.AdminCenter
                     AddToAttendanceLog(Convert.ToInt16(enrollNumber),new DateTime(year,month,day,hour,minute,second));
                 }
             }
+
+            AttendanceCalculate();
         }
 
 
@@ -92,6 +98,87 @@ namespace TestHR.AdminCenter
                 }
             }
           
+        }
+        //Calculate Attendance
+        public void AttendanceCalculate()
+        {
+            //Today Attendance Log List
+            DateTime dateTimeNow = DateTime.Now.Date;
+            List<AttendanceLog> attendanceLogList = _attendanceLogUnitOfWork.AttendanceLogRepository.GetAll().ToList();
+            
+            //Each Attendance Log Calculate
+            foreach (var eachAttendanceLog in attendanceLogList)
+            {
+                //Search Employee Today's Attendances
+                var employeeTodayAttendance =
+                    _attendanceUnitOfWork.AttendanceRepository.GetAll()
+                        .FirstOrDefault(
+                            e =>
+                                e.AttendanceDate.Date == eachAttendanceLog.AttendanceDate.Date &&
+                                e.Employee.Id == eachAttendanceLog.Employee.Id);
+
+                var shift = _shiftUnitOfWork.ShiftRepository.GetAll().FirstOrDefault();
+              
+                //Search Time Table And Not Holiday
+                    var timeTable=  shift.TimeTables.FirstOrDefault(
+                            e => e.Day == eachAttendanceLog.AttendanceDate.DayOfWeek && e.Status == true);
+                
+                //Check = Is Already Have intime?
+                if (employeeTodayAttendance != null)
+                {
+                    //Set Exit Time
+                    employeeTodayAttendance.ExitTime = eachAttendanceLog.AttendanceDate.TimeOfDay;
+
+                    if (timeTable != null && timeTable.To.HasValue)
+                    {
+                        //LateCount And Overtime Count Set
+                        TimeSpan earlyCount = timeTable.To.Value - new TimeSpan(0, shift.GraceTimeOut.Value, 0);
+                        TimeSpan overTimeCount = timeTable.To.Value + new TimeSpan(0, shift.OvertimeStart.Value, 0);
+                        if (employeeTodayAttendance.ExitTime < earlyCount)
+                        {
+                            employeeTodayAttendance.EarlyExit = earlyCount - employeeTodayAttendance.ExitTime;
+                        }
+                        else
+                        {
+                            employeeTodayAttendance.EarlyExit = null;
+                        }
+                        if (employeeTodayAttendance.ExitTime > overTimeCount)
+                        {
+                            employeeTodayAttendance.Overtime = employeeTodayAttendance.ExitTime - overTimeCount;
+                        }
+                        else
+                        {
+                            employeeTodayAttendance.Overtime = null;
+                        }
+                       
+                       
+                    }
+                    _employeeUnitOfWork.Save();
+
+                }
+                else
+                {
+                    //New Attendance Set
+                    Attendance attendance = new Attendance();
+                    attendance.Employee = eachAttendanceLog.Employee;
+                    attendance.AttendanceDate = eachAttendanceLog.AttendanceDate.Date;
+                    attendance.EntryTime = eachAttendanceLog.AttendanceDate.TimeOfDay;
+                    //Late Entry Check
+                    if (timeTable != null && timeTable.From.HasValue)
+                    {
+                        //Late Entry Count
+                        TimeSpan lateEntryCount = timeTable.From.Value + new TimeSpan(0, shift.GraceTimeIn.Value, 0);
+                        if (attendance.EntryTime > lateEntryCount)
+                        {
+                            attendance.LateEntry = attendance.EntryTime - lateEntryCount;
+                        }
+                    }
+                    
+                    _attendanceUnitOfWork.AttendanceRepository.Add(attendance);
+                    _attendanceUnitOfWork.Save();
+                }
+
+            }
         }
 
         //Install Sdk zkeuKeeper

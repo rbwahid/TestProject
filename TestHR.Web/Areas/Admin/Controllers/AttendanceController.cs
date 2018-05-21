@@ -15,8 +15,8 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Attendance/
         public ActionResult Index()
         {
-           
-            return  View();
+            var attendanceModel = new AttendanceModel().GetAllAttendances();
+            return View(attendanceModel);
         }
 
        
