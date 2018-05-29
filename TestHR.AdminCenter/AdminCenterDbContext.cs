@@ -22,6 +22,9 @@ namespace TestHR.AdminCenter
         public DbSet<LeaveType> LeaveType { get; set; }
         public DbSet<LeaveComment> LeaveComment { get; set; }
         public DbSet<AttendanceLog> AttendanceLog { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<RoleTask> RoleTasks { get; set; }
+        public DbSet<Logins> Logins { get; set; }
         public AdminCenterDbContext()
             : base("DefaultConnection")
         {

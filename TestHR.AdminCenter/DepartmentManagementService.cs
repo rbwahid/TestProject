@@ -40,18 +40,16 @@ namespace TestHR.AdminCenter
         {
             return _departmentUnitOfWork.DepartmentRepository.GetAll().ToList();
         }
-        public void AddDepartment(string name, Guid companyId, Guid departmentHeadId)
+        public void AddDepartment(string name, Guid companyId)
         {
             var department = new Department
             {
                 Company = new Company(),
-                DepartmentHead = new Employee()
             };
 
             department.Name = name;
             department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
-            department.DepartmentHead.Id = departmentHeadId;
-
+           
             _departmentUnitOfWork.DepartmentRepository.Add(department);
             _departmentUnitOfWork.Save();
 

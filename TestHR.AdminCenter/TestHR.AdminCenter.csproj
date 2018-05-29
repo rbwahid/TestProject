@@ -68,8 +68,11 @@
     <Compile Include="DepartmentManagementService.cs" />
     <Compile Include="DepartmentRepository.cs" />
     <Compile Include="DepartmentUnitOfWork.cs" />
+    <Compile Include="RoleManagementService.cs" />
     <Compile Include="EmployeeManagementService.cs" />
+    <Compile Include="RoleRepository.cs" />
     <Compile Include="EmployeeRepository.cs" />
+    <Compile Include="RoleUnitOfWork.cs" />
     <Compile Include="EmployeeUnitOfWork.cs" />
     <Compile Include="HolidayManagementService.cs" />
     <Compile Include="HolidayRepository.cs" />

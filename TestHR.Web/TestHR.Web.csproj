@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LeaveApplicationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
     <Compile Include="Areas\Admin\Controllers\HolidayController.cs" />
     <Compile Include="Areas\Admin\Controllers\LeaveTypeController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Areas\Admin\Models\CompanyModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentModel.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
+    <Compile Include="Areas\Admin\Models\RoleModel.cs" />
     <Compile Include="Areas\Admin\Models\EmployeeModel.cs" />
     <Compile Include="Areas\Admin\Models\HolidayModel.cs" />
     <Compile Include="Areas\Admin\Models\LeaveApplicationModel.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="CustomRoleProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1401,6 +1404,10 @@
     <Content Include="Areas\Admin\Views\LeaveApplication\LeaveReport.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogFileImport.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogViewTable.cshtml" />
+    <None Include="Views\Shared\403_Unauthorized.cshtml" />
+    <Content Include="Views\User\AddRole.cshtml" />
+    <Content Include="Views\User\RoleList.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />

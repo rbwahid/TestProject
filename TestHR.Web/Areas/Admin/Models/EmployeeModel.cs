@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using TestHR.AdminCenter;
@@ -15,6 +17,7 @@ namespace TestHR.Web.Areas.Admin.Models
         private BranchManagementService _branchManagementService { get; set; }
         private DepartmentManagementService _departmentManagementService { get; set; }
         private PositionManagementService _positionManagementService { get; set; }
+        private RoleManagementService _roleManagementService { get; set; }
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -43,7 +46,21 @@ namespace TestHR.Web.Areas.Admin.Models
 
         public List<Employee> Employees { get; set; } 
         public Guid? ReportingToId { get; set; }
+        [Required(ErrorMessage = "Userame field is required")]
 
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+        [Required(ErrorMessage = "Password field is required")]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+        [Required(ErrorMessage = "Confirm password field is required")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [System.ComponentModel.DataAnnotations.Compare("Password",
+        ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+        public Guid RoleId { get; set; }
+        public List<Role> Roles { get; set; }
         public List<EmployeeEducationHistory> EducationHistories { get; set; }
         public List<EmployeeCareerHistory> EmployeeCareerHistories { get; set; }
 
@@ -60,7 +77,8 @@ namespace TestHR.Web.Areas.Admin.Models
             Departments = GetAllDepartment();
             _positionManagementService=new PositionManagementService();
             Positions = GetAllPosition();
-
+           _roleManagementService=new RoleManagementService();
+            Roles = GetAllRole();
         }
 
         private List<Position> GetAllPosition()
@@ -89,7 +107,12 @@ namespace TestHR.Web.Areas.Admin.Models
         public List<Employee> GetAllEmployee()
         {
 
-            return _employeeManagementService.GetAllEmployees().Where(e => e.IsDelete == false).ToList();
+            return _employeeManagementService.GetAllEmployees().Where(e =>!e.IsDelete).ToList();
+        }
+        public List<Role> GetAllRole()
+        {
+
+            return _roleManagementService.GetAllRoles().Where(e => e.IsDelete == false).ToList();
         }
         public EmployeeModel(Guid id)
             : this()
@@ -135,7 +158,7 @@ namespace TestHR.Web.Areas.Admin.Models
            
             _employeeManagementService.AddEmployee(FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
-                PositionId,ReportingToId, EducationHistories, EmployeeCareerHistories);
+                PositionId,ReportingToId, EducationHistories, EmployeeCareerHistories,RoleId,UserName,Password);
 
         } 
         public void EditEmployee()
@@ -172,5 +195,19 @@ namespace TestHR.Web.Areas.Admin.Models
             }
 
         }
+    }
+
+    public class LoginViewModel
+    {
+        [Required]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+        [Display(Name = "Remember Me")]
+        public bool RememberMe { get; set; }
     }
 }

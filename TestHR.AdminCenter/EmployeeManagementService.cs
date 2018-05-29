@@ -55,7 +55,7 @@ namespace TestHR.AdminCenter
         }
         public void AddEmployee(string firstName, string middleName, string lastName, string fathersName, string motherName,
             string souseName, string phoneNumber, string presentAddress, string pernamentAddress, string email, string religion, string nationality,
-            string nId, string passportNo, Guid? companyId, Guid? branchId, Guid? departmentId, Guid? positionId,Guid? reportingToId, List<EmployeeEducationHistory> educationHistories, List<EmployeeCareerHistory> careerHistories)
+            string nId, string passportNo, Guid? companyId, Guid? branchId, Guid? departmentId, Guid? positionId,Guid? reportingToId, List<EmployeeEducationHistory> educationHistories, List<EmployeeCareerHistory> careerHistories,Guid roleId,string userName, string password)
         {
             var employee = new Employee();
             employee.FirstName = firstName;
@@ -72,13 +72,17 @@ namespace TestHR.AdminCenter
             employee.Nationality = nationality;
             employee.Nid = nId;
             employee.PassportNo = passportNo;
-            employee.ReportingTo = _employeeUnitOfWork.EmployeeRepository.GetById(reportingToId.Value);
-            employee.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId.Value);
-            employee.Branch = _branchUnitOfWork.BranchRepository.GetById(branchId.Value);
-            employee.Department = _departmentUnitOfWork.DepartmentRepository.GetById(departmentId.Value);
-            employee.Position = _positionUnitOfWork.PositionRepository.GetById(positionId.Value);
+
+            employee.ReportingTo = reportingToId != null? _employeeUnitOfWork.EmployeeRepository.GetById(reportingToId.Value):null;
+            employee.Company = companyId!=null?_companyUnitOfWork.CompanyRepository.GetById(companyId.Value):null;
+            employee.Branch =branchId!=null? _branchUnitOfWork.BranchRepository.GetById(branchId.Value):null;
+            employee.Department = departmentId != null?_departmentUnitOfWork.DepartmentRepository.GetById(departmentId.Value):null;
+            employee.Position = positionId != null ? _positionUnitOfWork.PositionRepository.GetById(positionId.Value) : null;
             employee.EmployeeCareerHistory = careerHistories;
             employee.EmployeeEducationHistory = educationHistories;
+            employee.RoleId = roleId;
+            employee.UserName = userName;
+            employee.Password = password;
             _employeeUnitOfWork.EmployeeRepository.Add(employee);
             _employeeUnitOfWork.Save();
         }

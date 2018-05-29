@@ -8,15 +8,16 @@ using TestHR.Web.Areas.Admin.Models;
 
 namespace TestHR.Web.Areas.Admin.Controllers
 {
+     [Authorize]
     public class DepartmentController : Controller
     {
-        //
-        // GET: /Admin/Department/
+    [Roles("Global_SupAdmin,Department_Configuration")]
         public ActionResult Index()
         {
             var departments = new Models.DepartmentModel().GetAllDepartments().Where(x=>x.IsDelete==false);
             return View(departments);
         }
+         [Roles("Global_SupAdmin,Department_Configuration")]
         public ActionResult Add()
         {
             var departmentModel = new DepartmentModel();

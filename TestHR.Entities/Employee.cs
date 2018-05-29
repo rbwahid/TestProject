@@ -24,7 +24,11 @@ namespace TestHR.Entities
         public string Nationality { get; set; }
         public string Nid { get; set; }
         public string PassportNo { get; set; }
-
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public Guid RoleId { get; set; }
+        [ForeignKey("RoleId")]
+        public virtual Role Role { get; set; }
         public virtual Employee ReportingTo { get; set; }
         public virtual Company Company { get; set; }
         public virtual Branch Branch { get; set; }
