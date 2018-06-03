@@ -26,6 +26,7 @@ namespace TestHR.Entities
         public string PassportNo { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public byte Status { get; set; }
         public Guid RoleId { get; set; }
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }

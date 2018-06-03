@@ -112,7 +112,7 @@ namespace TestHR.Web.Areas.Admin.Models
         public List<Role> GetAllRole()
         {
 
-            return _roleManagementService.GetAllRoles().Where(e => e.IsDelete == false).ToList();
+            return _roleManagementService.GetAllRoles().Where(e => !e.IsDelete && e.Status!=2).ToList();
         }
         public EmployeeModel(Guid id)
             : this()

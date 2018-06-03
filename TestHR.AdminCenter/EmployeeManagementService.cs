@@ -72,7 +72,7 @@ namespace TestHR.AdminCenter
             employee.Nationality = nationality;
             employee.Nid = nId;
             employee.PassportNo = passportNo;
-
+            employee.Status = 1;
             employee.ReportingTo = reportingToId != null? _employeeUnitOfWork.EmployeeRepository.GetById(reportingToId.Value):null;
             employee.Company = companyId!=null?_companyUnitOfWork.CompanyRepository.GetById(companyId.Value):null;
             employee.Branch =branchId!=null? _branchUnitOfWork.BranchRepository.GetById(branchId.Value):null;

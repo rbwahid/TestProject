@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -25,7 +26,10 @@ namespace TestHR.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-
+            if (!db.Employee.Any())
+            {
+                SeedValues(db);
+            }
             if (!User.Identity.IsAuthenticated)
             {
                 ViewBag.ReturnUrl = returnUrl;
@@ -70,8 +74,6 @@ namespace TestHR.Web.Controllers
                         {
                             return RedirectToAction("Index", "Dashboard");
                         }
-                        
-
                     }
                 }
                 else
@@ -93,7 +95,7 @@ namespace TestHR.Web.Controllers
         #endregion
         public ActionResult Roles()
         {
-            var roles = new RoleModel().GetAllRoles().Where(x => x.IsDelete == false);
+            var roles = new RoleModel().GetAllRoles().Where(x => !x.IsDelete && x.Status!=2);
             return View("RoleList",roles);
         }
        [Roles("Global_SupAdmin,Role_Configuration")]
@@ -124,7 +126,23 @@ namespace TestHR.Web.Controllers
             return RedirectToAction("Roles");
         }
 
+        public ActionResult EditRole(Guid id)
+        {
+            RoleModel role = new RoleModel(id);
+            if (role == null)
+            {
+                return HttpNotFound();
+            }
+            return View(role);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditRole(RoleModel model)
+        {
+            model.EditRole(model.Id);
+            return RedirectToAction("Roles");
+        }
         #region helper modules
         private bool HasPassword()
         {
@@ -167,6 +185,30 @@ namespace TestHR.Web.Controllers
             };
             db.Logins.Add(login);
             db.SaveChanges();
+        }
+
+        private void SeedValues(AdminCenterDbContext context)
+        {
+            var seedRole = new Role {RoleName = "Admin",Status = 2};
+            context.Roles.AddOrUpdate(r => r.RoleName, seedRole);
+            context.SaveChanges();
+
+            var seedRoleTask = new RoleTask {RoleId = seedRole.Id, Task = "Global_SupAdmin"};
+            context.RoleTasks.AddOrUpdate(r => r.Task, seedRoleTask);
+            context.SaveChanges();
+
+            var seedEmployee = new Employee
+            {
+                FirstName="Administrator",
+                RoleId = seedRole.Id,
+                Status = 2,
+                IsDelete = false,
+                UserName = "hradmin",
+                Password = "827ccb0eea8a706c4c34a16891f84e7b"
+            };//12345
+            context.Employee.AddOrUpdate(u => u.UserName, seedEmployee);
+            context.SaveChanges();
+
         }
         #endregion
         protected override void Dispose(bool disposing)

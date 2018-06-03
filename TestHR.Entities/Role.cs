@@ -14,6 +14,7 @@ namespace TestHR.Entities
     {
         [Display(Name="Role Name")]
         public string RoleName { get; set; }
+        public byte Status { get; set; }
         public virtual ICollection<RoleTask> RoleTasks { get; set; }
     }
     [Table("RoleTasks")]

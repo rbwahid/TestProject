@@ -32,11 +32,29 @@ namespace TestHR.Web.Areas.Admin.Models
         {
             return _roleManagementService.GetAllRoles();
         }
+         public RoleModel(Guid id) : this()
+        {
+            var role=_roleManagementService.GetRole(id);
+
+            this.Id = role.Id;
+            this.RoleName = role.RoleName;
+             this.Status = role.Status;
+
+             this.RoleTasks = new List<RoleTaskCheckBoxModel>();
+             foreach (var item in RoleTaskCheckBoxModel.TaskNames.OrderBy(x => x.TaskNameDisplay))
+             {
+                 item.IsChecked = role.RoleTasks.Any(x => x.Task.Equals(item.TaskName));
+                 this.RoleTasks.Add(item);
+             }
+        }
         public void AddRole()
         {
             _roleManagementService.AddRole(RoleName, RoleTasks);
         }
-
+        public void EditRole(Guid id)
+        {
+            _roleManagementService.EditRole(id, RoleName, RoleTasks);
+        }
     }
     
    
