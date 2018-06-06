@@ -4,13 +4,34 @@
         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Admin Center<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
         <div class="collapsible-body">
             <ul>
-                <li><a href="/Admin/Company/Index">Company</a></li>
-                <li><a href="/Admin/Branch/Index">Branch</a></li>
-                <li><a href="/Admin/Department/Index">Department</a></li>
-                <li><a href="/Admin/Position/Index">Position</a></li>
-                <li><a href="/Admin/Shift/Index">Shift</a></li>
-                <li><a href="/Admin/Holiday/Index">Holiday</a></li>
-                <li><a href="/Admin/LeaveType/Index">Leave Type</a></li>
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Company_Configuration"))
+                {
+                     <li><a href="/Admin/Company/Index">Company</a></li>
+                }
+               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Branch_Configuration"))
+               {
+                   <li><a href="/Admin/Branch/Index">Branch</a></li>
+               }
+               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Department_Configuration"))
+               {
+                   <li><a href="/Admin/Department/Index">Department</a></li>
+               }
+               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Position_Configuration"))
+               {
+                   <li><a href="/Admin/Position/Index">Position</a></li>
+               }
+               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Shift_Configuration"))
+               {
+                   <li><a href="/Admin/Shift/Index">Shift</a></li>
+               }
+               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Holiday_Configuration"))
+               {
+                   <li><a href="/Admin/Holiday/Index">Holiday</a></li>
+               }
+               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("LeaveType_Configuration"))
+               {
+                   <li><a href="/Admin/LeaveType/Index">Leave Type</a></li>
+               }
             </ul>
         </div>
     </li>
