@@ -167,6 +167,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AttendanceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttendanceLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\BranchController.cs" />
     <Compile Include="Areas\Admin\Controllers\CalendarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompanyController.cs" />
@@ -1402,12 +1403,18 @@
     <Content Include="Areas\Admin\Views\LeaveApplication\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LeaveApplication\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\LeaveApplication\LeaveReport.cshtml" />
+    <Content Include="Areas\Admin\Views\AttendanceLog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogFileImport.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogViewTable.cshtml" />
     <None Include="Views\Shared\403_Unauthorized.cshtml" />
     <Content Include="Views\User\AddRole.cshtml" />
     <Content Include="Views\User\RoleList.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\PositionExcelFileImport.cshtml" />
+    <Content Include="Areas\Admin\Views\Branch\BranchExcelFileImport.cshtml" />
+    <Content Include="Areas\Admin\Views\Company\CompanyFileImport.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\DepartmentFileImport.cshtml" />
+    <Content Include="Areas\Admin\Views\Attendance\Index.cshtml" />
     <None Include="bin\TestHR.Web.dll.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -1427,7 +1434,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

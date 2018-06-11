@@ -30,11 +30,13 @@ namespace TestHR.Entities
         public Guid RoleId { get; set; }
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
+        public int? FPId { get; set; }
+        public int? CardNo { get; set; }
         public virtual Employee ReportingTo { get; set; }
         public virtual Company Company { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual Position Position { get; set; }
-		public virtual Department Department { get; set; }
+		    public virtual Department Department { get; set; }
         public virtual ICollection<EmployeeEducationHistory> EmployeeEducationHistory { get; set; }
         public virtual ICollection<EmployeeCareerHistory> EmployeeCareerHistory { get; set; }
        

@@ -15,7 +15,21 @@ namespace TestHR.Web.Areas.Admin.Controllers
             var position = new Models.PositionModel().GetAllPositions().Where(x=>x.IsDelete==false);
             return View(position);
         }
-
+        //=== Position Excel File Import ===//
+        public ActionResult PositionExcelFileImport()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PositionExcelFileImport(HttpPostedFileBase positionExcelFileBase)
+        {
+            if (ModelState.IsValid)
+            {
+                PositionModel positionModel = new PositionModel();
+                positionModel.PositionExcelFile(positionExcelFileBase);
+            }
+            return RedirectToAction("Index");
+        }
         public ActionResult Add()
         {
             var positionModel = new PositionModel();
