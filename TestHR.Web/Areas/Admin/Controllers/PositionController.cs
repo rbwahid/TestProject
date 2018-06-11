@@ -78,7 +78,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
             try
             {
                 new PositionModel().DeletePosition(id);
-                TempData["message"] = "Successfully Deletd Position.";
+                TempData["message"] = "Successfully Deleted Position.";
                 TempData["alertType"] = "success";
             }
 

@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using TestHR.Web.Areas.Admin.Models;
+using TestHR.Web.Controllers;
 
 namespace TestHR.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
-        //
-        // GET: /Admin/Employee/
+        [Roles("Global_SupAdmin,Employee_Add,Employee_Edit")]
         public ActionResult Index()
         {
             var employees = new Models.EmployeeModel().GetAllEmployee().Where(x=>x.IsDelete==false);
@@ -27,10 +29,14 @@ namespace TestHR.Web.Areas.Admin.Controllers
         public ActionResult Add(EmployeeModel employeeModel)
         {
 
+            MD5 md5Hash = MD5.Create();
+            string hashPassword = UserController.GetMd5Hash(md5Hash, employeeModel.Password);
+            employeeModel.Password = hashPassword;
             employeeModel.AddEmployee();
             TempData["message"] = "Successfully added Branch.";
             TempData["alertType"] = "success";
-            return View(employeeModel);
+             return Redirect("/Admin/Employee/Index");
+          
         }
 
         public ActionResult Edit(Guid id)

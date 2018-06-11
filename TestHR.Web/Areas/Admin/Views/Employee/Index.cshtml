@@ -24,6 +24,8 @@
                                     <th>Branch</th>
                                     <th>Position</th>
                                     <th>Department</th>
+                                    <th>Role</th>
+                                    <th>Username</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -32,11 +34,26 @@
                                 {
                                     <tr>
                                         <th>@employee.FirstName</th>
-                                    
-                                        <th>@employee.Company.Name</th>
-                                        <th>@employee.Branch.Name</th>
-                                        <th>@employee.Position.Name</th>
-                                        <th>@employee.Department.Name</th>
+                                        @*<th>@employee.MiddleName</th>
+                                        <th>@employee.LastName</th>
+                                        <th>@employee.FathersName</th>
+                                        <th>@employee.MothersName</th>
+                                        <th>@employee.SouseName</th>
+                                        <th>@employee.PhoneNumber</th>
+                                        <th>@employee.PresentAddress</th>
+                                        <th>@employee.Email</th>
+                                        <th>@employee.Religion</th>
+                                        <th>@employee.Nationality</th>
+                                        <th>@employee.Nid</th>
+                                        <th>@employee.PassportNo</th>*@
+                                        <th>
+                                        @Html.DisplayFor(modelItem => employee.Company.Name)
+                                        </th>
+                                        <th>@Html.DisplayFor(modelItem => employee.Branch.Name)</th>
+                                        <th>@Html.DisplayFor(modelItem => employee.Position.Name)</th>
+                                        <th>@Html.DisplayFor(modelItem => employee.Department.Name)</th>
+                                        <th>@Html.DisplayFor(modelItem => employee.Role.RoleName)</th>
+                                        <th>@Html.DisplayFor(modelItem => employee.UserName)</th>
                                         <td>
                                             <a href="@Url.Action("Edit", "Employee", new { id = employee.Id })" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@employee.Id"><i class="material-icons">delete</i></a>

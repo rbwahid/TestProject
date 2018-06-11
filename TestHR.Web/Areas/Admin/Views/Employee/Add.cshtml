@@ -42,6 +42,7 @@
                                     <li class="tab col s3"><a class="" href="#officialInfo">Placement</a></li>
                                     <li class="tab col s3"><a href="#educationalInfo">Education</a></li>
                                     <li class="tab col s3"><a href="#careerInfo">Career</a></li>
+                                    <li class="tab col s3"><a href="#credentialInfo">Credential</a></li>
                                 </ul>
                             </div>
 
@@ -151,7 +152,7 @@
                                             <label>Position</label>
                                         </div> 
                                         <div class="input-field col s6">
-                                            @Html.DropDownListFor(m => m.ReportingToId, new SelectList(Model.Employees, "Id", "MiddleName"), "--Select--", new { @class = "" })
+                                            @Html.DropDownListFor(m => m.ReportingToId, new SelectList(Model.Employees, "Id", "FirstName"), "--Select--", new { @class = "" })
                                             <label>Reporting To</label>
                                         </div>
 
@@ -219,7 +220,32 @@
                                     </tfoot>
                                 </table>
                             </div>
+                            <div id="credentialInfo" class="col s12">
+                                <br />
+                                <div class="col m12">
+                                    <div class="row">
 
+                                        <div class="input-field col s6">
+                                            @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.Roles, "Id", "RoleName"), "--Select--", new { @class = "" })
+                                            <label>Role</label>
+                                        </div>
+                                        <div class="input-field col m6 s12">
+                                            <label for="UserName">Username</label>
+                                            <input id="UserName" name="UserName" type="text" class="required validate">
+                                        </div>
+                                        <div class="input-field col m6 s12">
+                                            <label for="Password">Password</label>
+                                         @Html.PasswordFor(model => model.Password, new { @class = "validate",})
+                                        </div>
+                                        <div class="input-field col m6 s12">
+                                            <label for="ConfirmPassword">Confirm Password</label>
+                                           @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "validate" })
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col s4 offset-m7 offset-m1">

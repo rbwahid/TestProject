@@ -12,11 +12,13 @@ namespace TestHR.Web.Controllers
     {
         public ActionResult Index()
         {
-            var company = new Company();
-            var context = new AdminCenterDbContext();
-            var repo = new CompanyRepository(context);
-            repo.GetAll();
-            return View();
+            
+            //var company = new Company();
+            //var context = new AdminCenterDbContext();
+            //var repo = new CompanyRepository(context);
+            //repo.GetAll();
+            //return View();
+            return RedirectToAction("Login","User");
         }
 
         public ActionResult About()

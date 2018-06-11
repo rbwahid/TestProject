@@ -62,7 +62,7 @@ namespace TestHR.Web.Areas.Admin.Models
         }
         public void AddDepartment()
         {
-            _departmentManagementService.AddDepartment(DepartmentName, CompanyId, DepartmentHeadId);
+            _departmentManagementService.AddDepartment(DepartmentName, CompanyId);
         }
         public void EditDepartment(Guid id)
         {
