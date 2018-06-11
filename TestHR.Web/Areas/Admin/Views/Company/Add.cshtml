@@ -54,9 +54,18 @@
                                 <div class="input-field col s6">
                                     <select name="FiscalYearStart">
                                         <option value="" disabled selected>Choose Month</option>
-                                        <option value="1">January</option>
-                                        <option value="2">February</option>
-                                        <option value="3">March</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="Devember">Devember</option>
                                     </select>
                                     @Html.LabelFor(model=>model.FiscalYearStart)
                                 </div>
@@ -76,11 +85,8 @@
                             <div class="col s6">
                                 <div class="file-field input-field">
                                     <div class="btn teal lighten-1">
-                                        <span>Company Banner</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
+                                        <input type='file' id="imge"/>
+                                        <img id="CompanyLogo" src="#" alt="Company Banner" />
                                     </div>
                                 </div>
                             </div>
@@ -99,5 +105,25 @@
 </main>
 
 @section scripts{
+
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#CompanyLogo').attr('src', e.target.result);
+                },
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        var theImg = document.getElementById('CompanyLogo');
+        theImg.height = 150;
+        theImg.width = 150;
+        $("#imge").change(function(){
+            readURL(this);
+        });
+     </script>
 }

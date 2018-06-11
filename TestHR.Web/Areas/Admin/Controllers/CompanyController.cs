@@ -57,7 +57,10 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(CompanyModel model)
         {
-            model.EditCompany(model.Id);
+            if (ModelState.IsValid)
+            {
+                model.EditCompany(model.Id);
+            }
             return RedirectToAction("Index");
         }
         public ActionResult CompanyFileImport()
