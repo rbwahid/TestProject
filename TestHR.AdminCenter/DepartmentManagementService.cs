@@ -44,7 +44,7 @@ namespace TestHR.AdminCenter
         {
             return _departmentUnitOfWork.DepartmentRepository.GetAll().ToList();
         }
-        public void AddDepartment(string name, Guid companyId)
+        public void AddDepartment(string name, Guid companyId, Guid departmentHeadId) //Not sure
         {
             var department = new Department
             {
