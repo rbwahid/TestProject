@@ -1,0 +1,46 @@
+﻿@model TestHR.Web.Areas.Admin.Models.PositionModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<main class="mn-inner">
+    <div class="row">
+        <div class="col s12">
+            <div class="page-title">Blank Page</div>
+        </div>
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <form method="post" action="/Admin/Position/Edit">
+                        <span class="card-title">Position Settings</span><br>
+                        <div class="row">
+                            @Html.HiddenFor(model=>model.Id)
+                            <div class="input-field col s6">
+                                <label for="Name">Position Name</label>
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "Choose Company", new { @class = "" })
+                                <label>Company</label>
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "", new { @class = "" })
+                                <label>Department</label>
+                            </div>
+                            <div class="input-field col s6">
+                                @Html.DropDownListFor(m => m.ReportingPositionId, new SelectList(Model.ReportingPositions, "Id", "Name"), "Choose Reporting Position", new { @class = "" })
+                                <label>Reporting Position</label>
+                            </div>
+
+                            <div class="col s4 offset-m7 offset-m1">
+                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Edit" />
+                                @Html.ActionLink("Cancel", "Index", "Position", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

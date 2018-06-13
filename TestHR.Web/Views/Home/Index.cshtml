@@ -83,10 +83,10 @@
                             <div class="card-content ">
                                 <span class="card-title">Sign In</span>
                                 <div class="row">
-                                    <form class="col s12">
+                                    <form action="/Admin/User/Login" method="POST" class="col s12">
                                         <div class="input-field col s12">
                                             <input id="email" type="email" class="validate">
-                                            <label for="email">Email</label>
+                                            <label for="email">Username</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password" type="password" class="validate">
@@ -94,7 +94,9 @@
                                         </div>
                                         <div class="col s12 right-align m-t-sm">
                                             <a href="sign-up.html" class="waves-effect waves-grey btn-flat">sign up</a>
-                                            <a href="/Dashboard/Index" class="waves-effect waves-light btn teal">sign in</a>
+                                            @*<a href="/Dashboard/Index" class="waves-effect waves-light btn teal">sign in</a>*@
+                                            <input type="submit" value="Sign In" class="waves-effect waves-light btn teal" />
+                                            @*<a href='@Url.Action("Index","Dashboard")' class="waves-effect waves-light btn teal">sign in</a>*@
                                         </div>
                                     </form>
                                 </div>

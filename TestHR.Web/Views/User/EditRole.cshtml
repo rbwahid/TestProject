@@ -1,0 +1,88 @@
+﻿@model TestHR.Web.Areas.Admin.Models.RoleModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+               
+<main class="mn-inner">
+    <div class="row">
+       
+        <div class="col s12">
+            <div class="card">
+                @using (Html.BeginForm("EditRole", "User", null, FormMethod.Post, new { @id = "" })) {
+                    <div class="card-content">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(m => m.Id)
+                        <span class="card-title">Role Edit</span><br>
+                        <div class="row">
+
+                            <div class="input-field col s6">
+                               
+                                @Html.TextBoxFor(m => m.RoleName, new { @class = "validate" })
+                                @Html.LabelFor(m => m.RoleName)
+                            </div>
+                            <div class="col s12">
+                               
+                                <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="checkAllCheckBox"  type="checkbox" value="true" />
+                                <label for="checkAllCheckBox"> Check All </label>
+                            </div>
+                            <div class="col s12">
+                            
+                                <div id="roleTaskCheckboxesArea">
+                                    @if (Model.RoleTasks.Count > 0)
+                                    {
+                                        int i = 0;
+                                        foreach (var item in Model.RoleTasks)
+                                        {
+                                            @Html.HiddenFor(model => model.RoleTasks[i].TaskName)
+                                            if (item.IsChecked)
+                                            {
+                                            <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="RoleTasks_@i _IsChecked" name="RoleTasks[@i].IsChecked" type="checkbox" value="true" checked />
+
+                                            }
+                                            else
+                                            {
+                                            <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="RoleTasks_@i _IsChecked" name="RoleTasks[@i].IsChecked" type="checkbox" value="true" />
+                                                
+                                            }
+                                            <label for="RoleTasks_@i _IsChecked">@item.TaskName </label>
+
+
+                                            @*@Html.HiddenFor(model => model.RoleTasks[i].TaskName)
+                    <label for="RoleTasks_@i _IsChecked"> @Html.CheckBoxFor(model => model.RoleTasks[i].IsChecked, new { @class = "validate" }) @item.TaskNameDisplay</label>*@
+
+                                            i++;
+                                        }
+
+                                    }
+                                </div>  
+                            </div>
+
+                            <div class="col s4 offset-m7 offset-m1">
+                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
+                                @Html.ActionLink("Cancel", "Roles", "User", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                            </div>
+                        </div>
+                   
+
+                    </div> }
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            //$("#tableOne thead tr th:first input:checkbox").click(function () {
+            $("#checkAllCheckBox").click(function() {
+                var checkedStatus = this.checked;
+                //$("#tableOne tbody tr td:first-child input:checkbox").each(function () {
+                $("#roleTaskCheckboxesArea input:checkbox").each(function() {
+                    this.checked = checkedStatus;
+                });
+            });
+        });
+
+    </script> }                     

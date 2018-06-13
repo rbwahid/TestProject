@@ -9,8 +9,8 @@ namespace TestHR.Entities
 {
     public class Position : Entity
     {
-        public Company Company { get; set; }
-        public Department Department { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual Department Department { get; set; }
         public string Name { get; set; }
         public Position ReportingPosition { get; set; }
     }

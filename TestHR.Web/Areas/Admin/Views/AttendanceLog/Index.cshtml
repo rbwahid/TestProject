@@ -1,0 +1,112 @@
+﻿@model IEnumerable<TestHR.Entities.AttendanceLog>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    <link href="~/Plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <main class="mn-inner">
+        <div class="row">
+            <div class="col s12">
+                <div class="page-title">Attendance Logs</div>
+            </div>
+             
+            <div class="col s12 m12 l12">
+                
+                <div class="card">
+                    <div class="card-content">
+                       
+                        <div>
+                            <span class="card-title">Attendace Logs</span>
+                         <br/>
+                            <div class="col offset-m10"><a class="btn btn-default" href="@Url.Action("Pool","AttendanceLog")">Pool</a></div>
+                        </div>
+                        <table id="attendanceLogList" class="display responsive-table datatable-example">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var attendanceLog in Model)
+                                {
+                                    <tr>
+                                        <td>@attendanceLog.Employee.FirstName @attendanceLog.Employee.MiddleName @attendanceLog.Employee.LastName</td>
+                                        <td>@attendanceLog.AttendanceDate.Date.ToString("D")</td>
+                                        <td>@attendanceLog.AttendanceDate.TimeOfDay</td>
+                                        <td>
+                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id=""><i class="material-icons">delete</i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @section scripts
+{
+        <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#attendanceLogList').DataTable({
+                    language: {
+                        searchPlaceholder: 'Search Logs',
+                        sSearch: '',
+                        sLengthMenu: 'Show _MENU_',
+                        sLength: 'dataTables_length',
+                        oPaginate: {
+                            sFirst: '<i class="material-icons">chevron_left</i>',
+                            sPrevious: '<i class="material-icons">chevron_left</i>',
+                            sNext: '<i class="material-icons">chevron_right</i>',
+                            sLast: '<i class="material-icons">chevron_right</i>'
+                        }
+                    }
+                });
+                $('.dataTables_length select').addClass('browser-default');
+                $('.sweetalert-warning').click(function () {
+                    var url = '@Url.Action("Delete", "Holiday")';
+                    var id = $(this).data('id');
+                    console.log(id);
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        closeOnConfirm: false
+                    }, function () {
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: { id: id }
+                        }).done(function (data) {
+                            swal({
+                                title: "Deleted!",
+                                text: "Your imaginary file has been deleted.",
+                                type: "success"
+                            }, function () {
+                                location.reload();
+                            });
+                        }).fail(function () {
+                            $.alert("There is something wrong! Please try again.", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');
+                        });
+
+                    });
+
+                });
+            });
+        </script>
+    }
+

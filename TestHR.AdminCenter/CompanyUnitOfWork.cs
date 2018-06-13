@@ -8,17 +8,24 @@ using TestHR.Entities;
 
 namespace TestHR.AdminCenter
 {
-    class CompanyUnitOfWork
+    public class CompanyUnitOfWork : IDisposable
     {
-        private AdminCenterDbContext _context;
-        public CompanyRepository CompanyRepository { get; set; }
+        private AdminCenterDbContext _context { get; set; }
+        private CompanyRepository _companyRepository { get; set; }
 
         public CompanyUnitOfWork(AdminCenterDbContext context)
         {
             _context = context;
-            CompanyRepository = new CompanyRepository(_context);
+            _companyRepository = new CompanyRepository(_context);
         }
 
+        public CompanyRepository CompanyRepository
+        {
+            get
+            {
+                return _companyRepository;
+            }
+        }
         public void Save()
         {
             _context.SaveChanges();

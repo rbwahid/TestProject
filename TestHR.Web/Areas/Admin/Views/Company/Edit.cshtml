@@ -1,0 +1,97 @@
+﻿@model TestHR.Web.Areas.Admin.Models.CompanyModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main class="mn-inner">
+    <div class="row">
+        <div class="col s12">
+            <div class="page-title">Add New Company</div>
+        </div>
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Company Settings</span><br>
+                    <form method="post" action="/Admin/Company/Edit">
+                        <div class="row">
+                            <div class="row">
+                                @Html.HiddenFor(model=>model.Id)
+                                <div class="input-field col s6">
+                                   @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    <label for="Name">Company Name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    @*@Html.DropDownListFor(x => x.MotherCompanies, new List<SelectListItem>
+                                    {
+                                        new SelectListItem() {Text = "Company", Value = "Company"},
+                                        new SelectListItem() {Text = "Individual", Value = "Individual"},
+                                    }, "--Select--", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MotherCompanyId, new SelectList(Model.MotherCompanies, "Id", "Name"), "", new { @class = "" })
+                                    <label>Mother Company</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                    <label for="Address">Address</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="Phone">Phone </label>
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="Email">Email</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="Fax">Fax</label>
+                                   @Html.TextBoxFor(model => model.Fax, new { @class = "form-control" })
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="ContactPerson">Contact Person</label>
+                                    @Html.TextBoxFor(model => model.ContactPerson, new { @class = "form-control" })
+                                </div>
+                                <div class="input-field col s6">
+                                    @Html.DropDownListFor(x => x.FiscalYearStart, new List<SelectListItem>
+                                    {
+                                        new SelectListItem() {Text = "January", Value = "January"},
+                                        new SelectListItem() {Text = "February", Value = "February"},
+                                        new SelectListItem() {Text = "March", Value = "March"},
+                                    }, "--Select--", new { @class = "form-control" })
+                                    <label>Fiscal Year Start </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="ContactPersonEmail">Primary Contact Email </label>
+                                    @Html.TextBoxFor(model => model.ContactPersonEmail, new { @class = "form-control" })
+                                </div>
+                                <div class="input-field col s6">
+                                    <label for="ContactPersonPhone">Primary Contact Phone </label>
+                                    @Html.TextBoxFor(model => model.ContactPersonPhone, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <div class="file-field input-field">
+                                    <div class="btn teal lighten-1">
+                                        <span>Company Banner</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s4 offset-m7 offset-m1">
+                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Edit" />
+                                @Html.ActionLink("Cancel", "Index", "Company", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

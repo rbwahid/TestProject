@@ -1,0 +1,76 @@
+﻿@model TestHR.Web.Areas.Admin.Models.LeaveApplicationModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main class="mn-inner">
+    <div class="row">
+        <div class="col s12">
+            <div class="page-title">Blank Page</div>
+        </div>
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <form method="post" action="/Admin/LeaveApplication/Add">
+                        <span class="card-title">Leave Application</span><br>
+                        <div class="row">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input name="ReasonForLeave" id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Reason</label>
+                                </div>  
+                                <div class="input-field col s6">
+                                    @Html.DropDownListFor(m => m.ApplicantId, new SelectList(Model.Employees, "Id", "FirstName"), "--Select--", new { @class = "" })
+                                    <label>Applicant</label>
+                                </div>
+                                <div class="input-field col s6"> 
+                                    <input name="DateFrom" id="icon_prefix" type="text" class="validate datepicker">
+                                    <label for="icon_prefix">Date From</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input name="DateTo" id="icon_prefix" type="date" class="validate datepicker">
+                                    <label for="icon_prefix">Date To</label>
+                                </div>
+                              
+                                <div class="input-field col s6">
+                                    @Html.DropDownListFor(m => m.LeaveTypeId, new SelectList(Model.LeaveTypes, "Id", "Name"), "--Select--", new { @class = "" })
+                                    <label>Leave Type</label>
+                                </div> 
+                                <div class="input-field col s6">
+                                    <input name="AddressDuringLeave" id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Address During Leave</label>
+                                </div>  
+                                <div class="input-field col s6">
+                                    <input name="ContactDuringLeave" id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Contact During Leave</label>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col s4 offset-m7 offset-m1">
+                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
+                                <input type="button" class="btn btn-default red col s4 offset-m1" value="Cancel" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
+        });
+    </script>
+}
+

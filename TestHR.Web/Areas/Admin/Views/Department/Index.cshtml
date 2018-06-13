@@ -1,0 +1,105 @@
+﻿@model IEnumerable<TestHR.Entities.Department>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    <link href="~/Plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <main class="mn-inner">
+        <div class="row">
+            <div class="col s12">
+                <div class="page-title">Department List</div>
+            </div>
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Department</span>
+                        <a href="@Url.Action("DepartmentFileImport", "Department", new { })" class="btn-default"><i>Emport Excel</i></a>
+                        <table id="companyList" class="display responsive-table datatable-example">
+                            <thead>
+                                <tr>
+                                    <th>DepartmentName</th>
+                                    <th>Company</th>
+                                    <th>Employees</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var department in Model)
+                                {
+                                    <tr>
+                                        <td>@department.Name</td>
+                                        <td>@department.Company.Name</td>
+                                        <td>@department.Employees</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit","Department",new{id=department.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@department.Id"><i class="material-icons">delete</i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @section scripts
+    {
+        <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#companyList').DataTable({
+                    language: {
+                        searchPlaceholder: 'Search Branch',
+                        sSearch: '',
+                        sLengthMenu: 'Show _MENU_',
+                        sLength: 'dataTables_length',
+                        oPaginate: {
+                            sFirst: '<i class="material-icons">chevron_left</i>',
+                            sPrevious: '<i class="material-icons">chevron_left</i>',
+                            sNext: '<i class="material-icons">chevron_right</i>',
+                            sLast: '<i class="material-icons">chevron_right</i>'
+                        }
+                    }
+                });
+                $('.dataTables_length select').addClass('browser-default');
+                $('.sweetalert-warning').click(function() {
+                    var url = '@Url.Action("Delete", "Department")';
+                    var id = $(this).data('id');
+                    console.log(id);
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        closeOnConfirm: false
+                    }, function() {
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: { id: id }
+                        }).done(function(data) {
+                            swal({
+                                title: "Deleted!", 
+                                text:"Your imaginary file has been deleted.",
+                                type:"success"
+                            },function() {
+                                location.reload();
+                            });
+                        }).fail(function() {
+                            $.alert("There is something wrong! Please try again.", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');
+                        });
+
+                    });
+
+                });
+            });
+        </script>
+    }
+
