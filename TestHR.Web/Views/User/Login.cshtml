@@ -1,4 +1,6 @@
-﻿@{
+﻿@model TestHR.Web.Areas.Admin.Models.LoginViewModel
+@{
+    ViewBag.Title = "Signin";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -83,22 +85,28 @@
                             <div class="card-content ">
                                 <span class="card-title">Sign In</span>
                                 <div class="row">
-                                    <form action="/Admin/User/Login" method="POST" class="col s12">
-                                        <div class="input-field col s12">
-                                            <input id="email" type="email" class="validate">
-                                            <label for="email">Username</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input id="password" type="password" class="validate">
-                                            <label for="password">Password</label>
-                                        </div>
-                                        <div class="col s12 right-align m-t-sm">
-                                            <a href="sign-up.html" class="waves-effect waves-grey btn-flat">sign up</a>
-                                            @*<a href="/Dashboard/Index" class="waves-effect waves-light btn teal">sign in</a>*@
-                                            <input type="submit" value="Sign In" class="waves-effect waves-light btn teal" />
-                                            @*<a href='@Url.Action("Index","Dashboard")' class="waves-effect waves-light btn teal">sign in</a>*@
-                                        </div>
-                                    </form>
+                                  
+                                        @using (Html.BeginForm("Login", "User", null, FormMethod.Post, new {@id = "", @class = "col s12"}))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.ValidationSummary(true)
+                                            <div class="input-field col s12">
+                                          
+                                                @Html.TextBoxFor(model => model.UserName, new {@class = "validate"})
+                                                <label for="email">Username</label>
+                                            </div>
+                                            <div class="input-field col s12">
+                                      
+                                                @Html.PasswordFor(model => model.Password, new {@class = "validate"})
+                                                <label for="password">Password</label>
+                                            </div>
+                                            <div class="col s12 right-align m-t-sm">
+                                                <a href="sign-up.html" class="waves-effect waves-grey btn-flat">sign up</a>
+                                                @*<a href="/Dashboard/Index" class="waves-effect waves-light btn teal">sign in</a>*@
+                                                <input type="submit" value="Sign In" class="waves-effect waves-light btn teal" />
+                                                @*<a href='@Url.Action("Index","Dashboard")' class="waves-effect waves-light btn teal">sign in</a>*@
+                                            </div>
+                                        }
                                 </div>
                             </div>
                         </div>

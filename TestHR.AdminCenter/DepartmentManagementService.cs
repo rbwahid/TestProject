@@ -44,11 +44,15 @@ namespace TestHR.AdminCenter
         {
             return _departmentUnitOfWork.DepartmentRepository.GetAll().ToList();
         }
-        public void AddDepartment(string name, Guid companyId, Guid departmentHeadId)
+        public void AddDepartment(string name, Guid companyId, Guid departmentHeadId) //Not sure
         {
-            var department = new Department();
+            var department = new Department
+            {
+                Company = new Company(),
+            };
+
             department.Name = name;
-            department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
+            department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);           
             department.DepartmentHead=_employeeUnitOfWork.EmployeeRepository.GetById(departmentHeadId);
             _departmentUnitOfWork.DepartmentRepository.Add(department);
             _departmentUnitOfWork.Save();

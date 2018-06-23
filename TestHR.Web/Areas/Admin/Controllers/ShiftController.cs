@@ -48,7 +48,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
             try
             {
                 new ShiftModel().DeleteShift(id);
-                TempData["message"] = "Successfully Deletd Company.";
+                TempData["message"] = "Successfully Deleted Company.";
                 TempData["alertType"] = "success";
             }
 
