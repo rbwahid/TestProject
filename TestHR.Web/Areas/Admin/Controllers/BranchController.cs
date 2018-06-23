@@ -48,20 +48,14 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(BranchModel branchModel)
         {
-            //try
-            //{
+            if (ModelState.IsValid)
+            {
                 branchModel.AddBranch();
                 TempData["message"] = "Successfully added Branch.";
                 TempData["alertType"] = "success";
-            //}
-
-            //catch (Exception e)
-            //{
-            //    TempData["message"] = "Failed to Add Branch.";
-            //    TempData["alertType"] = "danger";
-            //    Console.Write(e.Message);
-            //}
-
+                return RedirectToAction("Index");
+            }
+              
             return View(branchModel);
         }
 
@@ -77,8 +71,12 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(BranchModel model)
         {
-            model.EditBranch(model.Id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.EditBranch(model.Id);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
         public ActionResult Delete(Guid? id)

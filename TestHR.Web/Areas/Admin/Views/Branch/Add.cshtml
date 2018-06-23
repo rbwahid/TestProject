@@ -13,20 +13,24 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Branch Settings</span><br>
-                    <form method="post" action="/Admin/Branch/Add">
-                        <div class="row">
+                        @using (Html.BeginForm("Add", "Branch", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary(true)
+                            <div class="row">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input name="Name" id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Branch Name</label>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                    @Html.TextBoxFor(model=>model.Name)
+                                    @Html.ValidationMessageFor(model=>model.Name)
                                 </div>
                                 <div class="input-field col s6">
+                                    @Html.DisplayName("Company")
                                     @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Company, "Id", "Name"), "--Select--", new { @class = "" })
-                                    <label>Company</label>
+                                    @Html.ValidationMessageFor(model => model.CompanyId)
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="Description" name="Description" type="text">
-                                    <label for="textarea1">Description</label>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                    @Html.TextBoxFor(model => model.Description)
                                 </div>
 
                             </div>
@@ -37,9 +41,13 @@
                                 @Html.ActionLink("Cancel", "Index", "Branch", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </form>
+                        }
                 </div>
             </div>
         </div>
     </div>
 </main>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

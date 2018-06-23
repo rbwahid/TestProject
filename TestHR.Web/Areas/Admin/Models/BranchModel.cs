@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Utilities;
 using TestHR.AdminCenter;
 using TestHR.Entities;
 
@@ -13,9 +16,11 @@ namespace TestHR.Web.Areas.Admin.Models
         private CompanyManagementService _companyManagementService { get; set; }
         private BranchManagementService _branchManagementService { get; set; }
         public Guid Id { get; set; }
+        [Required(ErrorMessage = "Field Required")]
         public string Name { get; set; }
-        public List<Company> Company { get; set; }
+        [Required(ErrorMessage = "Field Required")]
         public Guid CompanyId { get; set; }
+        public List<Company> Company { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
 
