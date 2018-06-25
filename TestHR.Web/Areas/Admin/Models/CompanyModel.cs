@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
@@ -14,17 +16,36 @@ namespace TestHR.Web.Areas.Admin.Models
         private CompanyManagementService _companyManagementService { get; set; }
 
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "First Name must be between 3 and 50 characters!")]
         public string Name { get; set; }
         public List<Company> MotherCompanies { get; set; }
+        [DisplayName("Mother Company")]
         public Guid MotherCompanyId { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Address must be between 3 and 50 characters!")]
         public string Address { get; set; }
+        [Required]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
         public string Phone { get; set; }
         public string Fax { get; set; }
+        [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
         public string Email { get; set; }
+        [Required]
+        [DisplayName("Contact Person")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string ContactPerson { get; set; }
+        [Required]
+        [DisplayName("Contact Person Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
         public string ContactPersonEmail { get; set; }
+        [Required]
+        [DisplayName("Contact Person Phone")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
         public string ContactPersonPhone { get; set; }
-        public DateTime? FiscalYearStart { get; set; }
+        [DisplayName("Fiscal Year Start")]
+        public string FiscalYearStart { get; set; }
         public string CompanyLogo { get; set; }
 
         public CompanyModel()
@@ -151,7 +172,9 @@ namespace TestHR.Web.Areas.Admin.Models
                                             ? null
                                             : workSheet.Cells[rowIterator, 10].Value.ToString();
                                     companyModel.FiscalYearStart =
-                                        Convert.ToDateTime(workSheet.Cells[rowIterator, 11].Value);
+                                        workSheet.Cells[rowIterator, 11].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 11].Value.ToString();
                                     companyImportList.Add(companyModel);
                                 }
                             }

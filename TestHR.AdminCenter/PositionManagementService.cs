@@ -61,7 +61,7 @@ namespace TestHR.AdminCenter
                 {
                     _companyManagementService = new CompanyManagementService();
                     _companyManagementService.AddCompany(companyName, Guid.Empty, string.Empty, string.Empty,
-                        string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.Now);
+                        string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                     AddPosition(name,
                         _companyUnitOfWork.CompanyRepository.GetAll().FirstOrDefault(e => e.Name == companyName).Id,
                         _departmentUnitOfWork.DepartmentRepository.GetAll().FirstOrDefault(e => e.Name == departmentName).Id,

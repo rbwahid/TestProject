@@ -42,7 +42,7 @@ namespace TestHR.AdminCenter
         }
 
         public void EditCompany(Guid id,string name, Guid motherCompanyId, string address, string phone, string fax, string email,
-            string contactPerson, string contactPersonEmail, string contactPersonPhone, DateTime? fiscalYearStart)
+            string contactPerson, string contactPersonEmail, string contactPersonPhone, string fiscalYearStart)
         {
             var company = GetCompany(id);
             company.Name = name;
@@ -61,7 +61,7 @@ namespace TestHR.AdminCenter
             _companyUnitOfWork.Save();
         }
         public void AddCompany(string name, Guid motherCompanyId, string address, string phone, string fax, string email, 
-            string contactPerson, string contactPersonEmail, string contactPersonPhone, DateTime? fiscalYearStart)
+            string contactPerson, string contactPersonEmail, string contactPersonPhone, string fiscalYearStart)
         {
             var company = new Company();
 

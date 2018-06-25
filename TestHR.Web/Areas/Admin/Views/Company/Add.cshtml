@@ -13,53 +13,71 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Company Settings</span><br>
-                    <form method="post" action="/Admin/Company/Add">
+                    @using (Html.BeginForm("Add", "Company", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
                         <div class="row">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input name="Name" id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Company Name</label>
+                                    @Html.LabelFor(model=>model.Name)
+                                    @Html.TextBoxFor(model=>model.Name, new { @id="Name"})
+                                    @Html.ValidationMessageFor(model => model.Name)
                                 </div>
                                 <div class="input-field col s6">
-                                    @Html.DropDownListFor(m => m.MotherCompanyId, new SelectList(Model.MotherCompanies, "Id", "Name"), "", new { @class = "" })
-                                    <label>Mother Company</label>
+                                    @Html.DropDownListFor(m => m.MotherCompanyId, new SelectList(Model.MotherCompanies, "Id", "Name"), "Select Mother Company", new { @class = "" })
+                                    @Html.LabelFor(model=>model.MotherCompanyId)
+                                </div>
+                               <div class="input-field col s6">
+                                    @Html.LabelFor(model=>model.Address)
+                                    @Html.TextBoxFor(model => model.Address, new { @id = "Address" })
+                                    @Html.ValidationMessageFor(model => model.Address)
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="address" name="Address" type="text">
-                                    <label for="textarea1">Address</label>
+                                    @Html.LabelFor(model=>model.Phone)
+                                    @Html.TextBoxFor(model => model.Phone, new { @id = "Phone" })
+                                    @Html.ValidationMessageFor(model => model.Phone)
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="address">Phone </label>
-                                    <input id="address" name="Phone" type="text">
+                                    @Html.LabelFor(model => model.Email)
+                                    @Html.TextBoxFor(model => model.Email, new { @id = "Email" })
+                                    @Html.ValidationMessageFor(model => model.Email)
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="address">Email</label>
-                                    <input id="address" name="Email" type="text">
+                                    @Html.LabelFor(model=>model.Fax)
+                                    @Html.TextBoxFor(model => model.Fax, new { @id = "Fax" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="address">Fax</label>
-                                    <input id="address" name="Fax" type="text">
+                                    @Html.LabelFor(model => model.ContactPerson)
+                                    @Html.TextBoxFor(model => model.ContactPerson, new { @id = "ContactPerson" })
+                                    @Html.ValidationMessageFor(model => model.ContactPerson)
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="ContactPerson" id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Primary Contact </label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select>
+                                    <select name="FiscalYearStart">
                                         <option value="" disabled selected>Choose Month</option>
-                                        <option value="1">January</option>
-                                        <option value="2">February</option>
-                                        <option value="3">March</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="Devember">Devember</option>
                                     </select>
-                                    <label>Fiscal Year Start </label>
+                                    @Html.LabelFor(model=>model.FiscalYearStart)
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="ContactPersonEmail" id="icon_prefix" type="tel" class="validate">
-                                    <label for="icon_prefix">Primary Contact Email </label>
+                                    @Html.LabelFor(model => model.ContactPersonEmail)
+                                    @Html.TextBoxFor(model => model.ContactPersonEmail, new { @id = "ContactPersonEmail" })
+                                    @Html.ValidationMessageFor(model => model.ContactPersonEmail)
                                 </div>
                                 <div class="input-field col s6">
-                                    <input name="ContactPersonPhone" id="ContactPersonPhone" type="tel" class="validate">
-                                    <label for="ContactPersonPhone">Primary Contact Phone </label>
+                                    @Html.LabelFor(model=>model.ContactPersonPhone)
+                                    @Html.TextBoxFor(model => model.ContactPersonPhone, new { @id = "ContactPersonPhone" })
+                                    @Html.ValidationMessageFor(model => model.ContactPersonPhone)
                                 </div>
                             </div>
                         </div>
@@ -67,11 +85,8 @@
                             <div class="col s6">
                                 <div class="file-field input-field">
                                     <div class="btn teal lighten-1">
-                                        <span>Company Banner</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
+                                        <input type='file' id="imge"/>
+                                        <img id="CompanyLogo" src="#" alt="Company Banner" />
                                     </div>
                                 </div>
                             </div>
@@ -79,13 +94,36 @@
                         <div class="row">
                             <div class="col s4 offset-m7 offset-m1">
                                 <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
-                                @Html.ActionLink("Cancel", "Index", "Company", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                                @Html.ActionLink("Cancel", "Index", "Company", null, new {@class = "btn btn-default red col s4 offset-m1"})
                             </div>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </main>
 
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#CompanyLogo').attr('src', e.target.result);
+                },
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        var theImg = document.getElementById('CompanyLogo');
+        theImg.height = 150;
+        theImg.width = 150;
+        $("#imge").change(function(){
+            readURL(this);
+        });
+     </script>
+}

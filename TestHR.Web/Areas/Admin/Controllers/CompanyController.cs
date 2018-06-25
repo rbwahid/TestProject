@@ -14,7 +14,7 @@ namespace TestHR.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var companies = new Models.CompanyModel().GetAllCompanies().Where(x => x.IsDelete == false);
+            var companies = new Models.CompanyModel().GetAllCompanies().ToList();
             return View(companies);
         }
 
@@ -27,23 +27,24 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(CompanyModel companyModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                companyModel.AddCompany();
-                TempData["message"] = "Successfully added Company.";
-                TempData["alertType"] = "success";
-            }
+                //try
+                //{
+                    companyModel.AddCompany();
+                    TempData["message"] = "Successfully added Company.";
+                    TempData["alertType"] = "success";
+                //}
 
-            catch(Exception e) 
-            {
-                TempData["message"] = "Failed to Add Company.";
-                TempData["alertType"] = "danger";
-                Console.Write(e.Message);
+                //catch (Exception e)
+                //{
+                //    TempData["message"] = "Failed to Add Company.";
+                //    TempData["alertType"] = "danger";
+                //    Console.Write(e.Message);
+                //}
             }
-
-            return View(companyModel);
+            return RedirectToAction("Index");
         }
-
         public ActionResult Edit(Guid id)
         {
             CompanyModel company = new CompanyModel(id);
@@ -56,7 +57,10 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(CompanyModel model)
         {
-            model.EditCompany(model.Id);
+            if (ModelState.IsValid)
+            {
+                model.EditCompany(model.Id);
+            }
             return RedirectToAction("Index");
         }
         public ActionResult CompanyFileImport()

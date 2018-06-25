@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TestHR.Entities.Company>
+﻿@using TestHR.Entities
+@model IEnumerable<TestHR.Entities.Company>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -14,7 +15,8 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Companies</span>
-                    <a href="@Url.Action("CompanyFileImport", "Company", new { })" class="btn-default"><i>Emport Excel</i></a>
+                    <a href="@Url.Action("Add", "Company", new { })" class="btn btn-default btn-group-sm">Add</a>
+                    <a href="@Url.Action("CompanyFileImport", "Company", new { })" class="btn btn-default btn-group-sm"><i>Import Excel</i></a>
                     <table id="companyList" class="display responsive-table datatable-example">
                         <thead>
                             <tr>
@@ -31,12 +33,12 @@
                             @foreach (var company in Model)
                             {
                                 <tr>
-                                    <td>@company.Name</td>
-                                    <td>@company.Email</td>
-                                    <td>@company.Phone</td>
-                                    <td>@company.ContactPerson</td>
-                                    <td>@company.ContactPersonEmail</td>
-                                    <td>@company.ContactPersonPhone</td>
+                                    <td>@Html.DisplayFor(m=>company.Name)</td>
+                                    <td>@Html.DisplayFor(m=>company.Email)</td>
+                                    <td>@Html.DisplayFor(m=>company.Phone)</td>
+                                    <td>@Html.DisplayFor(m=>company.ContactPerson)</td>
+                                    <td>@Html.DisplayFor(m=>company.ContactPersonEmail)</td>
+                                    <td>@Html.DisplayFor(m=>company.ContactPersonPhone)</td>
                                     <td>
                                         <a href="@Url.Action("Edit","Company",new{id=company.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                         <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@company.Id"><i class="material-icons">delete</i></a>
