@@ -13,34 +13,44 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Department Settings</span><br>
-                    <form method="post" action="/Admin/Department/Edit">
-                        <div class="row">
+                        @using (Html.BeginForm("Edit", "Department", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary(true)
                             <div class="row">
-                                @Html.HiddenFor(mode => mode.Id)
-                                <div class="input-field col s6">
-                                    <label for="DepartmentName">Department Name</label>
-                                    @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control" })
-                                </div>
-                                <div class="input-field col s6">
-                                    @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Company, "Id", "Name"), "", new { @class = "" })
-                                    <label>Company</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    @Html.DropDownListFor(m => m.DepartmentHeadId, new SelectList(Enumerable.Empty<SelectListItem>()), "--Select--", new { @class = "" })
-                                    <label>Department Head</label>
-                                </div>
+                                <div class="row">
+                                    @Html.HiddenFor(mode => mode.Id)
+                                    <div class="input-field col s6">
+                                        @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control" })
+                                        @Html.LabelFor(model => model.DepartmentName)
+                                        @Html.ValidationMessageFor(model => model.DepartmentName)
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.DropDownListFor(model => model.CompanyId, new SelectList(Model.Company, "Id", "Name"), "", new { @class = "" })
+                                        @Html.LabelFor(model => model.CompanyId)
+                                        @Html.ValidationMessageFor(model => model.CompanyId)
+                                    </div>
+                                    <div class="input-field col s6">
+                                        @Html.DropDownListFor(model => model.DepartmentHeadId, new SelectList(Enumerable.Empty<SelectListItem>()), "--Select--", new { @class = "" })
+                                        @Html.LabelFor(model => model.DepartmentHeadId)
+                                        @Html.ValidationMessageFor(model => model.DepartmentHeadId)
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s4 offset-m7 offset-m1">
-                                <input type="submit" class="btn btn-default green col s4 offset-m1" value="Edit" />
-                                @Html.ActionLink("Cancel", "Index", "Department", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                            <div class="row">
+                                <div class="col s4 offset-m7 offset-m1">
+                                    <input type="submit" class="btn btn-default green col s4 offset-m1" value="Edit" />
+                                    @Html.ActionLink("Cancel", "Index", "Department", null, new { @class = "btn btn-default red col s4 offset-m1" })
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        }
                 </div>
             </div>
         </div>
     </div>
 </main>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

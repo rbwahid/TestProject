@@ -26,9 +26,13 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(DepartmentModel departmentModel)
         {
-            departmentModel.AddDepartment();
-            TempData["message"] = "Successfully added Branch.";
-            TempData["alertType"] = "success";
+            if (ModelState.IsValid)
+            {
+                departmentModel.AddDepartment();
+                TempData["message"] = "Successfully added Department.";
+                TempData["alertType"] = "success";
+                return RedirectToAction("Index");
+            }
             return View(departmentModel);
         }
         public ActionResult Edit(Guid id)
@@ -43,8 +47,12 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(DepartmentModel model)
         {
-            model.EditDepartment(model.Id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.EditDepartment(model.Id);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
         public ActionResult DepartmentFileImport()

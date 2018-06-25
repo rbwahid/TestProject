@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using OfficeOpenXml;
@@ -13,12 +15,20 @@ namespace TestHR.Web.Areas.Admin.Models
         private CompanyManagementService _companyManagementService { get; set; }
         private DepartmentManagementService _departmentManagementService { get; set; }
         private EmployeeManagementService _employeeManagementService { get; set; }
+        
         public Guid Id { get; set; }
-        public string DepartmentName { get; set; }
-        public Guid DepartmentHeadId { get; set; }
-        public List<Company> Company { get; set; }  
-        public List<Employee> Employees { get; set; }
+        [Required(ErrorMessage = "Field Required")]
+        [DisplayName("Company")]
         public Guid CompanyId { get; set; }
+        public List<Company> Company { get; set; }
+        [Required]
+        [DisplayName("Department Name")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
+        public string DepartmentName { get; set; }
+         [Required(ErrorMessage = "Field Required")]
+        public Guid DepartmentHeadId { get; set; }
+        public List<Employee> Employees { get; set; }
+        
         public DepartmentModel()
         {
             

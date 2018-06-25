@@ -13,46 +13,43 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Department Settings</span><br>
-                    <form method="post" action="/Admin/Department/Add">
+                    @using (Html.BeginForm("Add", "Department", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true)
                         <div class="row">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input name="DepartmentName" id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Department Name</label>
+                                    @Html.TextBoxFor(model => model.DepartmentName)  
+                                    @Html.LabelFor(model=>model.DepartmentName)
+                                    @Html.ValidationMessageFor(model => model.DepartmentName)
                                 </div>
                                 <div class="input-field col s6">
-                                    @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Company, "Id", "Name"), "--Select--", new { @class = "" })
-                                    <label>Company</label>
+                                    @Html.DropDownListFor(model => model.CompanyId, new SelectList(Model.Company, "Id", "Name"), "--Select--")
+                                    @Html.LabelFor(model => model.CompanyId)
+                                    @Html.ValidationMessageFor(model => model.CompanyId)
                                 </div>
                                 <div class="input-field col s6">
-                                    @Html.DropDownListFor(m => m.DepartmentHeadId, new SelectList(Enumerable.Empty<SelectListItem>()), "--Select--", new { @class = "" })
-                                    <label>Department Head</label>
+                                    @Html.DropDownListFor(model => model.DepartmentHeadId, new SelectList(Enumerable.Empty<SelectListItem>()), "--Select--", new { @class = "" })
+                                    @Html.LabelFor(model => model.DepartmentHeadId)
+                                    @Html.ValidationMessageFor(model => model.DepartmentHeadId)
                                 </div>
-
                             </div>
                         </div>
-                        @*<div class="row">
-                <div class="col s6">
-                    <div class="file-field input-field">
-                        <div class="btn teal lighten-1">
-                            <span>Company Banner</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                    </div>
-                </div>
-            </div>*@
                         <div class="row">
                             <div class="col s4 offset-m7 offset-m1">
                                 <input type="submit" class="btn btn-default green col s4 offset-m1" value="Save" />
                                 @Html.ActionLink("Cancel", "Index", "Department", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </main>
+@section scripts{
+    @*<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    @Scripts.Render("~/bundles/jqueryval")
+    
+}
