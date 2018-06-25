@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,43 +20,57 @@ namespace TestHR.Web.Areas.Admin.Models
         private PositionManagementService _positionManagementService { get; set; }
         private RoleManagementService _roleManagementService { get; set; }
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
+        [DisplayName("First name")]
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public string FathersName { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public string MothersName { get; set; }
         public string SouseName { get; set; }
+        [Required]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
         public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public string PresentAddress { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public string PernamentAddress { get; set; }
+        [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
         public string Email { get; set; }
         public string Religion { get; set; }
         public string Nationality { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public string Nid { get; set; }
         public string PassportNo { get; set; }
 
         public int? FPId { get; set; }
         public int? CardNo { get; set; }
-        public List<Company> Companies { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public Guid? CompanyId { get; set; }
-
-        public List<Branch> Branches { get; set; }
+        public List<Company> Companies { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public Guid? BranchId { get; set; }
-        public List<Department> Departments { get; set; }
+        public List<Branch> Branches { get; set; }
+        [Required(ErrorMessage = "Field Required ")]
         public Guid? DepartmentId { get; set; }
-        public List<Position> Positions { get; set; }
+        public List<Department> Departments { get; set; }
         public Guid? PositionId { get; set; }
+        public List<Position> Positions { get; set; }
+       
 
         public List<Employee> Employees { get; set; } 
         public Guid? ReportingToId { get; set; }
-        [Required(ErrorMessage = "Userame field is required")]
-
+        [Required]
         [Display(Name = "Username")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Password field is required")]
-        [Display(Name = "Password")]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Confirm password field is required")]
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [System.ComponentModel.DataAnnotations.Compare("Password",
