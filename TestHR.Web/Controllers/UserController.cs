@@ -70,9 +70,14 @@ namespace TestHR.Web.Controllers
                         {
                             return Redirect(returnUrl);
                         }
-                        else
+                            // new code //
+                        else if (user.Role.RoleName == "Global_SupAdmin")
                         {
                             return RedirectToAction("Index", "Dashboard");
+                        }
+                        else if (user.Role.RoleName == "Employee")
+                        {
+                            return RedirectToAction("Employee", "Dashboard");
                         }
                     }
                 }

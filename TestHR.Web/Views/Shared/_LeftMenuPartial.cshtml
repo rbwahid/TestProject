@@ -1,43 +1,45 @@
 ﻿<ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-    <li class="no-padding"><a class="waves-effect waves-grey" href="index.html"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+    @if (User.IsInRole("Global_SupAdmin"))
+    {
+        <li class="no-padding"><a class="waves-effect waves-grey" href="@Url.Action("Index","Dashboard")"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
     <li class="no-padding">
         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Admin Center<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
         <div class="collapsible-body">
             <ul>
                 @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Company_Configuration"))
                 {
-                     <li><a href="/Admin/Company/Index">Company</a></li>
+                    <li><a href="/Admin/Company/Index">Company</a></li>
                 }
-               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Branch_Configuration"))
-               {
-                   <li><a href="/Admin/Branch/Index">Branch</a></li>
-               }
-               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Department_Configuration"))
-               {
-                   <li><a href="/Admin/Department/Index">Department</a></li>
-               }
-               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Position_Configuration"))
-               {
-                   <li><a href="/Admin/Position/Index">Position</a></li>
-               }
-               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Shift_Configuration"))
-               {
-                   <li><a href="/Admin/Shift/Index">Shift</a></li>
-               }
-               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Holiday_Configuration"))
-               {
-                   <li><a href="/Admin/Holiday/Index">Holiday</a></li>
-               }
-               @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("LeaveType_Configuration"))
-               {
-                   <li><a href="/Admin/LeaveType/Index">Leave Type</a></li>
-               }
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Branch_Configuration"))
+                {
+                    <li><a href="/Admin/Branch/Index">Branch</a></li>
+                }
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Department_Configuration"))
+                {
+                    <li><a href="/Admin/Department/Index">Department</a></li>
+                }
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Position_Configuration"))
+                {
+                    <li><a href="/Admin/Position/Index">Position</a></li>
+                }
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Shift_Configuration"))
+                {
+                    <li><a href="/Admin/Shift/Index">Shift</a></li>
+                }
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Holiday_Configuration"))
+                {
+                    <li><a href="/Admin/Holiday/Index">Holiday</a></li>
+                }
+                @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("LeaveType_Configuration"))
+                {
+                    <li><a href="/Admin/LeaveType/Index">Leave Type</a></li>
+                }
             </ul>
         </div>
     </li>
     <li class="no-padding">
         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Attendance<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
-      
+
         <div class="collapsible-body">
             <ul>
                 <li><a href="/Admin/AttendanceLog/Index">Attendance Log</a></li>
@@ -50,11 +52,11 @@
         <div class="collapsible-body">
             <ul>
                 <li><a href="/Admin/LeaveApplication/Index">Leave Applications</a>
-                 <li><a href="/Admin/LeaveApplication/Add">New Leave</a>
+                <li><a href="/Admin/LeaveApplication/Add">New Leave</a>
                 <li><a href="/Admin/LeaveApplication/LeaveReport">Reports</a>
             </ul>
         </div>
-    </li>        
+    </li>
     <li class="no-padding">
         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">grid_on</i>Employee<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
         <div class="collapsible-body">
@@ -62,20 +64,40 @@
                 <li><a href="/Admin/Employee/Index">Employee List</a></li>
                 <li><a href="/Admin/Employee/Add">Create New</a></li>
                 @if (User.IsInRole("Global_SupAdmin") || User.IsInRole("Role_Configuration"))
-                { 
+                {
                     <li><a href="/User/Roles">Roles</a></li>
                 }
             </ul>
         </div>
     </li>
     <li class="no-padding"><a class="waves-effect waves-grey" href="charts.html"><i class="material-icons">trending_up</i>Charts</a></li>
-    <li class="no-padding">
-        <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">my_location</i>Maps<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
-        <div class="collapsible-body">
-            <ul>
-                <li><a href="maps-google.html">Google Maps</a></li>
-                <li><a href="maps-vector.html">Vector Maps</a></li>
-            </ul>
-        </div>
-    </li>
+        <li class="no-padding">
+            <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">my_location</i>Maps<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="maps-google.html">Google Maps</a></li>
+                    <li><a href="maps-vector.html">Vector Maps</a></li>
+                </ul>
+            </div>
+        </li>
+        
+    }
+    
+    @*// new code //*@
+    @if (User.IsInRole("Employee_Edit"))
+    {
+        <li class="no-padding"><a class="waves-effect waves-grey" href="/Dashboard/Employee"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+        <li class="no-padding">
+            <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Employee Center<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="/Admin/Employee/Profile">Profile</a></li>
+
+                </ul>
+            </div>
+        </li>
+        <li class="no-padding"><a class="waves-effect waves-grey" href="/Admin/Attendance/Index"><i class="material-icons">star_border</i>Attendance</a></li>
+        <li class="no-padding"><a class="waves-effect waves-grey" href="/Admin/LeaveApplication/Index"><i class="material-icons">trending_up</i>Leave</a></li>
+    }
+
 </ul>

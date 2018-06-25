@@ -6,10 +6,10 @@
 
 <main class="mn-inner">
     <div class="row">
-        <div class="col s12">
+        @*<div class="col s12">
             <div class="page-title">Create New Employee</div>
-        </div>
-        <div class="col s1 m4 l3">
+        </div>*@
+        @*<div class="col s1 m4 l3">
             <div class="card">
                 <div class="card-content center-align">
                     <img src="~/Content/Images/blank-profile-picture-973460_960_720.png" class="responsive-img circle" width="128px" alt="">
@@ -28,12 +28,18 @@
                     <div class="chip m-t-sm">Friends</div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <form method="post" action="/Admin/Employee/Add">
-            <div class="col m8 l9">
+            @*<div class="col m8 l9">*@
+            <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Employee Information</span><br>
+                        <div class="row">
+                            <span class="card-title col s4">Add Employee</span>
+                            <span class="col s2 offset-m6 pull-right">
+                                <a href="@Url.Action("Index", "Employee", new { })" class="btn btn-default btn-group-sm">Employee List</a>
+                            </span>
+                        </div>
                         <div class="row">
                             <div class="col m12">
                                 <ul class="tabs z-depth-1" style="width: 100%;">
@@ -117,9 +123,9 @@
                                             <input id="Email" name="Email" type="email" class="required validate">
 
                                         </div>
-                                          <div class="input-field col m6 s12">
+                                        <div class="input-field col m6 s12">
                                             <label for="FpId">Finger Print Id</label>
-                                              <input id="FpId" name="FpId" type="text" class="required validate">
+                                            <input id="FpId" name="FpId" type="text" class="required validate">
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="CardNo">Card No</label>
@@ -150,7 +156,7 @@
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.Positions, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Position</label>
-                                        </div> 
+                                        </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.ReportingToId, new SelectList(Model.Employees, "Id", "FirstName"), "--Select--", new { @class = "" })
                                             <label>Reporting To</label>
@@ -235,11 +241,11 @@
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="Password">Password</label>
-                                         @Html.PasswordFor(model => model.Password, new { @class = "validate",})
+                                            @Html.PasswordFor(model => model.Password, new { @class = "validate", })
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="ConfirmPassword">Confirm Password</label>
-                                           @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "validate" })
+                                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "validate" })
 
                                         </div>
 
@@ -253,7 +259,7 @@
                                 @Html.ActionLink("Cancel", "Index", "Employee", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </form>
@@ -280,9 +286,9 @@
         function AddNewEduRow() {
             var rowNumber = $("#eduTBody").find("tr").length;
             console.log(rowNumber);
-            $("#eduTBody").append('<tr><td><input id="EducationHistories_'+rowNumber+'__Degree" name="EducationHistories['+rowNumber+'].Degree" type="text" value=""></td>'+
-                                        '<td><input id="EducationHistories_'+rowNumber+'__InstituteName" name="EducationHistories['+rowNumber+'].InstituteName" type="text" value=""></td>'+
-                                        '<td><input id="EducationHistories_'+rowNumber+'__Subject" name="EducationHistories['+rowNumber+'].Subject" type="text" value=""></td>'+
+            $("#eduTBody").append('<tr><td><input id="EducationHistories_' + rowNumber + '__Degree" name="EducationHistories[' + rowNumber + '].Degree" type="text" value=""></td>' +
+                                        '<td><input id="EducationHistories_' + rowNumber + '__InstituteName" name="EducationHistories[' + rowNumber + '].InstituteName" type="text" value=""></td>' +
+                                        '<td><input id="EducationHistories_' + rowNumber + '__Subject" name="EducationHistories[' + rowNumber + '].Subject" type="text" value=""></td>' +
                                         '<td><input data-val="true" data-val-date="The field PassingYear must be a date." data-val-required="The PassingYear field is required." id="EducationHistories_' + rowNumber + '__PassingYear" name="EducationHistories[' + rowNumber + '].PassingYear" type="text" value=""></td>' +
                                         '<td><input id="EducationHistories_' + rowNumber + '__Result" name="EducationHistories[' + rowNumber + '].Result" type="text" value=""><input type="button" value="X" onclick="RemoveRow(this)" /></td></tr>');
         }
@@ -291,4 +297,4 @@
             $(obj).closest("tr").remove();
         }
     </script>
-    }
+}

@@ -15,5 +15,10 @@ namespace TestHR.Web.Controllers
             return View();
              
         }
+
+        public ActionResult Employee()
+        {
+            return View();
+        }
     }
 }

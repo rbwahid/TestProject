@@ -1406,6 +1406,9 @@
     <Content Include="Areas\Admin\Views\AttendanceLog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogFileImport.cshtml" />
     <Content Include="Areas\Admin\Views\Attendance\AttendanceLogViewTable.cshtml" />
+    <Content Include="Views\Dashboard\Employee.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Profile.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Excel.cshtml" />
     <None Include="Views\Shared\403_Unauthorized.cshtml" />
     <Content Include="Views\User\AddRole.cshtml" />
     <Content Include="Views\User\RoleList.cshtml" />

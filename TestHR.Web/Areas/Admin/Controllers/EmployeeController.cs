@@ -71,5 +71,15 @@ namespace TestHR.Web.Areas.Admin.Controllers
             model.EditEmployee();            
 			return RedirectToAction("Index");
         }
+        // new code //
+        public ActionResult Profile()
+        {
+            return View();
+        }
+        //=== Employee Excel File Import ===//
+        public ActionResult Excel()
+        {
+            return View();
+        }
     }
 }

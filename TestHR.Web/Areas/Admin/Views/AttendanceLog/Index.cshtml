@@ -7,19 +7,19 @@
     <link href="~/Plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <main class="mn-inner">
         <div class="row">
-            <div class="col s12">
+            @*<div class="col s12">
                 <div class="page-title">Attendance Logs</div>
-            </div>
+            </div>*@
              
             <div class="col s12 m12 l12">
                 
                 <div class="card">
                     <div class="card-content">
-                       
-                        <div>
-                            <span class="card-title">Attendace Logs</span>
-                         <br/>
-                            <div class="col offset-m10"><a class="btn btn-default" href="@Url.Action("Pool","AttendanceLog")">Pool</a></div>
+                        <div class="row">
+                            <span class="card-title col s4">Attendance Log Information</span>
+                            <span class="col s2 offset-m6 pull-right">
+                                <a href="@Url.Action("Pool", "AttendanceLog", new { })" class="btn btn-default btn-group-sm">Pool</a>
+                            </span>
                         </div>
                         <table id="attendanceLogList" class="display responsive-table datatable-example">
                             <thead>
