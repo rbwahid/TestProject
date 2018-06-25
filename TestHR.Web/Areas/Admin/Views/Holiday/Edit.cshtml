@@ -11,27 +11,32 @@
         </div>
         <div class="col s12">
             <div class="card">
-                <div class="card-content">
-                    <form id="example-form" method="post" action="/Admin/Holiday/Edit">
+                @using (Html.BeginForm("Edit", "Holiday", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="card-content">
                         <span class="card-title">Holiday Settings</span><br>
                         <div class="row">
                             <div class="row">
-                                @Html.HiddenFor(model=>model.Id)
+                                @Html.HiddenFor(model => model.Id)
                                 <div class="input-field col s6">
-                                    <label for="Name">Employee Name</label>
-                                    @Html.TextBoxFor(model=>model.Name,new {@class="form-control"})
+                                    @Html.LabelFor(model => model.Name)
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Name)
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="Description">Description</label>
-                                    @Html.TextBoxFor(model=>model.Description,new {@class="form-control"})
+                                    @Html.LabelFor(model => model.Description)
+                                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="DateFrom">DateFrom</label>
-                                    @Html.TextBoxFor(model=>model.DateFrom,new {@class="form-control"})
+                                    @Html.LabelFor(model => model.DateFrom)
+                                    @Html.TextBoxFor(model => model.DateFrom,string.Format("{0:dd-MMM-yyyy}",Model.DateFrom), new { @class = "validate datepicker" })
+                                     @Html.ValidationMessageFor(model => model.DateFrom)
                                 </div>
                                 <div class="input-field col s6">
-                                    <label for="DateTo">DateTo</label>
-                                    @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control" })
+                                    @Html.LabelFor(model => model.DateTo)
+                                    @Html.TextBoxFor(model => model.DateTo,string.Format("{0:dd-MMM-yyyy}",Model.DateFrom), new { @class = "validate datepicker" })
+                                    @Html.ValidationMessageFor(model => model.DateTo)
                                 </div>
                             </div>
                         </div>
@@ -41,8 +46,8 @@
                                 @Html.ActionLink("Cancel", "Index", "Holiday", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -50,6 +55,7 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         $(document).ready(function () {
             $('.datepicker').pickadate({

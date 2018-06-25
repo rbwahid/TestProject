@@ -14,6 +14,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Holiday</span>
+                        <a href="@Url.Action("Add", "Holiday", new { })" class="btn btn-default btn-group-sm">Add</a>
                         <table id="holidayList" class="display responsive-table datatable-example">
                             <thead>
                                 <tr>
@@ -33,7 +34,7 @@
                                         <td>@holiday.DateFrom</td>
                                         <td>@holiday.DateTo</td>
                                         <td>
-                                            <a class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a href="@Url.Action("Edit","Holiday",new{id=holiday.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
                                             <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@holiday.Id"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
