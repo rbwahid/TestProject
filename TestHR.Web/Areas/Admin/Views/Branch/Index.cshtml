@@ -16,7 +16,8 @@
                         <div class="row">
                             <span class="card-title col s2">Branch List</span>
                             <span class="col s2 offset-m8 pull-right">
-                                <a href="@Url.Action("BranchExcelFileImport", "Branch", new { })" class="btn btn-default btn-group-sm">Add Branch</a>
+                                <a href="@Url.Action("Add", "Branch", new { })" class="btn btn-default btn-group-sm">Add</a>
+                                <a href="@Url.Action("BranchExcelFileImport", "Branch", new { })" class="btn btn-default btn-group-sm"><i>Import Excel</i></a>
                             </span>
                         </div>
                         <table id="branchList" class="display responsive-table datatable-example">
