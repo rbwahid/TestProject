@@ -17,7 +17,8 @@
                         <div class="row">
                             <span class="card-title col s2">Position List</span>
                             <span class="col s2 offset-m8 pull-right">
-                                <a href="@Url.Action("PositionExcelFileImport", "Position", new { })" class="btn btn-default btn-group-sm">Add Position</a>
+                                <a href="@Url.Action("Add", "Position", new { })" class="btn btn-default btn-group-sm">Add</a>
+                                <a href="@Url.Action("PositionExcelFileImport", "Position", new { })" class="btn btn-default btn-group-sm">Excel Import</a>
                             </span>
                         </div>
                         <table id="positionList" class="display responsive-table datatable-example">

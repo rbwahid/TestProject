@@ -18,19 +18,23 @@
                             @Html.HiddenFor(model=>model.Id)
                             <div class="input-field col s6">
                                 <label for="Name">Position Name</label>
-                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.Name)
+                                @Html.ValidationMessageFor(model => model.Name)
                             </div>
                             <div class="input-field col s6">
                                 @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "Choose Company", new { @class = "" })
                                 <label>Company</label>
+                                @Html.ValidationMessageFor(model => model.CompanyId)
                             </div>
                             <div class="input-field col s6">
                                 @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "", new { @class = "" })
                                 <label>Department</label>
+                                @Html.ValidationMessageFor(model => model.DepartmentId)
                             </div>
                             <div class="input-field col s6">
-                                @Html.DropDownListFor(m => m.ReportingPositionId, new SelectList(Model.ReportingPositions, "Id", "Name"), "Choose Reporting Position", new { @class = "" })
+                                @Html.DropDownListFor(m => m.ReportingPositionId, new SelectList(Model.ReportingPositions, "Id", "Name"), "", new { @class = "" })
                                 <label>Reporting Position</label>
+                                @Html.ValidationMessageFor(model => model.ReportingPositionId)
                             </div>
 
                             <div class="col s4 offset-m7 offset-m1">
@@ -44,3 +48,7 @@
         </div>
     </div>
 </main>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

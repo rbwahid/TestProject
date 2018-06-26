@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using OfficeOpenXml;
@@ -14,14 +15,19 @@ namespace TestHR.Web.Areas.Admin.Models
         private PositionManagementService _positionManagementService { get; set; }
         private DepartmentManagementService _departmentManagementService { get; set; }
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string Name { get; set; }
         public List<Company> Companies { get; set; }
+        [Required(ErrorMessage = "Field Required")]
         public Guid CompanyId { get; set; }
         public string CompanyName { get; set; }
         public List<Department> Departments { get; set; }
         public string DepartmentName { get; set; }
+        [Required(ErrorMessage = "Field Required")]
         public Guid DepartmentId { get; set; }
-        public List<Position> ReportingPositions { get; set; } 
+        public List<Position> ReportingPositions { get; set; }
+        [Required(ErrorMessage = "Field Required")]
         public Guid ReportingPositionId { get; set; }
         public string ReportingPositionName { get; set; }
 
