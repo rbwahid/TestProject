@@ -24,18 +24,23 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(HolidayModel holidayModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-            holidayModel.AddHoliday();
-            TempData["message"] = "Successfully added Branch.";
-            TempData["alertType"] = "success";
+                try
+                {
+                    holidayModel.AddHoliday();
+                    TempData["message"] = "Successfully added Branch.";
+                    TempData["alertType"] = "success";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    TempData["message"] = "Failed to Add Branch.";
+                    TempData["alertType"] = "danger";
+                    Console.Write(e.Message);
+                }
             }
-            catch (Exception e)
-            {
-                TempData["message"] = "Failed to Add Branch.";
-                TempData["alertType"] = "danger";
-                Console.Write(e.Message);
-            }
+          
             return View(holidayModel);
         }
 
@@ -51,8 +56,12 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(HolidayModel model)
         {
-            model.EditHoliday(model.Id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.EditHoliday(model.Id);
+                return RedirectToAction("Index");
+            }
+            return View(model); 
         }
         public ActionResult Delete(Guid? id)
         {

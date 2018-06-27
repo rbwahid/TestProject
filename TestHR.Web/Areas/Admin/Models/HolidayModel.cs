@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using TestHR.AdminCenter;
@@ -13,9 +14,17 @@ namespace TestHR.Web.Areas.Admin.Models
         private CompanyManagementService _companyManagementService { get; set; }
         private BranchManagementService _branchManagementService { get; set; }
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string Name { get; set; }
         public string Description { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateFrom { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateTo { get; set; }
         public HolidayModel()
         {
