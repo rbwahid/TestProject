@@ -28,15 +28,18 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(EmployeeModel employeeModel)
         {
+            if (ModelState.IsValid)
+            {
+                MD5 md5Hash = MD5.Create();
+                string hashPassword = UserController.GetMd5Hash(md5Hash, employeeModel.Password);
+                employeeModel.Password = hashPassword;
+                employeeModel.AddEmployee();
+                TempData["message"] = "Successfully added Branch.";
+                TempData["alertType"] = "success";
+                return RedirectToAction("/Admin/Employee/Index");
+            }
+            return View(employeeModel);
 
-            MD5 md5Hash = MD5.Create();
-            string hashPassword = UserController.GetMd5Hash(md5Hash, employeeModel.Password);
-            employeeModel.Password = hashPassword;
-            employeeModel.AddEmployee();
-            TempData["message"] = "Successfully added Branch.";
-            TempData["alertType"] = "success";
-             return Redirect("/Admin/Employee/Index");
-          
         }
 
         public ActionResult Edit(Guid id)

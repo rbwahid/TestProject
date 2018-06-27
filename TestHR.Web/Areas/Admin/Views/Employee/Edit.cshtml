@@ -30,8 +30,10 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="/Admin/Employee/Edit">
-            <div class="col m8 l9">
+            @using (Html.BeginForm("Edit", "Employee", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <div class="col m8 l9">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Employee Information</span><br>
@@ -54,6 +56,7 @@
                                         <div class="input-field col m6 s12">
                                             <label for="FirstName">First Name</label>
                                             @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model=>model.FirstName)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="MiddleName">Middle name</label>
@@ -66,10 +69,12 @@
                                         <div class="input-field col m6 s12">
                                             <label for="FathersName">Fathers Name</label>
                                             @Html.TextBoxFor(model => model.FathersName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.FathersName)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="MothersName">Mothers Name</label>
                                             @Html.TextBoxFor(model => model.MothersName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.MothersName)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="SouseName">Souse Name</label>
@@ -87,6 +92,7 @@
                                         <div class="input-field col m6 s12">
                                             <label for="Nid">Nid</label>
                                             @Html.TextBoxFor(model => model.Nid, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Nid)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="PassportNo">PassportNo</label>
@@ -101,22 +107,25 @@
                                 <div class="col m12">
                                     <div class="row">
 
-                                        <div class="input-field col m6 s12">
+                                                    <div class="input-field col m6 s12">
                                             <label for="PhoneNumber">Phone Number</label>
                                             @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="PresentAddress">Present Address</label>
                                             @Html.TextBoxFor(model => model.PresentAddress, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PresentAddress)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="PernamentAddress">Pernament Address</label>
                                             @Html.TextBoxFor(model => model.PernamentAddress, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PernamentAddress)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="Email">Email</label>
                                             @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-
+                                            @Html.ValidationMessageFor(model => model.Email)
                                         </div>
 
                                     </div>
@@ -130,14 +139,17 @@
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Company</label>
+                                            @Html.ValidationMessageFor(model => model.CompanyId)
                                         </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.BranchId, new SelectList(Model.Branches, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Branch</label>
+                                            @Html.ValidationMessageFor(model => model.BranchId)
                                         </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Department</label>
+                                            @Html.ValidationMessageFor(model => model.DepartmentId)
                                         </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.Positions, "Id", "Name"), "--Select--", new { @class = "" })
@@ -237,7 +249,9 @@
                     </div>
                 </div>
             </div>
-        </form>
+            }
+            
+      
     </div>
 </main>
 @section scripts

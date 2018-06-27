@@ -29,8 +29,10 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="/Admin/Employee/Add">
-            <div class="col m8 l9">
+            @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <div class="col m8 l9">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Employee Information</span><br>
@@ -52,7 +54,8 @@
                                     <div class="row">
                                         <div class="input-field col m6 s12">
                                             <label for="FirstName">First Name</label>
-                                            <input id="FirstName" name="FirstName" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.FirstName)
+                                            @Html.ValidationMessageFor(model => model.FirstName)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="MiddleName">Middle name</label>
@@ -64,11 +67,13 @@
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="FathersName">Fathers Name</label>
-                                            <input id="FathersName" name="FathersName" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.FathersName)
+                                            @Html.ValidationMessageFor(model => model.FathersName)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="MothersName">Mothers Name</label>
-                                            <input id="MothersName" name="MothersName" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.MothersName)
+                                            @Html.ValidationMessageFor(model => model.MothersName)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="SouseName">Souse Name</label>
@@ -85,7 +90,8 @@
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="Nid">Nid</label>
-                                            <input id="Nid" name="Nid" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.Nid)
+                                            @Html.ValidationMessageFor(model => model.Nid)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="PassportNo">PassportNo</label>
@@ -102,24 +108,28 @@
 
                                         <div class="input-field col m6 s12">
                                             <label for="PhoneNumber">Phone Number</label>
-                                            <input id="PhoneNumber" name="PhoneNumber" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.PhoneNumber)
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="PresentAddress">Present Address</label>
-                                            <input id="PresentAddress" name="PresentAddress" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.PresentAddress)
+                                            @Html.ValidationMessageFor(model => model.PresentAddress)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="PernamentAddress">Pernament Address</label>
-                                            <input id="PernamentAddress" name="PernamentAddress" type="text" class="required validate">
+                                            @*<input id="PernamentAddress" name="PernamentAddress" type="text" class="required validate">*@
+                                            @Html.TextBoxFor(model => model.PernamentAddress)
+                                            @Html.ValidationMessageFor(model => model.PernamentAddress)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="Email">Email</label>
-                                            <input id="Email" name="Email" type="email" class="required validate">
-
+                                            @Html.TextBoxFor(model => model.Email)
+                                            @Html.ValidationMessageFor(model => model.Email)
                                         </div>
-                                          <div class="input-field col m6 s12">
+                                            <div class="input-field col m6 s12">
                                             <label for="FpId">Finger Print Id</label>
-                                              <input id="FpId" name="FpId" type="text" class="required validate">
+                                            <input id="FpId" name="FpId" type="text" class="required validate">
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="CardNo">Card No</label>
@@ -138,14 +148,17 @@
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Company</label>
+                                            @Html.ValidationMessageFor(model => model.CompanyId)
                                         </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.BranchId, new SelectList(Model.Branches, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Branch</label>
+                                            @Html.ValidationMessageFor(model => model.CompanyId)
                                         </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "--Select--", new { @class = "" })
                                             <label>Department</label>
+                                            @Html.ValidationMessageFor(model => model.CompanyId)
                                         </div>
                                         <div class="input-field col s6">
                                             @Html.DropDownListFor(m => m.PositionId, new SelectList(Model.Positions, "Id", "Name"), "--Select--", new { @class = "" })
@@ -231,15 +244,20 @@
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="UserName">Username</label>
-                                            <input id="UserName" name="UserName" type="text" class="required validate">
+                                            @Html.TextBoxFor(model => model.UserName)
+                                            @*<input id="UserName" name="UserName" type="text" class="required validate">*@
+                                            @Html.ValidationMessageFor(model => model.RoleId)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="Password">Password</label>
-                                         @Html.PasswordFor(model => model.Password, new { @class = "validate",})
+                                            @Html.PasswordFor(model => model.Password, new { @class = "validate",})
+                                            @Html.ValidationMessageFor(model => model.RoleId)
                                         </div>
                                         <div class="input-field col m6 s12">
                                             <label for="ConfirmPassword">Confirm Password</label>
-                                           @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "validate" })
+                                            @Html.TextBoxFor(model=>model.ConfirmPassword)
+                                            @*@Html.PasswordFor(model => model.ConfirmPassword, new { @class = "validate" })*@
+                                            @Html.ValidationMessageFor(model => model.RoleId)
 
                                         </div>
 
@@ -256,7 +274,8 @@
                     </div>                    
                 </div>
             </div>
-        </form>
+            }
+        
     </div>
 </main>
 @section scripts

@@ -29,19 +29,9 @@ namespace TestHR.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                    companyModel.AddCompany();
-                    TempData["message"] = "Successfully added Company.";
-                    TempData["alertType"] = "success";
-                //}
-
-                //catch (Exception e)
-                //{
-                //    TempData["message"] = "Failed to Add Company.";
-                //    TempData["alertType"] = "danger";
-                //    Console.Write(e.Message);
-                //}
+                companyModel.AddCompany();
+                TempData["message"] = "Successfully added Company.";
+                TempData["alertType"] = "success";
             }
             return RedirectToAction("Index");
         }
