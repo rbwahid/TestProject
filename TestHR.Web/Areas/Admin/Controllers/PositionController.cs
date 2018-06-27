@@ -39,20 +39,24 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(PositionModel positionModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                positionModel.AddPosition();
-                TempData["message"] = "Successfully added Company.";
-                TempData["alertType"] = "success";
-            }
+                try
+                {
+                    positionModel.AddPosition();
+                    TempData["message"] = "Successfully added Position.";
+                    TempData["alertType"] = "success";
+                    return RedirectToAction("Index");
+                }
 
-            catch (Exception e)
-            {
-                TempData["message"] = "Failed to Add Company.";
-                TempData["alertType"] = "danger";
-                Console.Write(e.Message);
-            }
+                catch (Exception e)
+                {
+                    TempData["message"] = "Failed to Add Company.";
+                    TempData["alertType"] = "danger";
+                    Console.Write(e.Message);
+                }
 
+            }
             return View(positionModel);
         }
 
@@ -69,8 +73,12 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(PositionModel model)
         {
-            model.EditPosition(model.Id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.EditPosition(model.Id);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         
         public ActionResult Delete(Guid? id)

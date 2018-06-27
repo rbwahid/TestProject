@@ -11,26 +11,31 @@
         </div>
         <div class="col s12">
             <div class="card">
-                <div class="card-content">
-                    <form method="post" action="/Admin/Position/Add">
+                @using (Html.BeginForm("Add", "Position", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true)
+                    <div class="card-content">
                         <span class="card-title">Position Settings</span><br>
                         <div class="row">
-
                             <div class="input-field col s6">
-                                <input name="Name" id="icon_prefix" type="text" class="validate">
-                                <label for="icon_prefix">Position Name</label>
+                                @Html.LabelFor(model => model.Name)
+                                @Html.TextBoxFor(model=>model.Name)
+                                @Html.ValidationMessageFor(model => model.Name)
                             </div>
                             <div class="input-field col s6">
                                 @Html.DropDownListFor(m => m.CompanyId, new SelectList(Model.Companies, "Id", "Name"), "Choose Company", new { @class = "" })
                                 <label>Company</label>
+                                @Html.ValidationMessageFor(model => model.CompanyId)
                             </div>
                             <div class="input-field col s6">
-                                       @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "", new { @class = "" })
-                                       <label>Department</label>
-                                </div>
+                                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "", new { @class = "" })
+                                <label>Department</label>
+                                @Html.ValidationMessageFor(model => model.DepartmentId)
+                            </div>
                             <div class="input-field col s6">
                                 @Html.DropDownListFor(m => m.ReportingPositionId, new SelectList(Model.ReportingPositions, "Id", "Name"), "Choose Reporting Position", new { @class = "" })
                                 <label>Reporting Position</label>
+                                @Html.ValidationMessageFor(model => model.ReportingPositionId)
                             </div>
 
                             <div class="col s4 offset-m7 offset-m1">
@@ -38,9 +43,15 @@
                                 @Html.ActionLink("Cancel", "Index", "Position", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </form>
-                </div>
+                    
+                    </div>
+                }
+                
             </div>
         </div>
     </div>
 </main>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
