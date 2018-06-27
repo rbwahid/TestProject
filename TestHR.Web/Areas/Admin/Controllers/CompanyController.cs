@@ -32,8 +32,9 @@ namespace TestHR.Web.Areas.Admin.Controllers
                 companyModel.AddCompany();
                 TempData["message"] = "Successfully added Company.";
                 TempData["alertType"] = "success";
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View(companyModel);
         }
         public ActionResult Edit(Guid id)
         {

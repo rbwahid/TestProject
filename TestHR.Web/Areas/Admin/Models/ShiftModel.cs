@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using OfficeOpenXml.FormulaParsing.Utilities;
 using TestHR.AdminCenter;
 using TestHR.Entities;
 
@@ -14,14 +16,19 @@ namespace TestHR.Web.Areas.Admin.Models
         private CompanyManagementService _companyManagementService { get; set; }
         private BranchManagementService _branchManagementService { get; set; }
         public Guid Id { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string Name { get; set; }
+        [Required]
         public string Code { get; set; }
+        [Required]
         public string Type { get; set; }
         public string Description { get; set; }
         [DisplayName("Default")]
         public bool IsDefault { get; set; }
         [DisplayName("Active")]
         public bool IsActive { get; set; }
+        [Required]
         public string OfficeHourDescription { get; set; }
         public  List<TimeTable> TimeTables { get; set; }
         public int GraceTimeIn { get; set; }

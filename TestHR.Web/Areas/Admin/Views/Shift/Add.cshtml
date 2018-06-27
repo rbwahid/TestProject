@@ -11,8 +11,10 @@
         </div>
         <div class="col s12">
             <div class="card">
-                <div class="card-content">
-                    <form method="post" action="/Admin/Shift/Add">
+                @using (Html.BeginForm("Add", "Shift", FormMethod.Post))
+                {
+                    <div class="card-content">
+                        @Html.ValidationSummary(true)
                         <div class="col m12">
                             <div class="card">
                                 <span class="card-title">Shift Settings</span><br>
@@ -30,16 +32,19 @@
                                         <div class="row">
                                             <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input name="Name" id="Name" type="text" class="validate">
                                                     <label for="Name">Shift Name</label>
+                                                    @Html.TextBoxFor(model=>model.Name)
+                                                    @Html.ValidationMessageFor(model => model.Name)
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input name="Code" id="Code" type="text" class="validate">
                                                     <label for="Code">Code</label>
+                                                    @Html.TextBoxFor(model => model.Code)
+                                                    @Html.ValidationMessageFor(model => model.Code)
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input name="Type" id="Type" type="text" class="validate">
                                                     <label for="Type">Type</label>
+                                                    @Html.TextBoxFor(model => model.Type)
+                                                    @Html.ValidationMessageFor(model => model.Type)
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <input name="Description" id="Description" type="text" class="validate">
@@ -47,8 +52,9 @@
                                                 </div>
 
                                                 <div class="input-field col m12">
-                                                    <input name="OfficeHourDescription" id="OfficeHourDescription" type="text" class="validate">
                                                     <label for="OfficeHourDescription">Office Hour Description</label>
+                                                    @Html.TextBoxFor(model => model.OfficeHourDescription)
+                                                    @Html.ValidationMessageFor(model => model.OfficeHourDescription)
                                                 </div>
                                                 
                                                 <div class="input-field col s6">
@@ -102,7 +108,6 @@
                                                         <label for="TimeTables_1__From" class="active">From</label>
                                                     </div>
                                                 </td>
-
                                                 <td>
                                                     <div class="input-field col s12">
                                                         <input placeholder="" readonly="readonly" id="TimeTables_1__To" name="TimeTables[1].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
@@ -118,7 +123,6 @@
                                                         <label for="TimeTables_2__From" class="active">From</label>
                                                     </div>
                                                 </td>
-
                                                 <td>
                                                     <div class="input-field col s12">
                                                         <input placeholder="" readonly="readonly" id="TimeTables_2__To" name="TimeTables[2].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
@@ -166,7 +170,6 @@
                                                         <label for="TimeTables_5__From" class="active">From</label>
                                                     </div>
                                                 </td>
-
                                                 <td>
                                                     <div class="input-field col s12">
                                                         <input placeholder="" readonly="readonly" id="TimeTables_5__To" name="TimeTables[5].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
@@ -182,7 +185,6 @@
                                                         <label for="TimeTables_0__From" class="active">From</label>
                                                     </div>
                                                 </td>
-
                                                 <td>
                                                     <div class="input-field col s12">
                                                         <input placeholder="" readonly="readonly" id="TimeTables_6__To" name="TimeTables[6].To" class="masked" type="text" data-inputmask="'mask': 'h:s'">
@@ -190,12 +192,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            
                                         </table>
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -205,8 +203,9 @@
                                 @Html.ActionLink("Cancel", "Index", "Shift", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </form>
                 </div>
+                }
+                
             </div>
         </div>
     </div>

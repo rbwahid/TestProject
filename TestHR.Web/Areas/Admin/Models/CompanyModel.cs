@@ -17,7 +17,7 @@ namespace TestHR.Web.Areas.Admin.Models
 
         public Guid Id { get; set; }
         [Required]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "First Name must be between 3 and 50 characters!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string Name { get; set; }
         public List<Company> MotherCompanies { get; set; }
         [DisplayName("Mother Company")]

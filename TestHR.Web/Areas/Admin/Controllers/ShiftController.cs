@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using TestHR.Web.Areas.Admin.Models;
 
 namespace TestHR.Web.Areas.Admin.Controllers
@@ -26,21 +27,26 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(ShiftModel shiftModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                shiftModel.AddShift();
-                TempData["message"] = "Successfully added Branch.";
-                TempData["alertType"] = "success";
-            }
+                try
+                {
+                    shiftModel.AddShift();
+                    TempData["message"] = "Successfully added Branch.";
+                    TempData["alertType"] = "success";
+                    return RedirectToAction("Index");
+                }
 
-            catch (Exception e)
-            {
-                TempData["message"] = "Failed to Add Shift.";
-                TempData["alertType"] = "danger";
-                Console.Write(e.Message);
-            }
+                catch (Exception e)
+                {
+                    TempData["message"] = "Failed to Add Shift.";
+                    TempData["alertType"] = "danger";
+                    Console.Write(e.Message);
+                }
 
-            return RedirectToAction("Index");
+                
+            }
+            return View(shiftModel);
         }
 
         public ActionResult Delete(Guid? id)
@@ -69,8 +75,12 @@ namespace TestHR.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(ShiftModel model)
         {
-            model.EditShift(model.Id);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                model.EditShift(model.Id);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 	}
 }
