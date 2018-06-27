@@ -12,8 +12,9 @@
         </div>
         <div class="col s12">
             <div class="card">
-                <div class="card-content">
-                    <form method="post" action="/Admin/Shift/Edit">
+                @using (Html.BeginForm("Edit", "Shift", FormMethod.Post))
+                {
+                    <div class="card-content">
                         <div class="col m12">
                             <div class="card">
                                 <span class="card-title">Shift Settings</span><br>
@@ -31,16 +32,19 @@
                                         <div class="row">
                                             <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input name="Name" value="@Model.Name" id="Name" type="text" class="validate">
                                                     <label for="Name">Shift Name</label>
+                                                    @Html.TextBoxFor(model => model.Name)
+                                                    @Html.ValidationMessageFor(model => model.Name)
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input name="Code" id="Code" value="@Model.Code" type="text" class="validate">
                                                     <label for="Code">Code</label>
+                                                    @Html.TextBoxFor(model => model.Code)
+                                                    @Html.ValidationMessageFor(model => model.Code)
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input name="Type" value="@Model.Type" id="Type" type="text" class="validate">
                                                     <label for="Type">Type</label>
+                                                    @Html.TextBoxFor(model => model.Type)
+                                                    @Html.ValidationMessageFor(model => model.Type)
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <input name="Description" value="@Model.Description" id="Description" type="text" class="validate">
@@ -48,8 +52,9 @@
                                                 </div>
 
                                                 <div class="input-field col m12">
-                                                    <input name="OfficeHourDescription" value="@Model.OfficeHourDescription" id="OfficeHourDescription" type="text" class="validate">
                                                     <label for="OfficeHourDescription">Office Hour Description</label>
+                                                    @Html.TextBoxFor(model => model.OfficeHourDescription)
+                                                    @Html.ValidationMessageFor(model => model.OfficeHourDescription)
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <input name="GraceTimeIn" value="@Model.GraceTimeIn" id="GraceTimeIn" type="number" class="validate">
@@ -71,7 +76,7 @@
                                                     }
                                                     else
                                                     {
-                                                       <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsDefault" name="IsDefault" type="checkbox" value="true" />
+                                                        <input class="validate" data-val="true" data-val-required="The IsActive field is required." id="IsDefault" name="IsDefault" type="checkbox" value="true" />
                                                         @Html.LabelFor(m => m.IsDefault)  
                                                     }
                                                 </div>
@@ -369,8 +374,9 @@
                                 @Html.ActionLink("Cancel", "Index", "Shift", null, new { @class = "btn btn-default red col s4 offset-m1" })
                             </div>
                         </div>
-                    </form>
                 </div>
+                }
+                
             </div>
         </div>
     </div>
