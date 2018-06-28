@@ -25,8 +25,8 @@ namespace TestHR.Web.Areas.Admin.Models
         [DisplayName("Department Name")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 50 characters!")]
         public string DepartmentName { get; set; }
-         [Required(ErrorMessage = "Field Required")]
-        public Guid DepartmentHeadId { get; set; }
+       
+        public Guid? DepartmentHeadId { get; set; }
         public List<Employee> Employees { get; set; }
         
         public DepartmentModel()

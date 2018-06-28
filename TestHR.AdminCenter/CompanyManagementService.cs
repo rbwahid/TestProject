@@ -41,14 +41,14 @@ namespace TestHR.AdminCenter
             
         }
 
-        public void EditCompany(Guid id,string name, Guid motherCompanyId, string address, string phone, string fax, string email,
+        public void EditCompany(Guid id,string name, Guid? motherCompanyId, string address, string phone, string fax, string email,
             string contactPerson, string contactPersonEmail, string contactPersonPhone, string fiscalYearStart)
         {
             var company = GetCompany(id);
             company.Name = name;
             if (company.MotherCompany != null)
             {
-                company.MotherCompany = GetCompany(motherCompanyId);
+                company.MotherCompany = GetCompany(motherCompanyId.Value);
             }
             company.Address = address;
             company.Phone = phone;
@@ -60,13 +60,16 @@ namespace TestHR.AdminCenter
             company.FiscalYearStart = fiscalYearStart;
             _companyUnitOfWork.Save();
         }
-        public void AddCompany(string name, Guid motherCompanyId, string address, string phone, string fax, string email, 
+        public void AddCompany(string name, Guid? motherCompanyId, string address, string phone, string fax, string email, 
             string contactPerson, string contactPersonEmail, string contactPersonPhone, string fiscalYearStart)
         {
             var company = new Company();
 
             company.Name = name;
-            company.MotherCompany = _companyUnitOfWork.CompanyRepository.GetById(motherCompanyId);
+            if (motherCompanyId.HasValue)
+            {
+                company.MotherCompany = _companyUnitOfWork.CompanyRepository.GetById(motherCompanyId.Value);
+            }
             company.Address = address;
             company.Phone = phone;
             company.Fax = fax;

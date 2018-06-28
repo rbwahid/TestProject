@@ -44,27 +44,31 @@ namespace TestHR.AdminCenter
         {
             return _departmentUnitOfWork.DepartmentRepository.GetAll().ToList();
         }
-        public void AddDepartment(string name, Guid companyId, Guid departmentHeadId) //Not sure
+        public void AddDepartment(string name, Guid companyId, Guid? departmentHeadId) //Not sure
         {
-            var department = new Department
-            {
-                Company = new Company(),
-            };
+            var department = new Department();
+          
 
             department.Name = name;
-            department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);           
-            department.DepartmentHead=_employeeUnitOfWork.EmployeeRepository.GetById(departmentHeadId);
+            department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
+            if (departmentHeadId.HasValue)
+            {
+                department.DepartmentHead = _employeeUnitOfWork.EmployeeRepository.GetById(departmentHeadId.Value);
+            }
             _departmentUnitOfWork.DepartmentRepository.Add(department);
             _departmentUnitOfWork.Save();
 
         }
 
-        public void EditDepartment(Guid id,string name, Guid companyId, Guid departmentHeadId)
+        public void EditDepartment(Guid id,string name, Guid companyId, Guid? departmentHeadId)
         {
             var department = GetDepartment(id);
             department.Name = name;
             department.Company = _companyUnitOfWork.CompanyRepository.GetById(companyId);
-            department.DepartmentHead.Id = departmentHeadId;
+            if (departmentHeadId.HasValue)
+            {
+                department.DepartmentHead.Id = departmentHeadId.Value;
+            }
             _departmentUnitOfWork.Save();
 
         }

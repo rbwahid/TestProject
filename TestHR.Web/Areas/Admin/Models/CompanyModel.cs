@@ -21,7 +21,7 @@ namespace TestHR.Web.Areas.Admin.Models
         public string Name { get; set; }
         public List<Company> MotherCompanies { get; set; }
         [DisplayName("Mother Company")]
-        public Guid MotherCompanyId { get; set; }
+        public Guid? MotherCompanyId { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Address must be between 3 and 50 characters!")]
         public string Address { get; set; }

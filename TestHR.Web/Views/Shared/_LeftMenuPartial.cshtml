@@ -1,6 +1,5 @@
 ﻿<ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-    @if (User.IsInRole("Global_SupAdmin"))
-    {
+    
         <li class="no-padding"><a class="waves-effect waves-grey" href="@Url.Action("Index","Dashboard")"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
     <li class="no-padding">
         <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Admin Center<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
@@ -81,23 +80,9 @@
             </div>
         </li>
         
-    }
+    
     
     @*// new code //*@
-    @if (User.IsInRole("Employee_Edit"))
-    {
-        <li class="no-padding"><a class="waves-effect waves-grey" href="/Dashboard/Employee"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
-        <li class="no-padding">
-            <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">apps</i>Employee Center<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
-            <div class="collapsible-body">
-                <ul>
-                    <li><a href="/Admin/Employee/Profile">Profile</a></li>
-
-                </ul>
-            </div>
-        </li>
-        <li class="no-padding"><a class="waves-effect waves-grey" href="/Admin/Attendance/Index"><i class="material-icons">star_border</i>Attendance</a></li>
-        <li class="no-padding"><a class="waves-effect waves-grey" href="/Admin/LeaveApplication/Index"><i class="material-icons">trending_up</i>Leave</a></li>
-    }
+    
 
 </ul>
