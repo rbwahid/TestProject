@@ -34,6 +34,7 @@ namespace TestHR.Web.Areas.Admin.Models
             ReportingPositions = GetAllPositions();
             Departments = GetAllDepartments();
         }
+        // Position Excel File //
         public void PositionExcelFile(HttpPostedFileBase positionExcelFileBase)
         {
 

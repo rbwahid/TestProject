@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using OfficeOpenXml;
 using TestHR.AdminCenter;
 using TestHR.Entities;
 
@@ -38,12 +39,15 @@ namespace TestHR.Web.Areas.Admin.Models
         public int? CardNo { get; set; }
         public List<Company> Companies { get; set; }
         public Guid? CompanyId { get; set; }
-
+        public string   CompanyName { get; set; }
         public List<Branch> Branches { get; set; }
         public Guid? BranchId { get; set; }
+        public string BranchName { get; set; }
         public List<Department> Departments { get; set; }
         public Guid? DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
         public List<Position> Positions { get; set; }
+        public string PositionName { get; set; }
         public Guid? PositionId { get; set; }
 
         public List<Employee> Employees { get; set; } 
@@ -82,7 +86,109 @@ namespace TestHR.Web.Areas.Admin.Models
            _roleManagementService=new RoleManagementService();
             Roles = GetAllRole();
         }
+        // Employee Excel File //
+        public void EmployeeExcelFile(HttpPostedFileBase employeeExcelFileBase)
+        {
 
+            string ExcuteMsg = string.Empty;
+            int NumberOfColume = 0;
+            try
+            {
+                //HttpPostedFileBase file = Request.Files["ProductExcel"];
+                HttpPostedFileBase file = employeeExcelFileBase;
+                //Extaintion Check
+                if (employeeExcelFileBase.FileName.EndsWith("xls") || file.FileName.EndsWith("xlsx") ||
+                    file.FileName.EndsWith("XLS") ||
+                    file.FileName.EndsWith("XLSX"))
+                {
+                    //Null Exp Check
+                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                    {
+                        string fileName = file.FileName;
+                        string fileContentType = file.ContentType;
+                        byte[] fileBytes = new byte[file.ContentLength];
+                        var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                        List<EmployeeModel> employeeModelList = new List<EmployeeModel>();
+                        using (var package = new ExcelPackage(file.InputStream))
+                        {
+                            var currentSheet = package.Workbook.Worksheets;
+                            var workSheet = currentSheet.First();
+                            var noOfCol = workSheet.Dimension.End.Column;
+                            var noOfRow = workSheet.Dimension.End.Row;
+                            for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                            {
+                                if (workSheet.Cells[rowIterator, 2].Value != null || workSheet.Cells[rowIterator, 3].Value != null || workSheet.Cells[rowIterator, 4].Value != null)
+                                {
+                                    EmployeeModel employeeModel = new EmployeeModel();
+                                    employeeModel.CompanyName =
+                                        workSheet.Cells[rowIterator, 1].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 1].Value.ToString();
+
+                                    employeeModel.FirstName = workSheet.Cells[rowIterator, 2].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 2].Value.ToString();
+
+                                    employeeModel.MiddleName = workSheet.Cells[rowIterator, 3].Value == null
+                                           ? null
+                                           : workSheet.Cells[rowIterator, 3].Value.ToString();
+
+                                    employeeModel.LastName = workSheet.Cells[rowIterator, 4].Value == null
+                                           ? null
+                                           : workSheet.Cells[rowIterator, 4].Value.ToString();
+                                    employeeModel.BranchName = workSheet.Cells[rowIterator, 5].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 5].Value.ToString();
+
+                                    employeeModel.DepartmentName = workSheet.Cells[rowIterator, 6].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 6].Value.ToString();
+
+                                    employeeModel.PositionName = workSheet.Cells[rowIterator, 7].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 7].Value.ToString();
+
+                                    employeeModel.FPId = workSheet.Cells[rowIterator, 8].Value == null 
+                                        ? 0
+                                            : int.Parse(workSheet.Cells[rowIterator, 8].Value.ToString());
+
+                                    employeeModel.CardNo = workSheet.Cells[rowIterator, 9].Value == null
+                                            ? 0
+                                            : int.Parse(workSheet.Cells[rowIterator, 9].Value.ToString());
+
+                                    employeeModel.PhoneNumber = workSheet.Cells[rowIterator, 10].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 10].Value.ToString();
+
+                                    employeeModel.Email = workSheet.Cells[rowIterator, 11].Value == null
+                                            ? null
+                                            : workSheet.Cells[rowIterator, 11].Value.ToString();
+
+                                    employeeModelList.Add(employeeModel);
+                                }
+                            }
+                        }
+                        //List data saving
+                        if (employeeModelList.Count > 0)
+                        {
+
+                            foreach (var item in employeeModelList)
+                            {
+                                item.AddToEmployeeExcel();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception r)
+            {
+                ExcuteMsg = r.Message;
+            }
+        }
+        public void AddToEmployeeExcel()
+        {
+            _employeeManagementService.AddToEmployeeExcel(CompanyName, FirstName, MiddleName, LastName, BranchName, DepartmentName, PositionName, FPId, CardNo, PhoneNumber, Email);
+        }
         private List<Position> GetAllPosition()
         {
             

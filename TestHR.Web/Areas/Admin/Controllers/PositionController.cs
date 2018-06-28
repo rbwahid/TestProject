@@ -9,7 +9,6 @@ namespace TestHR.Web.Areas.Admin.Controllers
 {
     public class PositionController : Controller
     {
-
         public ActionResult Index()
         {
             var position = new Models.PositionModel().GetAllPositions().Where(x=>x.IsDelete==false);

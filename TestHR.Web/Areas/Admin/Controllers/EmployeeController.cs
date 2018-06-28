@@ -81,5 +81,15 @@ namespace TestHR.Web.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Excel(HttpPostedFileBase employeeExcelFileBase)
+        {
+            if (ModelState.IsValid)
+            {
+                EmployeeModel employeeModel = new EmployeeModel();
+                employeeModel.EmployeeExcelFile(employeeExcelFileBase);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
