@@ -72,7 +72,7 @@ namespace TestHR.AdminCenter
                 int workCode = 0;
                 while (zkSdkClass.SSR_GetGeneralLogData(zkSdkClass.MachineNumber,ref enrollNumber,ref verifyMode,ref inOutMode,ref year,ref month,ref day,ref hour,ref minute,ref second, ref workCode))
                 {
-                    AddToAttendanceLog(Convert.ToInt16(enrollNumber),new DateTime(year,month,day,hour,minute,second));
+                    AddToAttendanceLog(Convert.ToInt32(enrollNumber),new DateTime(year,month,day,hour,minute,second));
                 }
             }
 

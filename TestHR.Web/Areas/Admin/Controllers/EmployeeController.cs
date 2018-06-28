@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using TestHR.Entities;
 using TestHR.Web.Areas.Admin.Models;
 using TestHR.Web.Controllers;
 
@@ -72,10 +74,17 @@ namespace TestHR.Web.Areas.Admin.Controllers
 			return RedirectToAction("Index");
         }
         // new code //
+        [Roles("Employee")]
         public ActionResult Profile()
         {
-            return View();
+               var userName = User.Identity.GetUserName().Split('|')[1];
+               EmployeeModel employeeModel = new EmployeeModel();
+               Employee employee = employeeModel.GetAllEmployee().FirstOrDefault(e => e.UserName == userName);
+
+
+               return View(employee);
         }
+       
         //=== Employee Excel File Import ===//
         public ActionResult Excel()
         {

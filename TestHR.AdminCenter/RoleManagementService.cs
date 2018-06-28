@@ -97,6 +97,7 @@ namespace TestHR.AdminCenter
 
         public static List<RoleTaskCheckBoxModel> TaskNames = new List<RoleTaskCheckBoxModel>
         {
+             new RoleTaskCheckBoxModel {TaskName="Employee", TaskNameDisplay="Employee"},
             new RoleTaskCheckBoxModel {TaskName="Employee_Add", TaskNameDisplay="Employee Add"},
             new RoleTaskCheckBoxModel {TaskName="Employee_Edit", TaskNameDisplay="Employee Edit"},
             new RoleTaskCheckBoxModel {TaskName="Branch_Configuration", TaskNameDisplay="Branch Congiguration"},

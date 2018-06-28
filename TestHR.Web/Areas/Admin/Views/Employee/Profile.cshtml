@@ -1,0 +1,182 @@
+﻿@model TestHR.Entities.Employee
+@using TestHR.Entities
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main class="mn-inner">
+    <div class="row">
+        @*<div class="col s12">
+                <div class="page-title">Contact</div>
+            </div>*@
+        <div class="col s12 m3">
+            <div class="card">
+                <div class="card-content center-align">
+                    <img src="~/Content/Images/profile-image-1.png" class="responsive-img circle" width="128px" alt="">
+                    <p class="m-t-lg flow-text">@Html.DisplayFor(model=>model.FirstName) @Html.DisplayFor(model => model.MiddleName) @Html.DisplayFor(model => model.LastName)</p>
+                    <div class="chip m-t-sm blue-grey white-text"> @Html.DisplayFor(model => model.Position.Name)</div>
+                    <p>
+                        Email : @Html.DisplayFor(model => model.Email) <br />
+                        Contact No : @Html.DisplayFor(model => model.PhoneNumber)
+                    </p>
+                    @*<div class="chip m-t-sm blue-grey white-text">Developer</div>*@
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content ">
+                    <span class="card-title">Present Address</span>
+                    <address>
+                        @Html.DisplayFor(model => model.PresentAddress)
+                    </address><br />
+                    <span class="card-title">Parnament Address</span>
+                    <address>
+                       @Html.DisplayFor(model => model.PernamentAddress)
+                    </address>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="col s12 m4 l4">
+            <div class="card">
+                <div class="card-content ">
+                    <div class="row">*@
+        <div class="col s12 m9">
+            <div class="card">
+                <div class="">
+                    <ul class="tabs tab-demo z-depth-1" style="width: 100%;">
+                        <li class="tab col s3"><a href="#test1">Personal</a></li>
+                        <li class="tab col s3"><a href="#test2">Education</a></li>
+                        <li class="tab col s3"><a href="#test3">Career</a></li>
+                        <li class="tab col s3"><a href="#test4">Official</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div id="test1">
+                        
+                        <table class="table table-bordered">
+                            <tr>
+                                <th data-field="id">Full Name :</th>
+                                <td>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.MiddleName) @Html.DisplayFor(model => model.LastName)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="id">Father's Name :</th>
+                                <td>@Html.DisplayFor(model => model.FathersName)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="id">Mother's Name :</th>
+                                <td>@Html.DisplayFor(model => model.MothersName)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="id">Religion :</th>
+                                <td>@Html.DisplayFor(model => model.Religion)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="id">Nationality :</th>
+                                <td>@Html.DisplayFor(model => model.Nationality)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="id">NID :</th>
+                                <td>@Html.DisplayFor(model => model.Nid)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="id">Passport No :</th>
+                                <td>@Html.DisplayFor(model => model.PassportNo)</td>
+                            </tr> 
+                        </table>
+                    </div>
+                    <div id="test2">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="id">Degree</th>
+                                    <th data-field="name">Institute</th>
+                                    <th data-field="price">Subject</th>
+                                    <th data-field="price">Passing </th>
+                                    <th data-field="price">Result</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var edu in Model.EmployeeEducationHistory)
+                                {
+                                     <tr>
+                                    <td>@Html.DisplayFor(item => edu.Degree)</td>
+                                    <td>@Html.DisplayFor(item => edu.InstituteName)</td>
+                                    <td>@Html.DisplayFor(item => edu.Subject)</td>
+                                    <td>@Html.DisplayFor(item => edu.PassingYear.Year)</td> 
+                                    <td>@Html.DisplayFor(item => edu.Result)</td>
+                                  
+                                </tr>
+                                }
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="test3">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="id">Company Name</th>
+                                    <th data-field="price">Address</th>
+                                    <th data-field="name">Department</th>
+                                    <th data-field="price">Position</th>
+                                    <th data-field="price">Start Date</th>
+                                    <th data-field="price">End Date</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var job in Model.EmployeeCareerHistory)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(item => job.CompanyName)</td>
+                                        <td>@Html.DisplayFor(item => job.CompanyAddress)</td>
+                                        <td>@Html.DisplayFor(item => job.Department)</td>  
+                                        <td>@Html.DisplayFor(item => job.Position)</td>
+                                        <td>@Html.DisplayFor(item => job.StartDate.Date)</td>
+                                        <td>@Html.DisplayFor(item => job.EndDate.Date)</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="test4">
+                       
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <th data-field="id">Role</th>
+                                <td>@Html.DisplayFor(model=>Model.Role.RoleName)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="price">Branch</th>
+                                <td>@Html.DisplayFor(model=>Model.Branch.Name)</td>
+                            </tr> 
+                            <tr>
+                                <th data-field="price">Department</th>
+                                <td>@Html.DisplayFor(model=>Model.Department.Name)</td>
+                            </tr>
+                            
+                            <tr>
+                                <th data-field="price">Finger ID</th>
+                                <td>@Html.DisplayFor(model => Model.FPId)</td>
+                            </tr>
+                            <tr>
+                                <th data-field="price">Card Number</th>
+                                <td>@Html.DisplayFor(model => Model.CardNo)</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
