@@ -15,28 +15,10 @@ namespace TestHR.Web.Areas.Admin.Controllers
         // GET: /Admin/Attendance/
         public ActionResult Index()
         {
-            return  View();
+            var attendanceModel = new AttendanceModel().GetAllAttendances();
+            return View(attendanceModel);
         }
 
-        public ActionResult AttendanceLogFileImport()
-        {
-            return View("AttendanceLogFileImport");
-        }
-        [HttpPost]
-        public ActionResult AttendanceLogFileImport(HttpPostedFileBase attendanceLogExcelFile)
-        {
-            if (ModelState.IsValid)
-            {
-                AttendanceLogModel attendanceLogModel=new AttendanceLogModel();
-                attendanceLogModel.AttendanceLogFileImport(attendanceLogExcelFile);
-            }
-            return RedirectToAction("AttendanceLogViewTable");
-        }
-
-        public ActionResult AttendanceLogViewTable()
-        {
-            var attendanceLogs = new Models.AttendanceLogModel().GetAllaAttendanceLogs();
-            return View(attendanceLogs);
-        }
+       
 	}
 }

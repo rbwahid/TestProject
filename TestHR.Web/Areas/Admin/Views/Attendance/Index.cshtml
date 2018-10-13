@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TestHR.Entities.Department>
+﻿@model IEnumerable<TestHR.Entities.Attendance>
+    @using TestHR.Entities
     @{
         ViewBag.Title = "Index";
         Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -8,32 +9,39 @@
     <main class="mn-inner">
         <div class="row">
             <div class="col s12">
-                <div class="page-title">Department List</div>
+                <div class="page-title">Attendance List</div>
             </div>
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Department</span>
-                        <a href="@Url.Action("DepartmentFileImport", "Department", new { })" class="btn-default"><i>Emport Excel</i></a>
-                        <table id="companyList" class="display responsive-table datatable-example">
+                        <span class="card-title">Attendances</span>
+                        <table id="attendanceList" class="display responsive-table datatable-example">
                             <thead>
                                 <tr>
-                                    <th>DepartmentName</th>
-                                    <th>Company</th>
-                                    <th>Employees</th>
+                                    <th>Date</th>
+                                    <th>Employee</th>
+                                    <th>Entry</th>
+                                    <th>Late Entry</th>
+                                    <th>Exit</th>
+                                    <th>Early Exit</th>
+                                    <th>OT</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var department in Model)
+                                @foreach (var attendance in Model)
                                 {
                                     <tr>
-                                        <td>@department.Name</td>
-                                        <td>@department.Company.Name</td>
-                                        <td>@department.Employees</td>
+                                        <td>@attendance.AttendanceDate.Date.ToString("D")</td>
+                                        <td>@attendance.Employee.FirstName @attendance.Employee.MiddleName @attendance.Employee.LastName</td>
+                                        <td>@attendance.EntryTime</td>
+                                        <td>@attendance.LateEntry</td>
+                                        <td>@attendance.ExitTime</td>
+                                        <td>@attendance.EarlyExit</td> 
+                                         <td>@attendance.Overtime</td>
                                         <td>
-                                            <a href="@Url.Action("Edit","Department",new{id=department.Id})" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
-                                            <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id="@department.Id"><i class="material-icons">delete</i></a>
+                                            <a href="@Url.Action("", "", new { id = attendance.Id })" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red sweetalert-warning" data-id=""><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
                                 }
@@ -47,14 +55,14 @@
     </main>
 
     @section scripts
-    {
+{
         <script src="~/Plugins/sweetalert/sweetalert.min.js"></script>
         <script src="~/Plugins/datatables/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
-                $('#companyList').DataTable({
+            $(document).ready(function () {
+                $('#attendanceList').DataTable({
                     language: {
-                        searchPlaceholder: 'Search Branch',
+                        searchPlaceholder: 'Search Attendance',
                         sSearch: '',
                         sLengthMenu: 'Show _MENU_',
                         sLength: 'dataTables_length',
@@ -67,8 +75,8 @@
                     }
                 });
                 $('.dataTables_length select').addClass('browser-default');
-                $('.sweetalert-warning').click(function() {
-                    var url = '@Url.Action("Delete", "Department")';
+                $('.sweetalert-warning').click(function () {
+                    var url = '@Url.Action("Delete", "Employee")';
                     var id = $(this).data('id');
                     console.log(id);
                     swal({
@@ -79,20 +87,20 @@
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "Yes, delete it!",
                         closeOnConfirm: false
-                    }, function() {
+                    }, function () {
                         $.ajax({
                             url: url,
                             type: 'POST',
                             data: { id: id }
-                        }).done(function(data) {
+                        }).done(function (data) {
                             swal({
-                                title: "Deleted!", 
-                                text:"Your imaginary file has been deleted.",
-                                type:"success"
-                            },function() {
+                                title: "Deleted!",
+                                text: "Your imaginary file has been deleted.",
+                                type: "success"
+                            }, function () {
                                 location.reload();
                             });
-                        }).fail(function() {
+                        }).fail(function () {
                             $.alert("There is something wrong! Please try again.", '<i class="fa fa-exclamation-circle" aria-hidden="true"> Alert</i>');
                         });
 

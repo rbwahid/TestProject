@@ -34,6 +34,8 @@ namespace TestHR.Web.Areas.Admin.Models
         public string Nid { get; set; }
         public string PassportNo { get; set; }
 
+        public int? FPId { get; set; }
+        public int? CardNo { get; set; }
         public List<Company> Companies { get; set; }
         public Guid? CompanyId { get; set; }
 
@@ -133,6 +135,8 @@ namespace TestHR.Web.Areas.Admin.Models
             this.Nationality = employee.Nationality;
             this.Nid = employee.Nid;
             this.PassportNo = employee.PassportNo;
+            this.FPId = employee.FPId;
+            this.CardNo = employee.CardNo;
             if (employee.Company != null)
             {
                 this.CompanyId = employee.Company.Id;
@@ -158,15 +162,14 @@ namespace TestHR.Web.Areas.Admin.Models
            
             _employeeManagementService.AddEmployee(FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
-                PositionId,ReportingToId, EducationHistories, EmployeeCareerHistories,RoleId,UserName,Password);
-
+                PositionId, ReportingToId, FPId, CardNo, EducationHistories, EmployeeCareerHistories, RoleId, UserName, Password);
         } 
         public void EditEmployee()
         {
            
             _employeeManagementService.EditEmployee(Id,FirstName, MiddleName, LastName, FathersName, MothersName, SouseName,
                 PhoneNumber, PresentAddress, PernamentAddress, Email, Religion, Nationality, Nid, PassportNo, CompanyId, BranchId, DepartmentId,
-                PositionId,ReportingToId, EducationHistories, EmployeeCareerHistories);
+                PositionId, ReportingToId, FPId, CardNo, EducationHistories, EmployeeCareerHistories);
 
         }
 

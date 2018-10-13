@@ -19,7 +19,7 @@ namespace TestHR.Web.Areas.Admin.Models
         public Guid LeaveTypeId { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
-
+       
         public string ReasonForLeave { get; set; }
 
         public virtual List<Employee> Employees { get; set; }
@@ -113,6 +113,7 @@ namespace TestHR.Web.Areas.Admin.Models
                 foreach (var leaveType in _leaveTypeManagementService.GetAllLeaveTypes().Where(e=>e.IsDelete==false))
                 {
                     LeaveType leaveTy = new LeaveType();
+
                     leaveTy.NumberOfDays = 0;
                     foreach (var leave in _leaveApplicationManagementService.GetAlLeaveApplications().Where(e=>e.IsDelete==false && e.Status==3 && e.Applicant.Id== employee.Id && e.LeaveType.Id== leaveType.Id).ToList())
                     {

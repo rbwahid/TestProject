@@ -12,6 +12,8 @@ namespace TestHR.AdminCenter
         private AdminCenterDbContext _context;
         private BranchUnitOfWork _branchUnitOfWork;
         private CompanyUnitOfWork _companyUnitOfWork;
+        private CompanyManagementService _companyManagementService;
+
 
         public BranchManagementService()
         {
@@ -19,7 +21,27 @@ namespace TestHR.AdminCenter
             _branchUnitOfWork = new BranchUnitOfWork(_context);
             _companyUnitOfWork = new CompanyUnitOfWork(_context);
         }
-
+        public void AddToBranchExcel(string companyName, string name, string description)
+        {
+            var company = _companyUnitOfWork.CompanyRepository.GetAll().FirstOrDefault(e => e.Name == companyName);
+            var branch = _branchUnitOfWork.BranchRepository.GetAll().FirstOrDefault(e => e.Name == name);
+            if (branch == null)
+            {
+                if (company != null)
+                {
+                    AddBranch(name, company.Id, description);
+                }
+                else
+                {
+                    _companyManagementService = new CompanyManagementService();
+                    _companyManagementService.AddCompany(companyName, Guid.Empty, string.Empty, string.Empty,
+                        string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.Now);
+                    AddBranch(name,
+                        _companyUnitOfWork.CompanyRepository.GetAll().FirstOrDefault(e => e.Name == companyName).Id,
+                        description);
+                }
+            }
+        }
         public List<Branch> GetAllBranches()
         {
             return _branchUnitOfWork.BranchRepository.GetAll().ToList();
@@ -30,7 +52,7 @@ namespace TestHR.AdminCenter
             return _branchUnitOfWork.BranchRepository.GetById(id);
         }
 
-         public void DeleteBranch(Guid id)
+        public void DeleteBranch(Guid id)
         {
             _branchUnitOfWork.BranchRepository.DeleteById(id);
             _branchUnitOfWork.Save();
@@ -40,7 +62,7 @@ namespace TestHR.AdminCenter
         {
 
             return _branchUnitOfWork.BranchRepository.GetAll().Count();
-            
+
         }
         public void AddBranch(string name, Guid CompanyId, string Description)
         {
@@ -55,7 +77,7 @@ namespace TestHR.AdminCenter
 
         }
 
-        public void EditBranch(Guid id,string name, Guid CompanyId, string Description)
+        public void EditBranch(Guid id, string name, Guid CompanyId, string Description)
         {
             var branch = GetBranch(id);
             branch.Name = name;

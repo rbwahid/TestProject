@@ -13,7 +13,12 @@
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Branch</span>
+                        <div class="row">
+                            <span class="card-title col s2">Branch List</span>
+                            <span class="col s2 offset-m8 pull-right">
+                                <a href="@Url.Action("BranchExcelFileImport", "Branch", new { })" class="btn btn-default btn-group-sm">Add Branch</a>
+                            </span>
+                        </div>
                         <table id="branchList" class="display responsive-table datatable-example">
                             <thead>
                                 <tr>
