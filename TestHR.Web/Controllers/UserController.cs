@@ -189,7 +189,7 @@ namespace TestHR.Web.Controllers
 
         private void SeedValues(AdminCenterDbContext context)
         {
-            var seedRole = new Role {RoleName = "Admin",Status = 2};
+            var seedRole = new Role {RoleName = "Administrator",Status = 2};
             context.Roles.AddOrUpdate(r => r.RoleName, seedRole);
             context.SaveChanges();
 
